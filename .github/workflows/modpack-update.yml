@@ -73,6 +73,49 @@ jobs:
         with:
           working-directory: ${{ matrix.pack-directory.directory }}
 
+      - name: Download jars for Voxy-Sodium compatibility check
+        id: download-compat-jars
+        if: steps.update-pack.outputs.is-update == 'true'
+        run: |
+          PACK_DIR="${{ matrix.pack-directory.directory }}"
+          VOXY_TOML="$PACK_DIR/mods/voxy.pw.toml"
+          SODIUM_TOML="$PACK_DIR/mods/sodium.pw.toml"
+
+          # Skip if Voxy isn't in this pack or Sodium wasn't modified by the update
+          if [ ! -f "$VOXY_TOML" ] || [ ! -f "$SODIUM_TOML" ] || git diff HEAD --quiet -- "$SODIUM_TOML"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          mkdir -p /tmp/compat-jars
+          VOXY_URL=$(grep '^url = ' "$VOXY_TOML" | sed 's/url = "\(.*\)"/\1/')
+          SODIUM_URL=$(grep '^url = ' "$SODIUM_TOML" | sed 's/url = "\(.*\)"/\1/')
+
+          wget -q -O /tmp/compat-jars/voxy.jar "$VOXY_URL"
+          wget -q -O /tmp/compat-jars/sodium.jar "$SODIUM_URL"
+
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Check Voxy-Sodium compatibility
+        id: check-sodium-compat
+        if: steps.download-compat-jars.outputs.skip == 'false'
+        uses: ./.github/actions/check-fabric-compat
+        with:
+          dependent-jar: /tmp/compat-jars/voxy.jar
+          dependency-jar: /tmp/compat-jars/sodium.jar
+          dependency-mod-id: sodium
+
+      - name: Revert Sodium if incompatible with Voxy
+        id: revert-sodium
+        if: steps.download-compat-jars.outputs.skip == 'false' && steps.check-sodium-compat.outputs.compatible == 'false'
+        run: |
+          PACK_DIR="${{ matrix.pack-directory.directory }}"
+          git checkout HEAD -- "$PACK_DIR/mods/sodium.pw.toml"
+          cd "$PACK_DIR" && packwiz refresh
+
+          NOTE="> Note: Sodium was held back as the latest version is not compatible with Voxy."
+          echo "note=$NOTE" >> "$GITHUB_OUTPUT"
+
       - name: Add to changelog
         id: add-to-changelog
         if: steps.update-pack.outputs.is-update == 'true'
@@ -102,6 +145,8 @@ jobs:
           Updated version number to v`${{ steps.add-to-changelog.outputs.version-number }}`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).
 
           ${{ steps.update-pack.outputs.pr-body }}
+
+          ${{ steps.revert-sodium.outputs.note }}
 
           EOF_AiVMO7YIg1
 

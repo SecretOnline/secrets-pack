@@ -1,0 +1,53 @@
+name: Check Fabric mod dependency compatibility
+description: Check if a mod's fabric.mod.json dependency requirement is satisfied by another mod
+
+inputs:
+  dependent-jar:
+    description: Path to the mod declaring the dependency (e.g. Voxy)
+    required: true
+  dependency-jar:
+    description: Path to the mod being depended on (e.g. Sodium)
+    required: true
+  dependency-mod-id:
+    description: The fabric mod ID to look for in the dependent's depends block
+    required: true
+
+outputs:
+  compatible:
+    description: "'true' or 'false'"
+    value: ${{ steps.check.outputs.compatible }}
+  required-range:
+    description: The version range string from the dependent's fabric.mod.json
+    value: ${{ steps.check.outputs.required-range }}
+  actual-version:
+    description: The version string from the dependency's fabric.mod.json
+    value: ${{ steps.check.outputs.actual-version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check compatibility
+      id: check
+      shell: bash
+      run: |
+        DEP_ID="${{ inputs.dependency-mod-id }}"
+        REQUIRED_RANGE=$(unzip -p "${{ inputs.dependent-jar }}" fabric.mod.json | jq -r --arg id "$DEP_ID" '.depends[$id] // empty')
+        ACTUAL_VERSION=$(unzip -p "${{ inputs.dependency-jar }}" fabric.mod.json | jq -r '.version')
+
+        echo "required-range=$REQUIRED_RANGE" >> "$GITHUB_OUTPUT"
+        echo "actual-version=$ACTUAL_VERSION" >> "$GITHUB_OUTPUT"
+
+        if [ -z "$REQUIRED_RANGE" ]; then
+          echo "No dependency range declared for $DEP_ID, skipping"
+          echo "compatible=true" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+
+        echo "Requires $DEP_ID: $REQUIRED_RANGE"
+        echo "Installed: $ACTUAL_VERSION"
+
+        if npx --yes semver "$ACTUAL_VERSION" -r "$REQUIRED_RANGE" > /dev/null 2>&1; then
+          echo "compatible=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "compatible=false" >> "$GITHUB_OUTPUT"
+        fi

@@ -275,6 +275,39 @@ jobs:
           mrpack-file: "secrets-pack.mrpack"
           minecraft-directory: client/profile
 
+      - name: Find Voxy and Sodium jars for compatibility check
+        id: find-compat-jars
+        if: matrix.test-matrix.client != 'false' && matrix.test-matrix.client != 'vanilla'
+        working-directory: client
+        run: |
+          VOXY_JAR=$(find profile/mods -name "voxy-*.jar" 2>/dev/null | head -1)
+          SODIUM_JAR=$(find profile/mods -name "sodium-*.jar" 2>/dev/null | head -1)
+
+          if [ -z "$VOXY_JAR" ] || [ -z "$SODIUM_JAR" ]; then
+            echo "Voxy or Sodium not found in client mods, skipping compatibility check"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "voxy-jar=$PWD/$VOXY_JAR" >> "$GITHUB_OUTPUT"
+          echo "sodium-jar=$PWD/$SODIUM_JAR" >> "$GITHUB_OUTPUT"
+
+      - name: Check Voxy-Sodium compatibility
+        id: check-sodium-compat
+        if: steps.find-compat-jars.outputs.skip == 'false'
+        uses: ./.github/actions/check-fabric-compat
+        with:
+          dependent-jar: ${{ steps.find-compat-jars.outputs.voxy-jar }}
+          dependency-jar: ${{ steps.find-compat-jars.outputs.sodium-jar }}
+          dependency-mod-id: sodium
+
+      - name: Fail if Sodium incompatible with Voxy
+        if: steps.check-sodium-compat.outputs.compatible == 'false'
+        run: |
+          echo "ERROR: Sodium ${{ steps.check-sodium-compat.outputs.actual-version }} does not satisfy Voxy's requirement (${{ steps.check-sodium-compat.outputs.required-range }})."
+          exit 1
+
       - name: Run Minecraft server
         id: minecraft-server
         working-directory: server
