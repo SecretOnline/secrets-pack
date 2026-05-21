@@ -42,6 +42,7 @@ This project uses a three number scheme that isn't quite [semver](https://semver
 | [9](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.8)   | Minecraft 1.21.8    |                            |
 | [10](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.10) | Minecraft 1.21.10   |                            |
 | [11](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.11) | Minecraft 1.21.11   | Active (receiving updates) |
+| [12](https://modrinth.com/modpack/secrets-pack/versions?g=26.1.2)  | Minecraft 26.1.2    | Active (receiving updates) |
 
 ## Credits
 

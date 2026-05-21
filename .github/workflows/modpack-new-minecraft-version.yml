@@ -77,6 +77,31 @@ jobs:
           directory: ${{ inputs.minecraft-version }}
           changelog-body: ${{ steps.update-pack.outputs.changelog-body }}
 
+      - name: Update README version table
+        if: steps.update-pack.outputs.is-update == 'true'
+        run: |
+          new_pack_version=${{ steps.copy-new-version.outputs.new-pack-version }}
+          mc_version="${{ inputs.minecraft-version }}"
+
+          # Append new version row to the table (with blank status for now)
+          awk -v row="| [${new_pack_version}](https://modrinth.com/modpack/secrets-pack/versions?g=${mc_version}) | Minecraft ${mc_version} |                            |" '
+            /^\| \[/ { last = NR }
+            { lines[NR] = $0 }
+            END {
+              for (i = 1; i <= NR; i++) {
+                print lines[i]
+                if (i == last) print row
+              }
+            }
+          ' README.md > README.md.tmp && mv README.md.tmp README.md
+
+          # Sync maintenance status column from project.json
+          sed -i 's/| Active (receiving updates) |/|                            |/g' README.md
+
+          while IFS= read -r ver; do
+            sed -i "/^\| \[${ver}\]/s/|[[:space:]]*|$/| Active (receiving updates) |/" README.md
+          done < <(jq -r '.["version-map"] | to_entries[] | select(.value["should-run-workflows"] == true) | .key' project.json)
+
       - name: Prepare PR body
         if: steps.update-pack.outputs.is-update == 'true'
         run: |
@@ -101,6 +126,7 @@ jobs:
             ${{ inputs.minecraft-version }}
             CHANGELOG.md
             project.json
+            README.md
           commit-message: "Update to Minecraft ${{ inputs.minecraft-version }}"
           branch: auto-update/${{ inputs.minecraft-version }}
           delete-branch: true
