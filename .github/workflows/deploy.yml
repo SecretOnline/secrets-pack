@@ -1,5 +1,5 @@
 name: Deploy
-run-name: Deploy ${{ inputs.pack }} (${{ inputs.version }})
+run-name: Deploy v${{ inputs.version }}
 
 on:
   workflow_dispatch:
@@ -8,16 +8,6 @@ on:
         description: Publish release
         required: true
         type: boolean
-      pack:
-        description: Pack name
-        required: true
-        type: choice
-        options:
-          - modpack/secrets-pack
-          - modpack/create-little-bit
-          - resourcepack/enor-pearl
-          - resourcepack/well-known-art
-          - resourcepack/silence-happy-ghast-ambient
       version:
         description: Pack version (no v prefix)
         required: true
@@ -47,15 +37,12 @@ jobs:
         id: deploy-info
         uses: ./.github/actions/get-deploy-info
         with:
-          pack: ${{ inputs.pack }}
           version: ${{ inputs.version }}
 
       - name: Build pack
         id: build-pack
         uses: ./.github/actions/build-pack
         with:
-          type: ${{ steps.deploy-info.outputs.type }}
-          pack: ${{ steps.deploy-info.outputs.pack }}
           directory: ${{ steps.deploy-info.outputs.directory }}
           version-override: ${{ inputs.version }}
 
@@ -65,23 +52,16 @@ jobs:
         with:
           command: query
           version: v${{ inputs.version }}
-          changelog: ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/CHANGELOG.md
+          changelog: CHANGELOG.md
 
       - name: Prepare modpack files
-        if: steps.deploy-info.outputs.type == 'modpack'
         run: |
-          cp ${{ steps.deploy-info.outputs.pack }}.mrpack ${{ steps.deploy-info.outputs.pack }}.${{ inputs.version }}.mrpack
+          cp secrets-pack.mrpack secrets-pack.${{ inputs.version }}.mrpack
 
       - name: Prepare modpack source pack
-        if: steps.deploy-info.outputs.type == 'modpack' && steps.deploy-info.outputs.include-source == 'true'
         run: |
-          zip -j source-code.zip ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/misc/modrinth.index.json ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/misc/SOURCE_CODE_README.md LICENSE.md
-          cp source-code.zip source-code.${{ steps.deploy-info.outputs.pack }}.${{ inputs.version }}.zip.mrpack
-
-      - name: Prepare resourcepack files
-        if: steps.deploy-info.outputs.type == 'resourcepack' || steps.deploy-info.outputs.type == 'datapack'
-        run: |
-          cp ${{ steps.deploy-info.outputs.pack }}.zip ${{ steps.deploy-info.outputs.pack }}.${{ inputs.version }}.zip
+          zip -j source-code.zip misc/modrinth.index.json misc/SOURCE_CODE_README.md LICENSE.md
+          cp source-code.zip source-code.secrets-pack.${{ inputs.version }}.zip.mrpack
 
       - name: Print release details
         run: |
@@ -90,7 +70,6 @@ jobs:
           echo "game-versions: ${{ steps.deploy-info.outputs.game-versions }}"
           echo "changelog: ${{ steps.changelog.outputs.release-notes }}"
           echo "loaders: ${{ steps.deploy-info.outputs.loaders }}"
-          echo "files: ${{ steps.deploy-info.outputs.files }}"
           echo "modrinth-id: ${{ steps.deploy-info.outputs.modrinth-id }}"
 
       - name: Create Modrinth Release
@@ -103,26 +82,30 @@ jobs:
           game-versions: ${{ steps.deploy-info.outputs.game-versions }}
           changelog: ${{ steps.changelog.outputs.release-notes }}
           loaders: ${{ steps.deploy-info.outputs.loaders }}
-          files: ${{ steps.deploy-info.outputs.files }}
+          files: |
+            secrets-pack.${{ inputs.version }}.mrpack
+            source-code.secrets-pack.${{ inputs.version }}.zip.mrpack
           modrinth-id: ${{ steps.deploy-info.outputs.modrinth-id }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
 
-      - name: Update Modrinth decription
+      - name: Update Modrinth description
         if: inputs.is-release && steps.deploy-info.outputs.modrinth-id != ''
         uses: funnyboy-roks/modrinth-auto-desc@v1.7
         with:
           auth-token: ${{ secrets.MODRINTH_TOKEN }}
           slug: ${{ steps.deploy-info.outputs.modrinth-id }}
-          readme: ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/README.md
+          readme: README.md
 
       - name: Create GitHub release
         if: inputs.is-release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.pack }}/v${{ inputs.version }}
+          tag_name: v${{ inputs.version }}
           name: ${{ steps.deploy-info.outputs.release-name }}
           body: ${{ steps.changelog.outputs.release-notes }}
-          files: ${{ steps.deploy-info.outputs.files }}
+          files: |
+            secrets-pack.${{ inputs.version }}.mrpack
+            source-code.secrets-pack.${{ inputs.version }}.zip.mrpack
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Post release to Discord
@@ -134,4 +117,4 @@ jobs:
           avatar-url: ${{ steps.deploy-info.outputs.pack-icon-url }}
           content: |
             ${{ steps.deploy-info.outputs.release-name }} has been released!
-            https://modrinth.com/${{ inputs.pack }}/version/v${{ inputs.version }}
+            https://modrinth.com/modpack/secrets-pack/version/v${{ inputs.version }}

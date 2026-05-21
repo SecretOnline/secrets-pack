@@ -69,15 +69,13 @@ jobs:
         id: build-pack
         uses: ./.github/actions/build-pack
         with:
-          type: ${{ matrix.build-matrix.type }}
-          pack: ${{ matrix.build-matrix.pack }}
           directory: ${{ matrix.build-matrix.directory }}
 
       - name: Upload artifact
         if: needs.get-build-matrix.outputs.has-tests == 'true'
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ matrix.build-matrix.pack }}.${{ matrix.build-matrix.directory }}
+          name: secrets-pack.${{ matrix.build-matrix.directory }}
           path: ${{ steps.build-pack.outputs.files }}
           retention-days: 1
 
@@ -151,7 +149,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ${{ matrix.test-matrix.pack }}.${{ matrix.test-matrix.directory }}
+          name: secrets-pack.${{ matrix.test-matrix.directory }}
 
       - name: Get Minecraft version from pack
         id: get-minecraft-version
@@ -162,7 +160,7 @@ jobs:
           mkdir -p client/profile
           mkdir -p server
 
-          unzip -jo ${{ matrix.test-matrix.pack }}.mrpack modrinth.index.json
+          unzip -jo secrets-pack.mrpack modrinth.index.json
 
           minecraft_version=$(cat modrinth.index.json | jq --raw-output '.dependencies.minecraft')
           echo "minecraft-version=$minecraft_version" >> "$GITHUB_OUTPUT"
@@ -244,7 +242,7 @@ jobs:
         uses: ./.github/actions/unpack-mrpack
         if: matrix.test-matrix.server != 'false' && matrix.test-matrix.server != 'vanilla'
         with:
-          mrpack-file: "${{ matrix.test-matrix.pack }}.mrpack"
+          mrpack-file: "secrets-pack.mrpack"
           minecraft-directory: server
           environment: server
 
@@ -274,7 +272,7 @@ jobs:
         uses: ./.github/actions/unpack-mrpack
         if: matrix.test-matrix.client != 'false' && matrix.test-matrix.client != 'vanilla'
         with:
-          mrpack-file: "${{ matrix.test-matrix.pack }}.mrpack"
+          mrpack-file: "secrets-pack.mrpack"
           minecraft-directory: client/profile
 
       - name: Run Minecraft server
@@ -366,7 +364,7 @@ jobs:
         uses: actions/upload-artifact@v7
         if: matrix.test-matrix.client != 'false' || matrix.test-matrix.server != 'false'
         with:
-          name: ${{ matrix.test-matrix.pack }}.${{ matrix.test-matrix.directory }}.client-${{ matrix.test-matrix.client }}.server-${{ matrix.test-matrix.server }}-test-result
+          name: secrets-pack.${{ matrix.test-matrix.directory }}.client-${{ matrix.test-matrix.client }}.server-${{ matrix.test-matrix.server }}-test-result
           path: |
             server.log
             client.log
@@ -402,7 +400,7 @@ jobs:
         uses: mshick/add-pr-comment@v2
         if: github.event_name == 'pull_request' && matrix.test-matrix.client != 'false'
         with:
-          message-id: "modpack-test-client-${{ matrix.test-matrix.pack }}-${{ matrix.test-matrix.directory }}"
+          message-id: "modpack-test-client-secrets-pack-${{ matrix.test-matrix.directory }}"
           message-path: job-summary.md
 
       - name: Fail if server failed
