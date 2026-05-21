@@ -31,7 +31,10 @@ runs:
       shell: bash
       run: |
         DEP_ID="${{ inputs.dependency-mod-id }}"
-        REQUIRED_RANGE=$(unzip -p "${{ inputs.dependent-jar }}" fabric.mod.json | jq -r --arg id "$DEP_ID" '.depends[$id] // empty')
+        # Normalise the range to a single line: arrays become "=x || =y || =z"
+        REQUIRED_RANGE=$(unzip -p "${{ inputs.dependent-jar }}" fabric.mod.json | jq -r --arg id "$DEP_ID" '
+          .depends[$id] // empty | if type == "array" then join(" || ") else . end
+        ')
         ACTUAL_VERSION=$(unzip -p "${{ inputs.dependency-jar }}" fabric.mod.json | jq -r '.version')
 
         echo "required-range=$REQUIRED_RANGE" >> "$GITHUB_OUTPUT"
@@ -46,7 +49,10 @@ runs:
         echo "Requires $DEP_ID: $REQUIRED_RANGE"
         echo "Installed: $ACTUAL_VERSION"
 
-        if npx --yes semver "$ACTUAL_VERSION" -r "$REQUIRED_RANGE" > /dev/null 2>&1; then
+        # Strip build metadata (+mc...) before semver comparison
+        ACTUAL_VERSION_CLEAN="${ACTUAL_VERSION%%+*}"
+
+        if npx --yes semver "$ACTUAL_VERSION_CLEAN" -r "$REQUIRED_RANGE" > /dev/null 2>&1; then
           echo "compatible=true" >> "$GITHUB_OUTPUT"
         else
           echo "compatible=false" >> "$GITHUB_OUTPUT"

@@ -281,7 +281,7 @@ jobs:
         working-directory: client
         run: |
           VOXY_JAR=$(find profile/mods -name "voxy-*.jar" 2>/dev/null | head -1)
-          SODIUM_JAR=$(find profile/mods -name "sodium-*.jar" 2>/dev/null | head -1)
+          SODIUM_JAR=$(find profile/mods -name "sodium-fabric-*.jar" 2>/dev/null | head -1)
 
           if [ -z "$VOXY_JAR" ] || [ -z "$SODIUM_JAR" ]; then
             echo "Voxy or Sodium not found in client mods, skipping compatibility check"
