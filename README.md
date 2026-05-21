@@ -24,8 +24,8 @@ This project uses a three number scheme that isn't quite [semver](https://semver
 
 ```txt
 <mc-version>.<update>.<patch>
-      ^         ^        ^- Updates to existing mods
-      |         ╰ --------- Additions/removals of mods
+      ^         ^        ^- Updates, usually automatic
+      |         ╰ --------- More significant changes to the pack
       ╰ ------------------- Minecraft version, according to the table below
 ```
 
@@ -59,7 +59,3 @@ There's also a `credits.txt` file with more details.
 - Chat Reporting Helper: <https://modrinth.com/resourcepack/chat-reporting-helper>
 
 </details>
-
-## Source
-
-The files used to manage this pack are shipped as an optional file alongside every release. Just rename `source-code.<version>.zip.mrpack` to remove the `.mrpack` extension, and it's a regular zip file. From here you can use [packwiz](https://packwiz.infra.link/) to build the pack or edit it for yourself.

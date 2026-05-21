@@ -58,11 +58,6 @@ jobs:
         run: |
           cp secrets-pack.mrpack secrets-pack.${{ inputs.version }}.mrpack
 
-      - name: Prepare modpack source pack
-        run: |
-          zip -j source-code.zip misc/modrinth.index.json misc/SOURCE_CODE_README.md LICENSE.md
-          cp source-code.zip source-code.secrets-pack.${{ inputs.version }}.zip.mrpack
-
       - name: Print release details
         run: |
           echo "name: ${{ steps.deploy-info.outputs.release-name }}"
@@ -82,9 +77,7 @@ jobs:
           game-versions: ${{ steps.deploy-info.outputs.game-versions }}
           changelog: ${{ steps.changelog.outputs.release-notes }}
           loaders: ${{ steps.deploy-info.outputs.loaders }}
-          files: |
-            secrets-pack.${{ inputs.version }}.mrpack
-            source-code.secrets-pack.${{ inputs.version }}.zip.mrpack
+          files: secrets-pack.${{ inputs.version }}.mrpack
           modrinth-id: ${{ steps.deploy-info.outputs.modrinth-id }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
 
@@ -103,9 +96,7 @@ jobs:
           tag_name: v${{ inputs.version }}
           name: ${{ steps.deploy-info.outputs.release-name }}
           body: ${{ steps.changelog.outputs.release-notes }}
-          files: |
-            secrets-pack.${{ inputs.version }}.mrpack
-            source-code.secrets-pack.${{ inputs.version }}.zip.mrpack
+          files: secrets-pack.${{ inputs.version }}.mrpack
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Post release to Discord
