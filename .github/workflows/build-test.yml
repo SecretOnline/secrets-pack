@@ -1,0 +1,418 @@
+name: Build & Test
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  get-build-matrix:
+    name: Get build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      has-builds: ${{ steps.build-matrix.outputs.has-builds }}
+      build-matrix: ${{ steps.build-matrix.outputs.build-matrix }}
+      has-tests: ${{ steps.build-matrix.outputs.has-tests }}
+      test-modpack-matrix: ${{ steps.build-matrix.outputs.test-modpack-matrix }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Get changed files
+        id: changed-files
+        uses: step-security/changed-files@v47
+
+      - name: Get build matrix
+        id: build-matrix
+        uses: ./.github/actions/get-build-matrix
+        with:
+          changed-files: ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
+
+  build-packs:
+    name: ${{ matrix.build-matrix.title }}
+    runs-on: ubuntu-latest
+    needs:
+      - get-build-matrix
+    if: needs.get-build-matrix.outputs.has-builds == 'true'
+    strategy:
+      matrix:
+        build-matrix: ${{ fromJson(needs.get-build-matrix.outputs.build-matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Build pack
+        id: build-pack
+        uses: ./.github/actions/build-pack
+        with:
+          type: ${{ matrix.build-matrix.type }}
+          pack: ${{ matrix.build-matrix.pack }}
+          directory: ${{ matrix.build-matrix.directory }}
+
+      - name: Upload artifact
+        if: needs.get-build-matrix.outputs.has-tests == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.build-matrix.pack }}.${{ matrix.build-matrix.directory }}
+          path: ${{ steps.build-pack.outputs.files }}
+          retention-days: 1
+
+  test-modpack:
+    name: ${{ matrix.test-matrix.title }}
+    runs-on: ubuntu-latest
+    needs:
+      - get-build-matrix
+      - build-packs
+    permissions:
+      contents: read
+      pull-requests: write
+    if: needs.get-build-matrix.outputs.has-tests == 'true'
+    strategy:
+      matrix:
+        # Type:
+        # { type: "modpack" | "resourcepack" | "datapack"; pack: string; directory: string; client: "modded" | "vanilla" | "false"; server: "modded" | "vanilla" | "false"; }
+        test-matrix: ${{ fromJson(needs.get-build-matrix.outputs.test-modpack-matrix) }}
+    steps:
+      - name: Checkout actions
+        uses: actions/checkout@v6
+        with:
+          sparse-checkout: |
+            .github/actions
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      # - name: Cache server world
+      #   uses: actions/cache@v5
+      #   if: matrix.test-matrix.server != 'false'
+      #   with:
+      #     key: minecraft-world-${{ matrix.test-matrix.pack }}-${{ matrix.test-matrix.directory }}
+      #     path: |
+      #       server/world
+
+      # - name: Cache client .minecraft
+      #   uses: actions/cache@v5
+      #   if: matrix.test-matrix.client != 'false'
+      #   with:
+      #     key: minecraft-client-dotminecraft-${{ matrix.test-matrix.pack }}-${{ matrix.test-matrix.directory }}
+      #     path: |
+      #       client/.minecraft
+
+      - name: Setup Xvfb
+        if: matrix.test-matrix.client != 'false'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends imagemagick xvfb x11-apps
+
+          export DISPLAY=:1
+          echo "DISPLAY=:1" >> "$GITHUB_ENV"
+
+          # Minecraft opens to 854x480 by default. No point in having a larger frame buffer.
+          sudo Xvfb -ac :1 -screen 0 854x480x24 > /dev/null 2>&1 &
+          sleep 1
+
+      - name: Setup Python
+        if: matrix.test-matrix.client != 'false'
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3"
+
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ matrix.test-matrix.pack }}.${{ matrix.test-matrix.directory }}
+
+      - name: Get Minecraft version from pack
+        id: get-minecraft-version
+        run: |
+          # Create client and server directories
+          # This needs to exist somewhere and here is good enough
+          mkdir -p client/.minecraft
+          mkdir -p client/profile
+          mkdir -p server
+
+          unzip -jo ${{ matrix.test-matrix.pack }}.mrpack modrinth.index.json
+
+          minecraft_version=$(cat modrinth.index.json | jq --raw-output '.dependencies.minecraft')
+          echo "minecraft-version=$minecraft_version" >> "$GITHUB_OUTPUT"
+
+          version_url=$(curl -s https://piston-meta.mojang.com/mc/game/version_manifest_v2.json | jq --raw-output ".versions | map(select(.id == \"$minecraft_version\"))[0].url")
+          java_version=$(curl -s "$version_url" | jq --raw-output '.javaVersion.majorVersion')
+          echo "java-version=$java_version" >> "$GITHUB_OUTPUT"
+
+          # I'm sorry.
+          mod_loader_info=$(cat modrinth.index.json | jq --raw-output '.dependencies | if has("fabric-loader") then { loader: "fabric", version: .["fabric-loader"] } elif has("quilt-loader") then { loader: "quilt", version: .["quilt-loader"] } elif has("forge") then { loader: "forge", version: .forge } elif has("neoforge") then { loader: "neoforge", version: .neoforge } else { loader: "vanilla", version: .minecraft } end')
+
+          mod_loader=$(echo "$mod_loader_info" | jq --raw-output '.loader')
+          mod_loader_version=$(echo "$mod_loader_info" | jq --raw-output '.version')
+          echo "mod-loader=$mod_loader" >> "$GITHUB_OUTPUT"
+          echo "mod-loader-version=$mod_loader_version" >> "$GITHUB_OUTPUT"
+
+          rm modrinth.index.json
+
+      - name: Setup Java
+        id: java
+        uses: actions/setup-java@v5
+        with:
+          distribution: "zulu"
+          java-version: ${{ steps.get-minecraft-version.outputs.java-version }}
+
+      - name: Setup Forge libraries
+        if: steps.get-minecraft-version.outputs.mod-loader == 'forge' || steps.get-minecraft-version.outputs.mod-loader == 'neoforge'
+        run: |
+          sudo apt-get update
+          sudo apt-get install libxtst6 libxi6
+
+      - name: Install server
+        if: matrix.test-matrix.server != 'false'
+        timeout-minutes: 5
+        run: |
+          wget -q -O mrpack-install https://github.com/nothub/mrpack-install/releases/download/v0.16.10/mrpack-install-linux
+          chmod +x mrpack-install
+
+          # TODO: Remove special forge handling when mrpack-install is updated
+          if [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" != "forge" ]; then
+            ./mrpack-install server ${{ steps.get-minecraft-version.outputs.mod-loader }} --flavor-version ${{ steps.get-minecraft-version.outputs.mod-loader-version }} --minecraft-version ${{ steps.get-minecraft-version.outputs.minecraft-version }} --server-dir server
+          fi
+
+          cd server
+
+          if [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "vanilla" ]; then
+            # Nothing special for vanilla
+            launch_jar="server.jar"
+          elif [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "fabric" ]; then
+            # The fabric installer will automatically download Minecraft on first run.
+            # Yes, this eats into the startup timout, but that's fine.
+            launch_jar=$(ls -1 fabric-server-mc.*.jar | head -n 1)
+          elif [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "quilt" ]; then
+            # Quilt sets up its own launch jar during install.
+            launch_jar="quilt-server-launch.jar"
+          elif [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "forge" ]; then
+            # TODO: Remove special forge handling when mrpack-install is updated
+            wget -q -O installer.jar https://maven.minecraftforge.net/net/minecraftforge/forge/${{ steps.get-minecraft-version.outputs.minecraft-version }}-${{ steps.get-minecraft-version.outputs.mod-loader-version }}/forge-${{ steps.get-minecraft-version.outputs.minecraft-version }}-${{ steps.get-minecraft-version.outputs.mod-loader-version }}-installer.jar
+            ${{ steps.java.outputs.path }}/bin/java -jar installer.jar --installServer
+
+            echo "--nogui" >> user_jvm_args.txt
+            echo "-Xmx4G" >> user_jvm_args.txt
+
+            # Newer versions of forge don't include a top-level jar file
+            # launch_jar=$(ls -1 forge-*.jar | head -n 1)
+          elif [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "neoforge" ]; then
+            # TODO: probably just wait for mrpack-install to support it
+            echo "NeoForge not yet supported"
+            exit 1
+          fi
+
+          if [ ! -f run.sh ]; then
+            echo "#!/bin/sh" > run.sh
+            echo "${{ steps.java.outputs.path }}/bin/java -Xmx4G -jar $launch_jar nogui" >> run.sh
+            chmod +x run.sh
+          fi
+
+      - name: Install pack to server
+        uses: ./.github/actions/unpack-mrpack
+        if: matrix.test-matrix.server != 'false' && matrix.test-matrix.server != 'vanilla'
+        with:
+          mrpack-file: "${{ matrix.test-matrix.pack }}.mrpack"
+          minecraft-directory: server
+          environment: server
+
+      - name: Install client
+        id: portablemc
+        if: matrix.test-matrix.client != 'false'
+        working-directory: client
+        timeout-minutes: 5
+        run: |
+          pip install --user --progress-bar off portablemc
+
+          export PATH="$PATH:$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+          if [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "vanilla" ]; then
+            portablemc_version='${{ steps.get-minecraft-version.outputs.minecraft-version }}'
+          else
+            portablemc_version='${{ steps.get-minecraft-version.outputs.mod-loader }}:${{ steps.get-minecraft-version.outputs.minecraft-version }}'
+          fi
+          echo "portablemc-version=$portablemc_version" >> "$GITHUB_OUTPUT"
+
+          # Install without starting the game.
+          # This means the timeout for the actual run won't be waiting on installation
+          portablemc --main-dir .minecraft --work-dir profile start "$portablemc_version" --jvm "${{ steps.java.outputs.path }}/bin/java" -u Dinnerbone --dry
+
+      - name: Install pack to client
+        uses: ./.github/actions/unpack-mrpack
+        if: matrix.test-matrix.client != 'false' && matrix.test-matrix.client != 'vanilla'
+        with:
+          mrpack-file: "${{ matrix.test-matrix.pack }}.mrpack"
+          minecraft-directory: client/profile
+
+      - name: Run Minecraft server
+        id: minecraft-server
+        working-directory: server
+        continue-on-error: true
+        timeout-minutes: 11
+        if: matrix.test-matrix.server != 'false'
+        run: |
+          cat <<EOF > server.properties
+          online-mode=false
+          level-seed=1
+          gamemode=creative
+          max-tick-time=-1
+          EOF
+          echo "eula=true" > eula.txt
+
+          # nohup is required to keep the server process alive after this step.
+          RUNNER_TRACKING_ID="" && nohup ./run.sh < /dev/null &> server.log &
+
+          if [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "vanilla" ]; then
+            done_message='Done ([.[:digit:]]*s)! For help, type "help"'
+          fi
+          if [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "fabric" ] || [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "quilt" ]; then
+            # Fabric is special and doesn't print the usual "Done!" message.
+            # However it loads advancements way later than vanilla/forge so it makes a good indicator.
+            done_message='Loaded [[:digit:]]* advancements'
+          fi
+          if [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "forge" ] || [ "${{ steps.get-minecraft-version.outputs.mod-loader }}" = "neoforge" ]; then
+            done_message='Done ([.[:digit:]]*s)! For help, type "help"'
+          fi
+
+          sleep 1
+          timeout 10m grep -q "$done_message" <(tail -f server.log) || exit 1
+
+      - name: Run Minecraft client
+        id: minecraft-client
+        working-directory: client
+        continue-on-error: true
+        timeout-minutes: 11
+        if: matrix.test-matrix.client != 'false'
+        run: |
+          # Turn off first time onboarding
+          cat <<EOF > profile/options.txt
+          skipMultiplayerWarning:true
+          onboardAccessibility:false
+          joinedFirstServer:true
+          tutorialStep:none
+          EOF
+
+          # Disable shaders because rendering is too slow without accelerated graphics
+          mkdir -p profile/config
+          cat <<EOF > profile/config/iris.properties
+          shaderPack=
+          EOF
+
+          # Remove Voxy as the environment in GitHub Actions doesn't support some of its rendering
+          rm -f profile/mods/voxy-*
+
+          echo Starting Minecraft client. This will take some time.
+          RUNNER_TRACKING_ID="" && nohup portablemc --main-dir .minecraft --work-dir profile start ${{ steps.portablemc.outputs.portablemc-version }} --jvm "${{ steps.java.outputs.path }}/bin/java" "--jvm-args=-Xmx4G" -u Dinnerbone -s localhost -p 25565 < /dev/null &> client.log &
+
+          sleep 1
+          timeout 10m grep -q 'Dinnerbone joined the game' <(tail -f ../server/server.log) || exit 1
+
+          # Grace period for player to properly load into game
+          echo Player joined server. Waiting for some time for eveything to load
+          sleep 60
+
+      - name: Take screenshot
+        working-directory: client
+        if: matrix.test-matrix.client != 'false'
+        run: |
+          xwd -display $DISPLAY -root -silent | convert xwd:- png:./screenshot.png
+
+      - name: Prepare artifact files
+        run: |
+          if [ -f client/client.log ]; then
+            cp client/client.log client.log
+          fi
+          if [ -f client/screenshot.png ]; then
+            cp client/screenshot.png screenshot.png
+          fi
+          if [ -f server/server.log ]; then
+            cp server/server.log server.log
+          fi
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v7
+        if: matrix.test-matrix.client != 'false' || matrix.test-matrix.server != 'false'
+        with:
+          name: ${{ matrix.test-matrix.pack }}.${{ matrix.test-matrix.directory }}.client-${{ matrix.test-matrix.client }}.server-${{ matrix.test-matrix.server }}-test-result
+          path: |
+            server.log
+            client.log
+            screenshot.png
+          retention-days: 7
+
+      - name: Upload screenshot to Imgur
+        id: upload-screenshot
+        if: env.IMGUR_CLIENT_ID != '' && matrix.test-matrix.client != 'false'
+        env:
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+        run: |
+          response=$(curl -X POST -s -F "image=@screenshot.png" -H "Authorization: Client-ID $IMGUR_CLIENT_ID" https://api.imgur.com/3/image)
+          echo $response
+
+          url=$(echo $response | jq -r .data.link)
+
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Add job summary
+        if: matrix.test-matrix.client != 'false'
+        run: |
+          cat << "EOF_AiVMO7YIg1" >> job-summary.md
+          ## ${{ matrix.test-matrix.title }} screenshot
+
+          ![Screenshot](${{ steps.upload-screenshot.outputs.url }})
+
+          EOF_AiVMO7YIg1
+
+          cat job-summary.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Add PR Comment
+        uses: mshick/add-pr-comment@v2
+        if: github.event_name == 'pull_request' && matrix.test-matrix.client != 'false'
+        with:
+          message-id: "modpack-test-client-${{ matrix.test-matrix.pack }}-${{ matrix.test-matrix.directory }}"
+          message-path: job-summary.md
+
+      - name: Fail if server failed
+        if: matrix.test-matrix.server != 'false' && (steps.minecraft-server.outcome == 'failure' || steps.minecraft-server.outcome == 'cancelled')
+        run: |
+          echo "Server didn't start. Failing workflow"
+          exit 1
+
+      - name: Fail if client failed
+        if: matrix.test-matrix.client != 'false' && (steps.minecraft-client.outcome == 'failure' || steps.minecraft-client.outcome == 'cancelled')
+        run: |
+          echo "Client didn't join server. Failing workflow"
+          exit 1

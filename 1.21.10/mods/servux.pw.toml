@@ -1,0 +1,13 @@
+name = "Servux"
+filename = "servux-fabric-1.21.10-0.8.5.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/zQhsx8KF/versions/edj0eGc8/servux-fabric-1.21.10-0.8.5.jar"
+hash-format = "sha512"
+hash = "13e67184315122f4b5411c78d2c6f3bf77b5dba05dd0c59732089a4916afce1a0b3dba548fc298c5f561fda15dd08ab521f9e98c22bed90c319cf2fe6b2feaf6"
+
+[update]
+[update.modrinth]
+mod-id = "zQhsx8KF"
+version = "edj0eGc8"

@@ -1,0 +1,13 @@
+name = "Ash API"
+filename = "ash_api-quilt-3.0.2+1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Q8xUICr6/versions/Lue1HyyO/ash_api-quilt-3.0.2%2B1.20.1.jar"
+hash-format = "sha1"
+hash = "5b144f493b7c79866a5d5f329ffb847753b481de"
+
+[update]
+[update.modrinth]
+mod-id = "Q8xUICr6"
+version = "Lue1HyyO"

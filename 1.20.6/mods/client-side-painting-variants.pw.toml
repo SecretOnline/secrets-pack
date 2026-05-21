@@ -1,0 +1,13 @@
+name = "Client side painting variants"
+filename = "client-side-painting-variants-mc1.20.6-1.0.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/T1MOUdih/versions/Uw2S2sZS/client-side-painting-variants-mc1.20.6-1.0.1.jar"
+hash-format = "sha1"
+hash = "425e48bb133fb4bcd9e48d32a5b171ada454746e"
+
+[update]
+[update.modrinth]
+mod-id = "T1MOUdih"
+version = "Uw2S2sZS"

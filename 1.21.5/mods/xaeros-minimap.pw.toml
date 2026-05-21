@@ -1,0 +1,13 @@
+name = "Xaero's Minimap"
+filename = "Xaeros_Minimap_25.2.10_Fabric_1.21.5.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/1bokaNcj/versions/IOtamBGG/Xaeros_Minimap_25.2.10_Fabric_1.21.5.jar"
+hash-format = "sha1"
+hash = "af7b39d24ec431eeb64b491ceb67bdfc5f412c5c"
+
+[update]
+[update.modrinth]
+mod-id = "1bokaNcj"
+version = "IOtamBGG"

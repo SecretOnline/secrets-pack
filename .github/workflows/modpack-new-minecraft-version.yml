@@ -1,0 +1,123 @@
+name: Modpack New Minecraft Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      pack:
+        description: Pack name (e.g. secrets-pack)
+        required: true
+        type: string
+      minecraft-version:
+        description: New Minecraft version
+        required: true
+        type: string
+
+jobs:
+  update-minecraft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Copy new version
+        id: copy-new-version
+        working-directory: modpacks/${{ inputs.pack }}
+        run: |
+          old_pack_version=$(cat project.json | jq --raw-output '.["version-map"] | keys | map(tonumber) | sort | last')
+          old_game_version=$(cat project.json | jq --raw-output '.["version-map"]["'$old_pack_version'"]["game-versions"]')
+          old_game_directory=$(cat project.json | jq --raw-output '.["version-map"]["'$old_pack_version'"]["directory"]')
+          old_should_run_workflows=$(cat project.json | jq --raw-output '.["version-map"]["'$old_pack_version'"]["should-run-workflows"]')
+
+          cp -r "$old_game_directory" "${{ inputs.minecraft-version }}"
+
+          new_pack_version=$((old_pack_version + 1))
+          cat project.json | jq '.["version-map"] += { "'$new_pack_version'": { "directory": "${{ inputs.minecraft-version }}", "game-versions": "${{ inputs.minecraft-version }}", "should-run-workflows": '$old_should_run_workflows' } }' > new-project.json
+          rm project.json
+          mv new-project.json project.json
+
+          echo "old-game-version=$old_game_version" >> "$GITHUB_OUTPUT"
+          echo "new-pack-version=$new_pack_version" >> "$GITHUB_OUTPUT"
+
+      - name: Restore packwiz cache
+        uses: actions/cache/restore@v5
+        with:
+          key: packwiz-${{ inputs.pack }}-${{ steps.copy-new-version.outputs.old-game-version }}-${{ hashFiles(format('modpacks/{0}/{1}/pack.toml', inputs.pack, steps.copy-new-version.outputs.old-game-version)) }}
+          restore-keys: |
+            packwiz-${{ inputs.pack }}-${{ steps.copy-new-version.outputs.old-game-version }}-
+          path: |
+            ~/.cache/packwiz/cache
+
+      - name: Setup Packwiz
+        uses: "./.github/actions/setup-packwiz"
+
+      - name: Update pack
+        id: update-pack
+        uses: "./.github/actions/update-minecraft-version"
+        with:
+          working-directory: modpacks/${{ inputs.pack }}/${{ inputs.minecraft-version }}
+          minecraft-version: ${{ inputs.minecraft-version }}
+
+      - name: Packwiz refresh
+        working-directory: modpacks/${{ inputs.pack }}/${{ inputs.minecraft-version }}
+        run: |
+          packwiz refresh
+
+      - name: Add to changelog
+        id: add-to-changelog
+        if: steps.update-pack.outputs.is-update == 'true'
+        uses: "./.github/actions/update-project-changelog"
+        with:
+          working-directory: modpacks/${{ inputs.pack }}
+          directory: ${{ inputs.minecraft-version }}
+          changelog-body: ${{ steps.update-pack.outputs.changelog-body }}
+
+      - name: Prepare PR body
+        if: steps.update-pack.outputs.is-update == 'true'
+        run: |
+          touch pr-body.md
+          cat << "EOF_AiVMO7YIg1" >> pr-body.md
+          This PR contains automated updates from the modpack-new-minecraft-version workflow.
+
+          ## Updates
+
+          Updated version number to v`${{ steps.add-to-changelog.outputs.version-number }}`. Copy this number for the [deploy workflow](https://github.com/s-thom/minecraft-modpack/actions/workflows/deploy.yml).
+
+          ${{ steps.update-pack.outputs.pr-body }}
+
+          EOF_AiVMO7YIg1
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        if: steps.update-pack.outputs.is-update == 'true'
+        with:
+          token: ${{ secrets.CREATE_PR_PAT }}
+          add-paths: |
+            modpacks/${{ inputs.pack }}/${{ inputs.minecraft-version }}
+            modpacks/${{ inputs.pack }}/CHANGELOG.md
+            modpacks/${{ inputs.pack }}/project.json
+          commit-message: "Update ${{ inputs.pack }} to Minecraft ${{ inputs.minecraft-version }}"
+          branch: auto-update/${{ inputs.pack }}/${{ inputs.minecraft-version }}
+          delete-branch: true
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          title: "Update ${{ inputs.pack }} to Minecraft ${{ inputs.minecraft-version }}"
+          body-path: pr-body.md
+
+      - name: Save packwiz cache
+        uses: actions/cache/save@v5
+        if: steps.update-pack.outputs.is-update == 'true'
+        with:
+          key: packwiz-${{ inputs.pack }}-${{ inputs.minecraft-version }}-${{ hashFiles(format('modpacks/{0}/{1}/pack.toml', inputs.pack, inputs.minecraft-version)) }}
+          path: |
+            ~/.cache/packwiz/cache

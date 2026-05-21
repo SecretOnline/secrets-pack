@@ -1,0 +1,15 @@
+/** EMI Config */
+
+#general {
+  /**
+	 * Whether EMI is enabled and visible.
+	 */
+  enabled: false;
+}
+
+#ui {
+  /**
+	 * Whether recipes should have a button to set as default.
+	 */
+  recipe-default-button: false;
+}

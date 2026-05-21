@@ -1,0 +1,13 @@
+name = "Dynamic Trim"
+filename = "dynamictrim-1.3.2-fabric+1.20.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/zFCKsjVY/versions/F7VqNqBr/dynamictrim-1.3.2-fabric%2B1.20.1.jar"
+hash-format = "sha1"
+hash = "c53155d6d9b0d8b4b7fdd86d0753114537090aba"
+
+[update]
+[update.modrinth]
+mod-id = "zFCKsjVY"
+version = "F7VqNqBr"

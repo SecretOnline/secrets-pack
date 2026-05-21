@@ -1,0 +1,42 @@
+name: Get build & deploy variables
+description: Determine what this workflow actually needs to run
+
+inputs:
+  pack:
+    description: Pack name (<type>/<pack>)
+    required: true
+  version:
+    description: Pack version (no v prefix)
+    required: true
+
+outputs:
+  pack-name:
+    description: Human-friendly name of the pack
+  pack-icon-url:
+    description: URL of an icon for the pack. Only present if the project has a Modrinth ID
+  artifact-name:
+    description: Name of the GitHub Actions artifact the pack is in
+  type:
+    description: Pack type (modpack, resourcepack, or datapack)
+  pack:
+    description: Pack name
+  directory:
+    description: Pack version directory
+  modrinth-id:
+    description: Name of the GitHub Actions artifact the pack is in
+  release-name:
+    description: Whether a release should be performed
+  version-name:
+    description: Version
+  game-versions:
+    description: Versions of Minecraft the pack is valid for
+  loaders:
+    description: Loaders for Modtinth release
+  files:
+    description: Files to include in the pack
+  include-source:
+    description: Whether or not to include the source code as a separate file
+
+runs:
+  using: "node20"
+  main: "index.js"

@@ -1,0 +1,130 @@
+name: Modpack Auto-update
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 4:13 am Monday UTC
+    # = 4:13 pm Monday NZST
+    - cron: "13 4 * * 1"
+
+jobs:
+  get-build-matrix:
+    name: Get build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      has-updates: ${{ steps.build-matrix.outputs.has-updates }}
+      update-modpack-mods-matrix: ${{ steps.build-matrix.outputs.update-modpack-mods-matrix }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Get build matrix
+        id: build-matrix
+        uses: ./.github/actions/get-build-matrix
+
+  update-pack:
+    runs-on: ubuntu-latest
+    needs:
+      - get-build-matrix
+    if: needs.get-build-matrix.outputs.has-updates == 'true'
+    strategy:
+      matrix:
+        pack-directory: ${{ fromJson(needs.get-build-matrix.outputs.update-modpack-mods-matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Restore packwiz cache
+        uses: actions/cache/restore@v5
+        with:
+          key: packwiz-${{ matrix.pack-directory.pack }}-${{ matrix.pack-directory.directory }}-${{ hashFiles(format('modpacks/{0}/{1}/pack.toml', matrix.pack-directory.pack, matrix.pack-directory.directory)) }}
+          restore-keys: |
+            packwiz-${{ matrix.pack-directory.pack }}-${{ matrix.pack-directory.directory }}-
+          path: |
+            ~/.cache/packwiz/cache
+
+      - name: Setup Packwiz
+        uses: "./.github/actions/setup-packwiz"
+
+      - name: Update pack
+        id: update-pack
+        uses: "./.github/actions/update-modpack-mods"
+        with:
+          working-directory: modpacks/${{ matrix.pack-directory.pack }}/${{ matrix.pack-directory.directory }}
+
+      - name: Add to changelog
+        id: add-to-changelog
+        if: steps.update-pack.outputs.is-update == 'true'
+        uses: "./.github/actions/update-project-changelog"
+        with:
+          working-directory: modpacks/${{ matrix.pack-directory.pack }}
+          directory: ${{ matrix.pack-directory.directory }}
+          changelog-body: ${{ steps.update-pack.outputs.changelog-body }}
+
+      - name: Get minecraft version
+        uses: SebRollen/toml-action@v1.2.0
+        id: get-minecraft-version
+        if: steps.update-pack.outputs.is-update == 'true'
+        with:
+          file: modpacks/${{ matrix.pack-directory.pack }}/${{ matrix.pack-directory.directory }}/pack.toml
+          field: versions.minecraft
+
+      - name: Prepare PR body
+        if: steps.update-pack.outputs.is-update == 'true'
+        run: |
+          touch pr-body.md
+          cat << "EOF_AiVMO7YIg1" >> pr-body.md
+          This PR contains automated updates from auto-update workflow.
+
+          ## Updates
+
+          Updated version number to v`${{ steps.add-to-changelog.outputs.version-number }}`. Copy this number for the [deploy workflow](https://github.com/s-thom/minecraft-modpack/actions/workflows/deploy.yml).
+
+          ${{ steps.update-pack.outputs.pr-body }}
+
+          EOF_AiVMO7YIg1
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        if: steps.update-pack.outputs.is-update == 'true'
+        with:
+          token: ${{ secrets.CREATE_PR_PAT }}
+          add-paths: |
+            modpacks/${{ matrix.pack-directory.pack }}/${{ matrix.pack-directory.directory }}
+            modpacks/${{ matrix.pack-directory.pack }}/CHANGELOG.md
+          commit-message: "Update mods for ${{ matrix.pack-directory.pack }}/${{ matrix.pack-directory.directory }}"
+          branch: auto-update/${{ matrix.pack-directory.pack }}/${{ matrix.pack-directory.directory }}
+          delete-branch: true
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          title: "Update mods for version ${{ matrix.pack-directory.pack }}/${{ matrix.pack-directory.directory }}"
+          body-path: pr-body.md
+
+      - name: Save packwiz cache
+        uses: actions/cache/save@v5
+        if: steps.update-pack.outputs.is-update == 'true'
+        with:
+          key: packwiz-${{ matrix.pack-directory.pack }}-${{ matrix.pack-directory.directory }}-${{ hashFiles(format('modpacks/{0}/{1}/pack.toml', matrix.pack-directory.pack, matrix.pack-directory.directory)) }}
+          path: |
+            ~/.cache/packwiz/cache

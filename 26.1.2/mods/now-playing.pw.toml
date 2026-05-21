@@ -1,0 +1,13 @@
+name = "Now Playing"
+filename = "nowplaying-fabric-2.2.0+26.1.2.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/eNF4Bfla/versions/9ipoHrl5/nowplaying-fabric-2.2.0%2B26.1.2.jar"
+hash-format = "sha512"
+hash = "bc960d19024d8dcfb77d3fa41d27dd90f0fccdc5044552b80c1bac121cf3c4027c43180af6ff84161361b7c05d1da7eb4d1689ff52d7ff4edf28b73c338bfd4c"
+
+[update]
+[update.modrinth]
+mod-id = "eNF4Bfla"
+version = "9ipoHrl5"

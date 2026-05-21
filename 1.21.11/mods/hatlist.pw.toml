@@ -1,0 +1,13 @@
+name = "Hat List"
+filename = "hatlist-1.5.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/nHLxbmEC/versions/MXAKuoTr/hatlist-1.5.jar"
+hash-format = "sha1"
+hash = "2e59faa6d63a8423d8b07e02f11a803320f68ab1"
+
+[update]
+[update.modrinth]
+mod-id = "nHLxbmEC"
+version = "MXAKuoTr"

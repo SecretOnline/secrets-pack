@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "defaultConfig": {
+    "stepMode": "STEP",
+    "stepHeight": 1.25,
+    "sneakHeight": 0.6,
+    "sprintHeight": 1.25,
+    "useFullRange": false
+  },
+  "worlds": {}
+}

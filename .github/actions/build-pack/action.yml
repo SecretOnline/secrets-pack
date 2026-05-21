@@ -1,0 +1,89 @@
+name: Build pack
+description: Build a modpack, resourcepack, or datapack
+
+inputs:
+  type:
+    description: Pack type (modpack, resourcepack, or datapack)
+    required: true
+  pack:
+    description: Pack name
+    required: true
+  directory:
+    description: Pack version directory
+    required: true
+  version-override:
+    description: Force version
+    required: false
+    default: "null"
+
+outputs:
+  files:
+    description: Files to include in the pack
+    value: ${{ steps.files.outputs.files }}
+
+runs:
+  using: composite
+  steps:
+    - name: Cache packwiz
+      if: inputs.type == 'modpack'
+      uses: actions/cache@v4
+      with:
+        key: packwiz-${{ inputs.pack }}-${{ inputs.directory }}-${{ hashFiles(format('modpacks/{0}/{1}/pack.toml', inputs.pack, inputs.directory)) }}
+        restore-keys: |
+          packwiz-${{ inputs.pack }}-${{ inputs.directory }}-
+        path: |
+          ~/.cache/packwiz/cache
+
+    - name: Setup Packwiz
+      if: inputs.type == 'modpack'
+      uses: "./.github/actions/setup-packwiz"
+
+    - name: Ensure Packwiz index is updated
+      if: inputs.type == 'modpack'
+      working-directory: ${{ inputs.type }}s/${{ inputs.pack }}/${{ inputs.directory }}
+      shell: bash
+      run: |
+        packwiz refresh
+        git diff --exit-code index.toml
+
+    - name: Override modpack version with release version
+      if: inputs.type == 'modpack' && inputs.version-override != 'null'
+      working-directory: ${{ inputs.type }}s/${{ inputs.pack }}/${{ inputs.directory }}
+      shell: bash
+      run: |
+        sed -i -e '/version =/ s/= .*/= "v'"${{ inputs.version }}"'"/' pack.toml
+
+    - name: Build modpack
+      if: inputs.type == 'modpack'
+      shell: bash
+      run: |
+        packwiz --pack-file ${{ inputs.type }}s/${{ inputs.pack }}/${{ inputs.directory }}/pack.toml mr export -o "${{ inputs.pack }}.mrpack"
+
+        cd "${{ inputs.type }}s/${{ inputs.pack }}"
+        zip -r "source-code.zip" ${{ inputs.directory }}
+        mv "source-code.zip" "${{ github.workspace }}"
+
+    - name: Build resourcepack or datapack
+      if: inputs.type == 'resourcepack' || inputs.type == 'datapack'
+      working-directory: ${{ inputs.type }}s/${{ inputs.pack }}/${{ inputs.directory }}
+      shell: bash
+      run: |
+        zip -r "${{ inputs.pack }}.zip" *
+        mv "${{ inputs.pack }}.zip" "${{ github.workspace }}"
+
+    - name: Get build files
+      id: files
+      shell: bash
+      run: |
+        {
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+
+          echo "files<<$EOF"
+          if [ "${{ inputs.type }}" = "modpack" ]; then
+            echo ${{ inputs.pack }}.mrpack
+            echo source-code.zip
+          else
+            echo ${{ inputs.pack }}.zip
+          fi
+          echo $EOF
+        } >> "$GITHUB_OUTPUT"

@@ -1,0 +1,19 @@
+{
+  "name": "minecraft-modpack",
+  "version": "1.0.0",
+  "description": "My Minecraft projects that don't involve code.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MPL-2.0",
+  "devDependencies": {
+    "@actions/core": "^3.0.0",
+    "@types/node": "^25.3.3",
+    "prettier": "^3.8.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "typescript": "^5.9.3"
+  }
+}

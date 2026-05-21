@@ -1,0 +1,20 @@
+name: Update modpack mods
+description: Update mods in the modpack
+
+inputs:
+  working-directory:
+    description: Directory to run packwiz in
+    required: false
+    default: "."
+
+outputs:
+  is-update:
+    description: Whether there are updates in the pack
+  changelog-body:
+    description: Text to include in the changelog
+  pr-body:
+    description: Text to include in the pull request body
+
+runs:
+  using: "node20"
+  main: "index.js"

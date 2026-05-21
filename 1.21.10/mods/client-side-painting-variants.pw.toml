@@ -1,0 +1,13 @@
+name = "Client side painting variants"
+filename = "client-side-painting-variants-mc1.21.9-1.1.5+1.21.9.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/T1MOUdih/versions/Q3229KRL/client-side-painting-variants-mc1.21.9-1.1.5%2B1.21.9.jar"
+hash-format = "sha1"
+hash = "7cc30406d158fa14d01c710088c5ece0d2ead2f6"
+
+[update]
+[update.modrinth]
+mod-id = "T1MOUdih"
+version = "Q3229KRL"

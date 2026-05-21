@@ -1,0 +1,13 @@
+name = "Now Playing"
+filename = "nowplaying-fabric-1.6.0+1.21.11.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/eNF4Bfla/versions/dWYToGLc/nowplaying-fabric-1.6.0%2B1.21.11.jar"
+hash-format = "sha512"
+hash = "eb5c785388fd4b92813052adcfd01c89360f403c499b56097049e348aec4cd65d47b2810d3570ea60445028ed53af0c9b95a0a2d34eb1c7444edfc59aa81f3b8"
+
+[update]
+[update.modrinth]
+mod-id = "eNF4Bfla"
+version = "dWYToGLc"

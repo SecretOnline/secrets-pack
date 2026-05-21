@@ -1,0 +1,18 @@
+name: Update modpack mods
+description: Update mods in the modpack
+
+inputs:
+  working-directory:
+    description: Project directory. Not an individual version's directory
+  directory:
+    description: Version directory within the project
+  changelog-body:
+    description: Text to include in the changelog
+
+outputs:
+  version-number:
+    description: New version number
+
+runs:
+  using: "node20"
+  main: "index.js"

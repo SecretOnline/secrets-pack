@@ -1,0 +1,11 @@
+{
+	scrolling: {
+		enable: false
+	}
+	refill: {
+		enable: false
+	}
+	tool-picking: {
+		hold-tool: false
+	}
+}

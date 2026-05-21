@@ -1,0 +1,4 @@
+node_modules/
+*.mrpack
+packwiz
+.env

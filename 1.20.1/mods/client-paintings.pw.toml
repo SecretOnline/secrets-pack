@@ -1,0 +1,13 @@
+name = "Client Paintings"
+filename = "client-paintings-1.2.1+1.20.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/6NZYNcOV/versions/nAQe1TlW/client-paintings-1.2.1%2B1.20.jar"
+hash-format = "sha1"
+hash = "d55e66e1b2a5b7a44540978131cd2d1b15bc27f8"
+
+[update]
+[update.modrinth]
+mod-id = "6NZYNcOV"
+version = "nAQe1TlW"

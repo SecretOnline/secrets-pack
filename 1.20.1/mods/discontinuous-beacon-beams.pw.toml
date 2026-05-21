@@ -1,0 +1,13 @@
+name = "Discontinuous Beacon Beams"
+filename = "discontinuous-beacon-beams-1.1.9+MC1.20-1.20.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/wdknt2Nc/versions/WjZr8VaQ/discontinuous-beacon-beams-1.1.9%2BMC1.20-1.20.1.jar"
+hash-format = "sha1"
+hash = "f46b2d3bb210eb530427112e4afbceda0ac5a1e7"
+
+[update]
+[update.modrinth]
+mod-id = "wdknt2Nc"
+version = "WjZr8VaQ"

@@ -1,0 +1,13 @@
+name = "Better Command Block UI"
+filename = "bettercommandblockui-0.5.2-1.20.3.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/8iQcgjQ2/versions/JEnR5ehs/bettercommandblockui-0.5.2-1.20.3.jar"
+hash-format = "sha1"
+hash = "cd7cc192cf41ddfd1fb463fa63ab796165982f71"
+
+[update]
+[update.modrinth]
+mod-id = "8iQcgjQ2"
+version = "JEnR5ehs"

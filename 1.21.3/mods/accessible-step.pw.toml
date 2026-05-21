@@ -1,0 +1,13 @@
+name = "Accessible Step"
+filename = "accessible-step-mc1.21.5-2.0.2+1.21.5.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/z6d6n7ve/versions/3WDvgWsF/accessible-step-mc1.21.5-2.0.2%2B1.21.5.jar"
+hash-format = "sha1"
+hash = "51ebe03fb93ac6f790311e4bfb0035540902c6e7"
+
+[update]
+[update.modrinth]
+mod-id = "z6d6n7ve"
+version = "3WDvgWsF"

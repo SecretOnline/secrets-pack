@@ -1,0 +1,13 @@
+name = "Accessible Step"
+filename = "accessible-step-fabric-mc1.21.10-2.2.1+1.21.10.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/z6d6n7ve/versions/HxtkIajd/accessible-step-fabric-mc1.21.10-2.2.1%2B1.21.10.jar"
+hash-format = "sha512"
+hash = "f862a0f47f72b0867f5ebcbc2ba1aa6a74117b913c16cb1d965494fd4f7995f2933e9f1746e9e5528ae3f5ff0a0a3f361809ac270621762f252b39b4750cb729"
+
+[update]
+[update.modrinth]
+mod-id = "z6d6n7ve"
+version = "HxtkIajd"

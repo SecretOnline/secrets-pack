@@ -1,0 +1,26 @@
+version:3465
+quilt_available_resource_packs:["continuity/default","continuity/glass_pane_culling_fix","file/VanillaTweaks_r736012.zip","high_contrast","itemswapper/classic","itemswapper/default","lambdabettergrass/default","programmer_art","vanilla","file/Chat Reporting Helper.zip","file/axolotl_bucket_variants-1.20.zip"]
+resourcePacks:["vanilla","lambdabettergrass/default","itemswapper/default","continuity/default","continuity/glass_pane_culling_fix","file/Chat Reporting Helper.zip","file/axolotl_bucket_variants-1.20.zip","file/VanillaTweaks_r736012.zip"]
+onboardAccessibility:false
+skipMultiplayerWarning:true
+enableVsync:false
+fov:0.625
+screenEffectScale:0.1
+fovEffectScale:0.31622776837291844
+damageTiltStrength:0.5
+darknessEffectScale:1.0
+gamma:0.5
+renderDistance:24
+simulationDistance:12
+entityDistanceScaling:1.0
+guiScale:5
+maxFps:260
+joinedFirstServer:true
+tutorialStep:none
+key_key.amecs.toggle_auto_jump:key.keyboard.unknown
+key_key.chat:key.keyboard.enter
+key_key.craftpresence.config_keycode.name:key.keyboard.unknown
+key_key.stepup.toggle:key.keyboard.unknown
+key_gui.xaero_open_map:key.keyboard.comma
+key_iris.keybind.reload:key.keyboard.unknown
+key_iris.keybind.toggleShaders:key.keyboard.unknown

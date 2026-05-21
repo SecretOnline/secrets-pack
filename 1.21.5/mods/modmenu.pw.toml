@@ -1,0 +1,13 @@
+name = "Mod Menu"
+filename = "modmenu-14.0.0-rc.2.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/mOgUt4GM/versions/T7GjZmwP/modmenu-14.0.0-rc.2.jar"
+hash-format = "sha1"
+hash = "cdcbe5d129ca9939c3c95a09b3d6fd1ed5513edd"
+
+[update]
+[update.modrinth]
+mod-id = "mOgUt4GM"
+version = "T7GjZmwP"

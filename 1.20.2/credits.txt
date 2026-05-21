@@ -1,0 +1,41 @@
+Credits:
+
+=======
+Modpack
+=======
+
+This modpack was assembled by secret_online from parts made by other people.
+
+====
+Mods
+====
+
+A list of all the mods used by this pack is present on each version's page.
+You can see a list of versions of this pack at https://modrinth.com/modpack/secrets-pack/versions
+
+Mods not hosted on Modrinth are listed below:
+- https://legacy.curseforge.com/minecraft/mc-mods/malilib
+- https://legacy.curseforge.com/minecraft/mc-mods/litematica
+- https://legacy.curseforge.com/minecraft/mc-mods/tweakeroo
+- https://legacy.curseforge.com/minecraft/mc-mods/minihud
+- https://legacy.curseforge.com/minecraft/mc-mods/item-scroller
+
+==============
+Resource packs
+==============
+
+Vanilla Tweaks: https://vanillatweaks.net/
+A copy of Vanilla Tweaks' terms of use can be found at https://vanillatweaks.net/terms/
+
+Chat Reporting Helper: https://modrinth.com/resourcepack/chat-reporting-helper
+A copy of Chat Reporting Helper's license can be found at https://spdx.org/licenses/MIT.html
+
+Axolotl Bucket Variants: https://modrinth.com/resourcepack/axolotl-bucket-variants
+A copy of Axolotl Bucket Variant's license can be found at https://www.gnu.org/licenses/lgpl+gpl-3.0.txt
+
+============
+Shader packs
+============
+
+Complementary Reimagined: https://modrinth.com/shader/complementary-reimagined
+A copy of Complementary's license can be found at https://github.com/ComplementaryDevelopment/ComplementaryReimagined/blob/main/License.txt

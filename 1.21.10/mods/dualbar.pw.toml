@@ -1,0 +1,13 @@
+name = "DualBar"
+filename = "DualBar-1.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/IMch8an1/versions/yOURjwGm/DualBar-1.1.jar"
+hash-format = "sha512"
+hash = "d862ede94b7c06b583c1088311859fa9998968fa05f761c6a5a23ee798ee2d81547707eac35e5353eb8c15e1209248cc91908038aaf3c948ec952745588cda49"
+
+[update]
+[update.modrinth]
+mod-id = "IMch8an1"
+version = "yOURjwGm"

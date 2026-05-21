@@ -1,0 +1,13 @@
+name = "Chat Patches"
+filename = "chatpatches-202.6.3.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/MOqt4Z5n/versions/LPwnOOhD/chatpatches-202.6.3.jar"
+hash-format = "sha1"
+hash = "63fffaad46cbf67e0da3053489d674cee1b6aa61"
+
+[update]
+[update.modrinth]
+mod-id = "MOqt4Z5n"
+version = "LPwnOOhD"

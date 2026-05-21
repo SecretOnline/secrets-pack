@@ -1,0 +1,13 @@
+name = "CICADA"
+filename = "cicada-lib-0.11.9+1.21.2-1.21.3.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/IwCkru1D/versions/CT1rdyHG/cicada-lib-0.11.9%2B1.21.2-1.21.3.jar"
+hash-format = "sha1"
+hash = "2ee4fb95a33d71914f24da1239ed37e4d11c175c"
+
+[update]
+[update.modrinth]
+mod-id = "IwCkru1D"
+version = "CT1rdyHG"

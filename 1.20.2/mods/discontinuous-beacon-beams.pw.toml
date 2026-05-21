@@ -1,0 +1,13 @@
+name = "Discontinuous Beacon Beams"
+filename = "discontinuous-beacon-beams-1.1.11+MC1.20.2-1.20.4.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/wdknt2Nc/versions/kLovHlAI/discontinuous-beacon-beams-1.1.11%2BMC1.20.2-1.20.4.jar"
+hash-format = "sha1"
+hash = "c9e9d92ec33bf0ce7a98b86c24b9260bf1c9453e"
+
+[update]
+[update.modrinth]
+mod-id = "wdknt2Nc"
+version = "kLovHlAI"

@@ -1,0 +1,13 @@
+name = "Bobby"
+filename = "bobby-5.2.1+mc1.20.6.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/M08ruV16/versions/70sKyIMv/bobby-5.2.1%2Bmc1.20.6.jar"
+hash-format = "sha1"
+hash = "e3a8b2d5ed97777ec37b3926158b92b25bb68896"
+
+[update]
+[update.modrinth]
+mod-id = "M08ruV16"
+version = "70sKyIMv"

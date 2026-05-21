@@ -1,0 +1,13 @@
+name = "Now Playing"
+filename = "now-playing-fabric-1.5.15+1.21.6.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/eNF4Bfla/versions/y2A400Vs/now-playing-fabric-1.5.15%2B1.21.6.jar"
+hash-format = "sha1"
+hash = "834227f57b5000c43bebbaae2e3dbd2df86412d7"
+
+[update]
+[update.modrinth]
+mod-id = "eNF4Bfla"
+version = "y2A400Vs"

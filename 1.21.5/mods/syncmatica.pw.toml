@@ -1,0 +1,13 @@
+name = "Syncmatica"
+filename = "syncmatica-fabric-1.21.5-0.3.14-sakura.4.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/bfneejKo/versions/7Ma32dRR/syncmatica-fabric-1.21.5-0.3.14-sakura.4.jar"
+hash-format = "sha1"
+hash = "2521624b9840ea49b5ca30b5f29e98feea85f81c"
+
+[update]
+[update.modrinth]
+mod-id = "bfneejKo"
+version = "7Ma32dRR"

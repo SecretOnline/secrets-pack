@@ -1,0 +1,137 @@
+name: Deploy
+run-name: Deploy ${{ inputs.pack }} (${{ inputs.version }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      is-release:
+        description: Publish release
+        required: true
+        type: boolean
+      pack:
+        description: Pack name
+        required: true
+        type: choice
+        options:
+          - modpack/secrets-pack
+          - modpack/create-little-bit
+          - resourcepack/enor-pearl
+          - resourcepack/well-known-art
+          - resourcepack/silence-happy-ghast-ambient
+      version:
+        description: Pack version (no v prefix)
+        required: true
+        type: string
+
+jobs:
+  create-release:
+    name: Create release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "write"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install
+        run: |
+          npm ci
+
+      - name: Get deploy info
+        id: deploy-info
+        uses: ./.github/actions/get-deploy-info
+        with:
+          pack: ${{ inputs.pack }}
+          version: ${{ inputs.version }}
+
+      - name: Build pack
+        id: build-pack
+        uses: ./.github/actions/build-pack
+        with:
+          type: ${{ steps.deploy-info.outputs.type }}
+          pack: ${{ steps.deploy-info.outputs.pack }}
+          directory: ${{ steps.deploy-info.outputs.directory }}
+          version-override: ${{ inputs.version }}
+
+      - name: Parse changelog
+        id: changelog
+        uses: release-flow/keep-a-changelog-action@v3
+        with:
+          command: query
+          version: v${{ inputs.version }}
+          changelog: ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/CHANGELOG.md
+
+      - name: Prepare modpack files
+        if: steps.deploy-info.outputs.type == 'modpack'
+        run: |
+          cp ${{ steps.deploy-info.outputs.pack }}.mrpack ${{ steps.deploy-info.outputs.pack }}.${{ inputs.version }}.mrpack
+
+      - name: Prepare modpack source pack
+        if: steps.deploy-info.outputs.type == 'modpack' && steps.deploy-info.outputs.include-source == 'true'
+        run: |
+          zip -j source-code.zip ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/misc/modrinth.index.json ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/misc/SOURCE_CODE_README.md LICENSE.md
+          cp source-code.zip source-code.${{ steps.deploy-info.outputs.pack }}.${{ inputs.version }}.zip.mrpack
+
+      - name: Prepare resourcepack files
+        if: steps.deploy-info.outputs.type == 'resourcepack' || steps.deploy-info.outputs.type == 'datapack'
+        run: |
+          cp ${{ steps.deploy-info.outputs.pack }}.zip ${{ steps.deploy-info.outputs.pack }}.${{ inputs.version }}.zip
+
+      - name: Print release details
+        run: |
+          echo "name: ${{ steps.deploy-info.outputs.release-name }}"
+          echo "version: v${{ inputs.version }}"
+          echo "game-versions: ${{ steps.deploy-info.outputs.game-versions }}"
+          echo "changelog: ${{ steps.changelog.outputs.release-notes }}"
+          echo "loaders: ${{ steps.deploy-info.outputs.loaders }}"
+          echo "files: ${{ steps.deploy-info.outputs.files }}"
+          echo "modrinth-id: ${{ steps.deploy-info.outputs.modrinth-id }}"
+
+      - name: Create Modrinth Release
+        if: inputs.is-release && steps.deploy-info.outputs.modrinth-id != ''
+        id: modrinth-release
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          name: ${{ steps.deploy-info.outputs.release-name }}
+          version: v${{ inputs.version }}
+          game-versions: ${{ steps.deploy-info.outputs.game-versions }}
+          changelog: ${{ steps.changelog.outputs.release-notes }}
+          loaders: ${{ steps.deploy-info.outputs.loaders }}
+          files: ${{ steps.deploy-info.outputs.files }}
+          modrinth-id: ${{ steps.deploy-info.outputs.modrinth-id }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+      - name: Update Modrinth decription
+        if: inputs.is-release && steps.deploy-info.outputs.modrinth-id != ''
+        uses: funnyboy-roks/modrinth-auto-desc@v1.7
+        with:
+          auth-token: ${{ secrets.MODRINTH_TOKEN }}
+          slug: ${{ steps.deploy-info.outputs.modrinth-id }}
+          readme: ${{ steps.deploy-info.outputs.type }}s/${{ steps.deploy-info.outputs.pack }}/README.md
+
+      - name: Create GitHub release
+        if: inputs.is-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.pack }}/v${{ inputs.version }}
+          name: ${{ steps.deploy-info.outputs.release-name }}
+          body: ${{ steps.changelog.outputs.release-notes }}
+          files: ${{ steps.deploy-info.outputs.files }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post release to Discord
+        if: inputs.is-release
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          username: ${{ steps.deploy-info.outputs.pack-name }} Releases
+          avatar-url: ${{ steps.deploy-info.outputs.pack-icon-url }}
+          content: |
+            ${{ steps.deploy-info.outputs.release-name }} has been released!
+            https://modrinth.com/${{ inputs.pack }}/version/v${{ inputs.version }}

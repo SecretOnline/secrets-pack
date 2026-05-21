@@ -1,0 +1,31 @@
+Credits:
+
+=======
+Modpack
+=======
+
+This modpack was assembled by secret_online from parts made by other people.
+
+====
+Mods
+====
+
+A list of all the mods used by this pack is present on each version's page.
+You can see a list of versions of this pack at https://modrinth.com/modpack/secrets-pack/versions
+
+==============
+Resource packs
+==============
+
+Vanilla Tweaks: https://vanillatweaks.net/
+A copy of Vanilla Tweaks' terms of use can be found at https://vanillatweaks.net/terms/
+
+Axolotl Bucket Variants: https://modrinth.com/resourcepack/axolotl-bucket-variants
+A copy of Axolotl Bucket Variant's license can be found at https://www.gnu.org/licenses/lgpl+gpl-3.0.txt
+
+============
+Shader packs
+============
+
+Complementary Reimagined: https://modrinth.com/shader/complementary-reimagined
+A copy of Complementary's license can be found at https://github.com/ComplementaryDevelopment/ComplementaryReimagined/blob/main/License.txt

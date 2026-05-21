@@ -1,0 +1,13 @@
+name = "CICADA"
+filename = "cicada-lib-0.15.1+26.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/IwCkru1D/versions/SKXslujb/cicada-lib-0.15.1%2B26.1.jar"
+hash-format = "sha512"
+hash = "25a55a4148fc07276e2a65d7931a1ab52b04248d3a1ab6e0253f68cfd84293638dc5a469cb6c00b3f94deb62bc4003b45160d2f69696a449378a1376e52da4ea"
+
+[update]
+[update.modrinth]
+mod-id = "IwCkru1D"
+version = "SKXslujb"

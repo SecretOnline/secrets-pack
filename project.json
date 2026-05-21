@@ -1,0 +1,66 @@
+{
+  "name": "secret's pack",
+  "modrinth-id": "1Ahewh4W",
+  "version-map": {
+    "1": {
+      "directory": "1.20.1",
+      "game-versions": "1.20.1",
+      "should-run-workflows": false
+    },
+    "2": {
+      "directory": "1.20.2",
+      "game-versions": "1.20.2",
+      "should-run-workflows": false
+    },
+    "3": {
+      "directory": "1.20.4",
+      "game-versions": "1.20.4",
+      "should-run-workflows": false
+    },
+    "4": {
+      "directory": "1.20.6",
+      "game-versions": "1.20.6",
+      "should-run-workflows": false
+    },
+    "5": {
+      "directory": "1.21",
+      "game-versions": "1.21.1",
+      "should-run-workflows": false
+    },
+    "6": {
+      "directory": "1.21.3",
+      "game-versions": "1.21.3",
+      "should-run-workflows": false
+    },
+    "7": {
+      "directory": "1.21.4",
+      "game-versions": "1.21.4",
+      "should-run-workflows": false
+    },
+    "8": {
+      "directory": "1.21.5",
+      "game-versions": "1.21.5",
+      "should-run-workflows": false
+    },
+    "9": {
+      "directory": "1.21.6",
+      "game-versions": "1.21.8",
+      "should-run-workflows": false
+    },
+    "10": {
+      "directory": "1.21.10",
+      "game-versions": "1.21.10",
+      "should-run-workflows": false
+    },
+    "11": {
+      "directory": "1.21.11",
+      "game-versions": "1.21.11",
+      "should-run-workflows": true
+    },
+    "12": {
+      "directory": "26.1.2",
+      "game-versions": "26.1.2",
+      "should-run-workflows": true
+    }
+  }
+}

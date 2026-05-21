@@ -1,0 +1,13 @@
+name = "ImmediatelyFast"
+filename = "ImmediatelyFast-Fabric-1.7.0+1.21.3.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/5ZwdcRci/versions/tpyJcYBi/ImmediatelyFast-Fabric-1.7.0%2B1.21.3.jar"
+hash-format = "sha1"
+hash = "ab6128caaee907466e01a35989d37927b65e4bc7"
+
+[update]
+[update.modrinth]
+mod-id = "5ZwdcRci"
+version = "tpyJcYBi"

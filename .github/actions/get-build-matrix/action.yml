@@ -1,0 +1,22 @@
+name: Get build & deploy variables
+description: Determine what this workflow actually needs to run
+
+inputs:
+  changed-files:
+    description: Files that have been changed. Newline separated.
+    required: false
+    default: ""
+
+outputs:
+  has-builds:
+    description: Whether there are builds to run
+  build-matrix:
+    description: Matrix of packs to build
+  has-tests:
+    description: Whether there are tests to run
+  test-modpack-matrix:
+    description: Matrix of packs to test
+
+runs:
+  using: "node20"
+  main: "index.js"

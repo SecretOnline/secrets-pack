@@ -1,0 +1,13 @@
+name = "secret's pack"
+author = "secret_online"
+version = "dev"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "1165bf17bb7a08576145ef97908057ba634e58515935f1cd76d56cf1f7d7bc7c"
+
+[versions]
+fabric = "0.18.4"
+minecraft = "1.21.10"
