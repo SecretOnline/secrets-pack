@@ -116,6 +116,29 @@ jobs:
           NOTE="> Note: Sodium was held back as the latest version is not compatible with Voxy."
           echo "note=$NOTE" >> "$GITHUB_OUTPUT"
 
+      - name: Update Complementary Reimagined config
+        if: steps.update-pack.outputs.is-update == 'true'
+        run: |
+          PACK_DIR="${{ matrix.pack-directory.directory }}"
+          SHADER_TOML="$PACK_DIR/shaderpacks/complementary-reimagined.pw.toml"
+
+          if [ ! -f "$SHADER_TOML" ]; then
+            exit 0
+          fi
+
+          NEW_FILENAME=$(grep '^filename = ' "$SHADER_TOML" | sed 's/filename = "\(.*\)"/\1/')
+          SHADERPACKS_CONFIG_DIR="$PACK_DIR/config/yosbr/shaderpacks"
+          IRIS_PROPERTIES="$PACK_DIR/config/yosbr/config/iris.properties"
+          NEW_TXT="$SHADERPACKS_CONFIG_DIR/${NEW_FILENAME}.txt"
+
+          OLD_TXT=$(find "$SHADERPACKS_CONFIG_DIR" -maxdepth 1 -name '*.txt' | head -1)
+
+          if [ -n "$OLD_TXT" ] && [ "$OLD_TXT" != "$NEW_TXT" ]; then
+            mv "$OLD_TXT" "$NEW_TXT"
+            sed -i "s/shaderPack=.*/shaderPack=$NEW_FILENAME/" "$IRIS_PROPERTIES"
+            cd "$PACK_DIR" && packwiz refresh
+          fi
+
       - name: Add to changelog
         id: add-to-changelog
         if: steps.update-pack.outputs.is-update == 'true'
