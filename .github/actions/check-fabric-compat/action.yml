@@ -52,7 +52,10 @@ runs:
         # Strip build metadata (+mc...) before semver comparison
         ACTUAL_VERSION_CLEAN="${ACTUAL_VERSION%%+*}"
 
-        if npx --yes semver "$ACTUAL_VERSION_CLEAN" -r "$REQUIRED_RANGE" > /dev/null 2>&1; then
+        # npm semver requires "-0", so fix "x.y.z-" → "x.y.z-0".
+        REQUIRED_RANGE_CLEAN=$(echo "$REQUIRED_RANGE" | sed 's/-\( \||\|$\)/-0\1/g')
+
+        if npx --yes semver "$ACTUAL_VERSION_CLEAN" -r "$REQUIRED_RANGE_CLEAN" > /dev/null 2>&1; then
           echo "compatible=true" >> "$GITHUB_OUTPUT"
         else
           echo "compatible=false" >> "$GITHUB_OUTPUT"
