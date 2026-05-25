@@ -150,6 +150,24 @@ Minecraft 26.1.2
   - Xaero's Minimap
   - Xaero's World Map
 
+## v11.1.13 - 2026-05-25
+
+Minecraft 1.21.11
+
+### Updated
+
+- Updated 10 mods
+  - Complementary Shaders - Reimagined
+  - Concurrent Chunk Management Engine (Fabric)
+  - Item Scroller
+  - Litematica
+  - MaLiLib
+  - MiniHUD
+  - Sodium
+  - TweakerMore
+  - Tweakeroo
+  - voxy
+
 ## v11.1.12 - 2026-05-18
 
 Minecraft 1.21.11
