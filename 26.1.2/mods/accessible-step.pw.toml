@@ -1,13 +1,13 @@
 name = "Accessible Step"
-filename = "accessible-step-fabric-26.1-2.3.0+26.1.jar"
+filename = "accessible-step-fabric-26.1.1-2.3.1+26.1.jar"
 side = "client"
 
 [download]
-url = "https://cdn.modrinth.com/data/z6d6n7ve/versions/UKXCz4A9/accessible-step-fabric-26.1-2.3.0%2B26.1.jar"
+url = "https://cdn.modrinth.com/data/z6d6n7ve/versions/8T8BTrDm/accessible-step-fabric-26.1.1-2.3.1%2B26.1.jar"
 hash-format = "sha512"
-hash = "598c9d51decf6ff2605830fc1abc0d8c74ef9459ec50d7096c8ce544842e039bec82629fa4f168e2c44610e01cec36eac060d3913858d4889c107f565579f2d2"
+hash = "feb3dbec7527803e0ff76336edc9259331d7323cf15e8c1578b2d4a36154146c22979e171a09dbc8af30a5199f1f7ea28b4a4e05c39ea2b7b7e2f892fb446e29"
 
 [update]
 [update.modrinth]
 mod-id = "z6d6n7ve"
-version = "UKXCz4A9"
+version = "8T8BTrDm"

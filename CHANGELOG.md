@@ -16,6 +16,28 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v12.0.4 - 2026-05-25
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated 14 mods
+  - Accessible Step
+  - Complementary Shaders - Reimagined
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - Item Scroller
+  - Litematica
+  - MaLiLib
+  - MiniHUD
+  - Sodium
+  - TweakerMore
+  - Tweakeroo
+  - voxy
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v12.0.3 - 2026-05-11
 
 Minecraft 26.1.2

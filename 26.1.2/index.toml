@@ -26,7 +26,7 @@ hash = "ad3030166061b89aecf693b205e61f329ea21b213dff80dacc9459f4db1b45ce"
 
 [[files]]
 file = "config/yosbr/config/iris.properties"
-hash = "9edfc0bd7021ac7b4d571e3abd6e8ce5c056812054f69f6bfa25ae0b023af329"
+hash = "75af53c9110e28c702080f0ea57ff6529af0a286e59665682566f38c4215b3b9"
 
 [[files]]
 file = "config/yosbr/config/itemscroller.json"
@@ -77,17 +77,17 @@ file = "config/yosbr/options.txt"
 hash = "64f1664ef3f7edf7d6011f519a11e1329f8552ef0d64eb8200c63ce196ae3bc9"
 
 [[files]]
-file = "config/yosbr/shaderpacks/ComplementaryReimagined_r5.7.1.zip.txt"
+file = "config/yosbr/shaderpacks/ComplementaryReimagined_r5.8.1.zip.txt"
 hash = "58591d488b585d570bc245ef808435fe9d132c3b51f9484e77f9d02dd3fdb2d1"
 
 [[files]]
 file = "mods/accessible-step.pw.toml"
-hash = "84e10303f2e743a3b0d1af3784484e87e53d1c92fa25529e4071caf2f2774b58"
+hash = "ca5664ed244a088c07d7874a4adea4f7e73aa36203bb90fb7184225e83c53183"
 metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "05608f9174ebde171474deee51bc28ccf0a29d7594a6c0bdc40f06d2c7e32b50"
+hash = "82f8e930d470d72330d18b6609e233f5c61a37866cec7c93f17d9bc6006e7565"
 metafile = true
 
 [[files]]
@@ -142,7 +142,7 @@ metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
-hash = "5adf60faf11b97a7979f398fd6c494f55603a384880db1bf9755f2495d0dc5a2"
+hash = "2a77dc7aade5de6d21315582c4b70db40ff2bdf746b61c10d7ad3c5be8422f75"
 metafile = true
 
 [[files]]
@@ -181,7 +181,7 @@ metafile = true
 
 [[files]]
 file = "mods/item-scroller.pw.toml"
-hash = "99e9b9c547fc4e9fcca036bc044936a100f768929c720b193eb43ec81b992a50"
+hash = "0663ac7b22cca0c9f965bd2e291fa01bc7b2b75deac7efed6fc7fd12a491a636"
 metafile = true
 
 [[files]]
@@ -201,7 +201,7 @@ metafile = true
 
 [[files]]
 file = "mods/litematica.pw.toml"
-hash = "8570ac1fdfa5059282c05fc10dbaa9348acd1a415b4d11adf58a63f2739e08d9"
+hash = "c8b294d6eaab29151eb2884525b962ef5506e8fc83d31ea839dbc3d30bd99651"
 metafile = true
 
 [[files]]
@@ -216,12 +216,12 @@ metafile = true
 
 [[files]]
 file = "mods/malilib.pw.toml"
-hash = "fefc1195c8b89e2ae15dced184d0188279e0a34e95885532b77eda89d63f59ad"
+hash = "131f57b021106646b1d243e94154092ba85dd70d5b8c698085fea0008570f46c"
 metafile = true
 
 [[files]]
 file = "mods/minihud.pw.toml"
-hash = "a7aa320e3b5aa7d2076bb614a4bdb284bcf25bf0e2ae18ee0b49610ed30f90b3"
+hash = "1521e14b09f495910837d440057d1b29e96fba81fdb2148b6ac60d9474169872"
 metafile = true
 
 [[files]]
@@ -261,7 +261,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "b3bf6eb1cf803d702af91d3ca5f39e7528e1d55afdae03833f6e31698803caa9"
+hash = "e5278cc1dcda4fe789eaf05318fa5885f9f3412685f8ac231fe9a395409089e0"
 metafile = true
 
 [[files]]
@@ -281,12 +281,12 @@ metafile = true
 
 [[files]]
 file = "mods/tweakermore.pw.toml"
-hash = "c6297b3a78e8ca1d71bb9b5a1cc67669a4f744a0260b8ed99aee7d07aca609b6"
+hash = "eae7f1cfd6d201e7f45fe8de5d192d570e01060495cbd4e26b2336ee49aa5fbf"
 metafile = true
 
 [[files]]
 file = "mods/tweakeroo.pw.toml"
-hash = "50d3bc699972d50bf89d51048a4bff2841f540c3e169a4093fb89a88487c3604"
+hash = "6557d217f2ec39850a73945d0d3cdd037b631f87342ecf48c0e921d7e44e44af"
 metafile = true
 
 [[files]]
@@ -296,7 +296,7 @@ metafile = true
 
 [[files]]
 file = "mods/voxy.pw.toml"
-hash = "07401c57caa88b40745f1016c950cb950ad9deff3060a0bf06c2fff8b25c7c7c"
+hash = "265c2a4cb987474f6c893adc5bf5b14ba6756bbed5fc56dfb5e29649062a84a1"
 metafile = true
 
 [[files]]
@@ -311,12 +311,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "a90e7fd6047ac3db4df5a331ff4b4849dd2db41909e6a0131ad69c2c2dbd3d3a"
+hash = "f69228cef8adb3becb463aa2ed728998487fc947d79a3d0e47b8c47c964ce589"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "2247d5907f1d8dcff55ed3f9827fd2f2c58c94d8a51727e67318aaaba02bb140"
+hash = "86237b7e69781303d17f0359da7e79821e1cd86472ebee91b3c0bd8d1abb467e"
 metafile = true
 
 [[files]]
@@ -336,5 +336,5 @@ metafile = true
 
 [[files]]
 file = "shaderpacks/complementary-reimagined.pw.toml"
-hash = "b769a2f7ef2fa754224c5068491e79d02c0c85e0bc326fc05247f18315cc866b"
+hash = "ea258ed5bf495d9017eeadc3cbf9bd67b1e672d843826bc077135548b5bc699e"
 metafile = true
