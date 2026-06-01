@@ -107,12 +107,12 @@ metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "2fa6655542b90a86aa6a27219aa662bddd1b38a13bbb1f5a35eb49b1920478d6"
+hash = "8b12e6405b7bab8620e8ed16468bff3c1a2f87e76b1c76aed0b9029f2a3572cf"
 metafile = true
 
 [[files]]
 file = "mods/chatpatches.pw.toml"
-hash = "5ab87e38087c0b9656f4b58073183f6e61798a1a1101735d1b8b5b18943625b7"
+hash = "d5eeab4d755feb40abf81d8465b972b3bccdb83938fc433fc066fc525082d1b4"
 metafile = true
 
 [[files]]
