@@ -172,6 +172,16 @@ Minecraft 26.1.2
   - Xaero's Minimap
   - Xaero's World Map
 
+## v11.1.14 - 2026-06-01
+
+Minecraft 1.21.11
+
+### Updated
+
+- Updated 2 mods
+  - Chat Heads
+  - Chat Patches
+
 ## v11.1.13 - 2026-05-25
 
 Minecraft 1.21.11
