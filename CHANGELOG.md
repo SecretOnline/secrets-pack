@@ -16,6 +16,16 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v12.0.5 - 2026-06-01
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated 2 mods
+  - Fabric API
+  - Lithium
+
 ## v12.0.4 - 2026-05-25
 
 Minecraft 26.1.2
