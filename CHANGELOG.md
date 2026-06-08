@@ -16,6 +16,22 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v12.0.6 - 2026-06-08
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated Fabric to 0.19.3
+- Updated 7 mods
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - Fabric Language Kotlin
+  - Falling Leaves
+  - Lithium
+  - Peek
+  - YetAnotherConfigLib
+
 ## v12.0.5 - 2026-06-01
 
 Minecraft 26.1.2
