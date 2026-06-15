@@ -1,13 +1,13 @@
 name = "Xaero's Minimap"
-filename = "xaerominimap-fabric-1.21.11-25.3.12.jar"
+filename = "xaerominimap-fabric-1.21.11-26.1.0.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/1bokaNcj/versions/q5DQinHS/xaerominimap-fabric-1.21.11-25.3.12.jar"
+url = "https://cdn.modrinth.com/data/1bokaNcj/versions/Gv2gIQEn/xaerominimap-fabric-1.21.11-26.1.0.jar"
 hash-format = "sha512"
-hash = "5072fe7d02471956d227b834ee1fa5b1a752f7546cf880c99e32790f09b3b13143c5c16c99b3ba39e0de8a8e6d46f37f1bb3a88ff0fa41207ccce5deae45681b"
+hash = "91aac7dbf6433f0797bd9a8cff97c5a077092a493b5d91a934db0c5a6ab6fdc1fe980c17b85df3b345dd45cfa7162298ef4b09883f3ddced89f491a3bc17d578"
 
 [update]
 [update.modrinth]
 mod-id = "1bokaNcj"
-version = "q5DQinHS"
+version = "Gv2gIQEn"

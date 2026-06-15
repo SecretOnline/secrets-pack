@@ -102,7 +102,7 @@ metafile = true
 
 [[files]]
 file = "mods/carpet-tis-addition.pw.toml"
-hash = "e2aae1833f7571018d56656b21163dfab3429aeccf3b9ab740531f5d46cfa114"
+hash = "1e0bfd859837201e316d8e11d86ef5830a0b834897ec917d3bfb70e9da6fd993"
 metafile = true
 
 [[files]]
@@ -166,7 +166,7 @@ hash = "bb2b9aa2a8899b8dda001ecdbc18672debb8b1d66ad51ad57433b6da29404e27"
 
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
-hash = "337d97b990f76c91584b12600651ae7bd47a0824e45070b3d9330b0922149fc0"
+hash = "9d37d326d9557fdd25c97d72ac1bbd1e74c524aa5dca437a91d0de645dff6545"
 metafile = true
 
 [[files]]
@@ -251,7 +251,7 @@ metafile = true
 
 [[files]]
 file = "mods/peek.pw.toml"
-hash = "a7ed3b70eee552acb382d218b9ab840d6d8d81fac7491db9d146692c4d870389"
+hash = "9f97374e3ca5fe78a38267e0c1a5617623a6e6a27ceee2d8eacd19d86adf2b7d"
 metafile = true
 
 [[files]]
@@ -331,12 +331,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "49ad6d41c076dbde4d1d1664ae98e2e280ebb57785c2751e3b70cab542016ef1"
+hash = "649bee1168178a7cac9f99455685ac3ef346af3c144d25052a3d366841d9c69e"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "79007fa65840c898bc18d75660fe987ac33cc8d9a2e4375818f6270332db097c"
+hash = "61ca749242d953d71631bd8240e8a920fcdbc2e1efefa259332bd10da35eb35d"
 metafile = true
 
 [[files]]
