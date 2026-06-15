@@ -16,6 +16,19 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v12.0.7 - 2026-06-15
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated 5 mods
+  - Carpet TIS Addition
+  - Fabric API
+  - Jade 🔍
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v12.0.6 - 2026-06-08
 
 Minecraft 26.1.2
