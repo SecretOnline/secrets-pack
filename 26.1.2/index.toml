@@ -92,7 +92,7 @@ metafile = true
 
 [[files]]
 file = "mods/carpet-tis-addition.pw.toml"
-hash = "4813f31cd1e8ab5422ad90b05e1341e7bf38165ac5a80054684f80dbd038a8eb"
+hash = "0e983f3b984625cde1efef0c756433b3f8655b2b1315fb97d6f474130612ebf2"
 metafile = true
 
 [[files]]
@@ -142,7 +142,7 @@ metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
-hash = "dbfc484ebc80a9b76e1fd95c89f9a63d702ee9eaa7051beaf1d609360afc2ef6"
+hash = "120585e75f6fa06b138bbb3e681298113c66a084ebe842de3da91d21b5b5b3f9"
 metafile = true
 
 [[files]]
@@ -186,7 +186,7 @@ metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "73838bd3377c35a6da4b6959dc77e6fa5aecbfc2922ca45c6a35f0febf8b7ae2"
+hash = "b404b9a9650098ce54da7942a4863701121c8325600b068ab4237cbc2cf6c82b"
 metafile = true
 
 [[files]]
@@ -311,12 +311,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "f69228cef8adb3becb463aa2ed728998487fc947d79a3d0e47b8c47c964ce589"
+hash = "b209b1f555a7649782d3132d4a316ed163e564e7ca84d9b83653591382ebf0c3"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "86237b7e69781303d17f0359da7e79821e1cd86472ebee91b3c0bd8d1abb467e"
+hash = "b19ded752c009e9be6838817a994360b49788ee3ff4be1ac143be6479e2a1e54"
 metafile = true
 
 [[files]]
