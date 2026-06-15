@@ -215,6 +215,20 @@ Minecraft 26.1.2
   - Xaero's Minimap
   - Xaero's World Map
 
+## v11.1.15 - 2026-06-15
+
+Minecraft 1.21.11
+
+### Updated
+
+- Updated Fabric to 0.19.3
+- Updated 5 mods
+  - Carpet TIS Addition
+  - Fabric Language Kotlin
+  - Peek
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v11.1.14 - 2026-06-01
 
 Minecraft 1.21.11
