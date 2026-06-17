@@ -245,6 +245,11 @@ hash = "c3069d6c3ef1d13c9ba064824777c4d74dd504cad358cb0b6f06f6266fc143c8"
 metafile = true
 
 [[files]]
+file = "mods/no-chat-restrictions.pw.toml"
+hash = "467eadd218b315067bd37e3af44d7719f77045cd6d3059bbf89e2ee7ce6b8e4f"
+metafile = true
+
+[[files]]
 file = "mods/now-playing.pw.toml"
 hash = "d5e6f1596cd1fa9b2f41bf523b2c178a08f3cba12a906caf7561bb09765ac014"
 metafile = true
