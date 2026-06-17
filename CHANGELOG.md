@@ -16,9 +16,13 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
-## v12.0.7 - 2026-06-15
+## v12.1.0 - 2026-06-17
 
 Minecraft 26.1.2
+
+### Added
+
+- [No Chat Restrictions](https://modrinth.com/mod/no-chat-restrictions)
 
 ### Updated
 
