@@ -198,9 +198,13 @@ Minecraft 26.1.2
   - Xaero's Minimap
   - Xaero's World Map
 
-## v11.1.15 - 2026-06-15
+## v11.2.0 - 2026-06-17
 
 Minecraft 1.21.11
+
+### Added
+
+- [No Chat Restrictions](https://modrinth.com/mod/no-chat-restrictions)
 
 ### Updated
 
