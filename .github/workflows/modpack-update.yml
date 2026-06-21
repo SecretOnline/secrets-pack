@@ -3,9 +3,9 @@ name: Modpack Auto-update
 on:
   workflow_dispatch:
   schedule:
-    # 4:13 am Monday UTC
-    # = 4:13 pm Monday NZST
-    - cron: "13 4 * * 1"
+    # 1:13 am Monday UTC
+    # = 1:13 pm Monday NZST
+    - cron: "13 1 * * 1"
 
 jobs:
   get-build-matrix:
