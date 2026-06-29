@@ -16,6 +16,36 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v12.1.1 - 2026-06-29
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated 22 mods
+  - Carpet TIS Addition
+  - Chat Heads
+  - CICADA
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric API
+  - Item Scroller
+  - Jade 🔍
+  - Litematica
+  - Lithium
+  - MaLiLib
+  - MiniHUD
+  - Now Playing
+  - Reese's Sodium Options
+  - Servux
+  - Sodium
+  - Sodium Extra
+  - spark
+  - Tweakeroo
+  - Xaero's Minimap
+  - Xaero's World Map
+  - YetAnotherConfigLib
+
 ## v12.1.0 - 2026-06-17
 
 Minecraft 26.1.2
