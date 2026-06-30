@@ -22,7 +22,7 @@ Minecraft 26.1.2
 
 ### Updated
 
-- Updated 22 mods
+- Updated 21 mods
   - Carpet TIS Addition
   - Chat Heads
   - CICADA
@@ -39,7 +39,6 @@ Minecraft 26.1.2
   - Reese's Sodium Options
   - Servux
   - Sodium
-  - Sodium Extra
   - spark
   - Tweakeroo
   - Xaero's Minimap
