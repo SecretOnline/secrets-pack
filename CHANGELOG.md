@@ -221,9 +221,8 @@ Minecraft 1.21.11
 
 ### Updated
 
-- Updated 15 mods
+- Updated 14 mods
   - Carpet TIS Addition
-  - Chat Patches
   - Concurrent Chunk Management Engine (Fabric)
   - Entity Culling
   - Item Scroller
