@@ -15,7 +15,7 @@ jobs:
       has-updates: ${{ steps.build-matrix.outputs.has-updates }}
       update-modpack-mods-matrix: ${{ steps.build-matrix.outputs.update-modpack-mods-matrix }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -43,7 +43,7 @@ jobs:
         pack-directory: ${{ fromJson(needs.get-build-matrix.outputs.update-modpack-mods-matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node
         uses: actions/setup-node@v6

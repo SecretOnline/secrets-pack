@@ -18,7 +18,7 @@ jobs:
       has-tests: ${{ steps.build-matrix.outputs.has-tests }}
       test-modpack-matrix: ${{ steps.build-matrix.outputs.test-modpack-matrix }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -53,7 +53,7 @@ jobs:
         build-matrix: ${{ fromJson(needs.get-build-matrix.outputs.build-matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -96,7 +96,7 @@ jobs:
         test-matrix: ${{ fromJson(needs.get-build-matrix.outputs.test-modpack-matrix) }}
     steps:
       - name: Checkout actions
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           sparse-checkout: |
             .github/actions
