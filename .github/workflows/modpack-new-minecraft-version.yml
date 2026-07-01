@@ -45,7 +45,7 @@ jobs:
           echo "new-pack-version=$new_pack_version" >> "$GITHUB_OUTPUT"
 
       - name: Restore packwiz cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           key: packwiz-${{ steps.copy-new-version.outputs.old-game-version }}-${{ hashFiles(format('{0}/pack.toml', steps.copy-new-version.outputs.old-game-version)) }}
           restore-keys: |
@@ -136,7 +136,7 @@ jobs:
           body-path: pr-body.md
 
       - name: Save packwiz cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         if: steps.update-pack.outputs.is-update == 'true'
         with:
           key: packwiz-${{ inputs.minecraft-version }}-${{ hashFiles(format('{0}/pack.toml', inputs.minecraft-version)) }}

@@ -56,7 +56,7 @@ jobs:
           npm ci
 
       - name: Restore packwiz cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           key: packwiz-${{ matrix.pack-directory.directory }}-${{ hashFiles(format('{0}/pack.toml', matrix.pack-directory.directory)) }}
           restore-keys: |
@@ -190,7 +190,7 @@ jobs:
           body-path: pr-body.md
 
       - name: Save packwiz cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         if: steps.update-pack.outputs.is-update == 'true'
         with:
           key: packwiz-${{ matrix.pack-directory.directory }}-${{ hashFiles(format('{0}/pack.toml', matrix.pack-directory.directory)) }}
