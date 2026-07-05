@@ -1,8 +1,14 @@
-import { getInput, setOutput, warning } from "@actions/core";
+import { getInput, setOutput } from "@actions/core";
 import { spawn } from "node:child_process";
-import { readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { readFile, readdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { createInterface } from "node:readline/promises";
+import {
+  CARPET_JAR_FILENAME_REGEX,
+  downloadCarpetJar,
+  fetchCarpetReleases,
+  findCarpetAssetForVersion,
+} from "../lib/carpet.js";
 
 const minecraftVersionInput = getInput("minecraft-version", { required: true });
 /** @type {string} */
@@ -20,8 +26,6 @@ const PACKWIZ_LOADER_UPDATE_REGEX = /^Updated (.*) loader to version (.*)$/;
 const PACKWIZ_MOD_UPDATE_NO_VERSION =
   /^Failed to check updates for (.*): failed to get latest version: no valid versions found$/;
 
-const CARPET_JAR_FILENAME_REGEX = /^fabric-carpet-.+\.jar$/;
-
 /**
  * @param {string} a
  * @param {string} b
@@ -29,164 +33,6 @@ const CARPET_JAR_FILENAME_REGEX = /^fabric-carpet-.+\.jar$/;
  */
 function compareInsensitive(a, b) {
   return a.localeCompare(b, undefined, { sensitivity: "base" });
-}
-
-/**
- * Fetch Carpet mod releases from GitHub API
- * @returns {Promise<any[]>}
- */
-async function fetchCarpetReleases() {
-  try {
-    const response = await fetch(
-      "https://api.github.com/repos/gnembon/fabric-carpet/releases",
-    );
-    if (!response.ok) {
-      throw new Error(
-        `GitHub API returned status ${response.status}: ${response.statusText}`,
-      );
-    }
-    const releases = await response.json();
-    console.log(
-      `Fetched ${releases.length} Carpet mod releases from GitHub API`,
-    );
-    return releases;
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    throw new Error(
-      `Failed to fetch Carpet releases from GitHub API: ${errorMessage}`,
-    );
-  }
-}
-
-/**
- * Find Carpet mod asset for a specific Minecraft version
- * @param {any[]} releases
- * @param {string} minecraftVersion
- * @returns {{ url: string; filename: string; version: string } | null}
- */
-function findCarpetAssetForVersion(releases, minecraftVersion) {
-  for (const release of releases) {
-    if (!release.assets || release.assets.length === 0) {
-      continue;
-    }
-
-    for (const asset of release.assets) {
-      const filename = asset.name;
-      // Match: fabric-carpet-{minecraft-version}-*.jar
-      if (
-        filename.startsWith(`fabric-carpet-${minecraftVersion}-`) &&
-        filename.endsWith(".jar")
-      ) {
-        console.log(
-          `Found Carpet mod ${release.tag_name} for Minecraft ${minecraftVersion}: ${filename}`,
-        );
-        return {
-          url: asset.browser_download_url,
-          filename: filename,
-          version: release.tag_name,
-        };
-      }
-    }
-  }
-
-  let minorMatch = minecraftVersion.match(/^(\d+)\.(\d+)\.(\d+)$/);
-  if (minorMatch) {
-    const originalReleaseVersion = `${minorMatch[1]}.${minorMatch[2]}`;
-    warning(
-      `No Carpet release for ${minecraftVersion}, trying ${originalReleaseVersion}`,
-    );
-
-    for (const release of releases) {
-      if (!release.assets || release.assets.length === 0) {
-        continue;
-      }
-
-      for (const asset of release.assets) {
-        const filename = asset.name;
-        // Match: fabric-carpet-{minecraft-version}-*.jar
-        if (
-          (filename.startsWith(`fabric-carpet-${originalReleaseVersion}-`) ||
-            filename.startsWith(`fabric-carpet-${originalReleaseVersion}+`)) &&
-          filename.endsWith(".jar")
-        ) {
-          console.log(
-            `Found Carpet mod ${release.tag_name} for Minecraft ${originalReleaseVersion}: ${filename}`,
-          );
-          return {
-            url: asset.browser_download_url,
-            filename: filename,
-            version: release.tag_name,
-          };
-        }
-      }
-    }
-  }
-
-  // No matching version found
-  const availableVersions = releases
-    .map((r) => r.tag_name)
-    .slice(0, 10)
-    .join(", ");
-  throw new Error(
-    `No Carpet mod release found for Minecraft version ${minecraftVersion}. Latest available versions: ${availableVersions}`,
-  );
-}
-
-/**
- * Delete existing Carpet jar file from mods directory
- * @param {string} modsDir
- * @returns {Promise<string | null>} Deleted filename or null if not found
- */
-async function deletePreviousCarpetJar(modsDir) {
-  try {
-    const filenames = await readdir(modsDir);
-    const carpetJars = filenames.filter((f) =>
-      CARPET_JAR_FILENAME_REGEX.test(f),
-    );
-
-    if (carpetJars.length === 0) {
-      console.log("No existing Carpet jar found");
-      return null;
-    }
-
-    for (const jarFile of carpetJars) {
-      const filePath = join(modsDir, jarFile);
-      await rm(filePath);
-      console.log(`Deleted existing Carpet jar: ${jarFile}`);
-    }
-
-    return carpetJars[0]; // Return first one for logging
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    throw new Error(`Failed to delete existing Carpet jar: ${errorMessage}`);
-  }
-}
-
-/**
- * Download Carpet mod jar from GitHub
- * @param {string} downloadUrl
- * @param {string} outputPath
- * @returns {Promise<void>}
- */
-async function downloadCarpetJar(downloadUrl, outputPath) {
-  try {
-    console.log(`Downloading Carpet mod from: ${downloadUrl}`);
-    const response = await fetch(downloadUrl);
-    if (!response.ok) {
-      throw new Error(
-        `Download failed with status ${response.status}: ${response.statusText}`,
-      );
-    }
-
-    const buffer = await response.arrayBuffer();
-    await writeFile(outputPath, Buffer.from(buffer));
-    console.log(`Successfully downloaded Carpet mod to: ${outputPath}`);
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    throw new Error(
-      `Failed to download Carpet mod from ${downloadUrl}: ${errorMessage}`,
-    );
-  }
 }
 
 async function getAllModNames() {
@@ -326,7 +172,14 @@ try {
   }
 
   // Delete old jar file if it exists
-  await deletePreviousCarpetJar(modsDir);
+  const existingFilenames = await readdir(modsDir);
+  const previousCarpetJars = existingFilenames.filter((f) =>
+    CARPET_JAR_FILENAME_REGEX.test(f),
+  );
+  for (const jarFile of previousCarpetJars) {
+    await rm(join(modsDir, jarFile));
+    console.log(`Deleted existing Carpet jar: ${jarFile}`);
+  }
 
   // Download new jar file
   const outputPath = join(modsDir, carpetAsset.filename);
