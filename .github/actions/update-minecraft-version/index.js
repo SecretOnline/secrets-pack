@@ -105,7 +105,8 @@ function findCarpetAssetForVersion(releases, minecraftVersion) {
         const filename = asset.name;
         // Match: fabric-carpet-{minecraft-version}-*.jar
         if (
-          filename.startsWith(`fabric-carpet-${originalReleaseVersion}-`) &&
+          (filename.startsWith(`fabric-carpet-${originalReleaseVersion}-`) ||
+            filename.startsWith(`fabric-carpet-${originalReleaseVersion}+`)) &&
           filename.endsWith(".jar")
         ) {
           console.log(
