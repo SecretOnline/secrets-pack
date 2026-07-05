@@ -1,0 +1,21 @@
+{
+  "Generic": {
+    "shulkerBoxPreview": true,
+    "mainRenderingToggle": {
+      "enabled": false,
+      "hotkey": {
+        "keys": "H"
+      }
+    }
+  },
+  "InfoTypeToggles": {
+    "infoFPS": true,
+    "infoTimeIRL": false
+  },
+  "RendererHotkeys": {
+    "overlayLightLevel": {
+      "keys": "F7"
+    }
+  },
+  "config_version": 1
+}

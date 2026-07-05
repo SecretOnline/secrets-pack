@@ -1,0 +1,13 @@
+name = "Silence Happy Ghast Ambient Sounds"
+filename = "SilenceHappyGhastAmbient-v1.0.1.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/N2ugADk7/versions/TmPq5cP5/SilenceHappyGhastAmbient-v1.0.1.zip"
+hash-format = "sha512"
+hash = "bafab9cc387a06a80426fe7acbbce039d701e6bf9af20d434017cf3240b5f9512b9f7a618a61a4b02e24423ec21a0b72c07df38af04c22c9ccde3992314b8654"
+
+[update]
+[update.modrinth]
+mod-id = "N2ugADk7"
+version = "TmPq5cP5"
