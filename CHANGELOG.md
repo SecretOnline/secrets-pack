@@ -16,6 +16,65 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.0 - 2026-07-05
+
+Minecraft 26.2
+
+### Added
+
+- Added and updated 42 mods
+  - \[EMF] Entity Model Features
+  - \[ETF] Entity Texture Features
+  - Accessible Step
+  - Carpet TIS Addition
+  - CICADA
+  - Cloth Config API
+  - Concurrent Chunk Management Engine (Fabric)
+  - Continuity
+  - CraftPresence
+  - DualBar
+  - Entity Culling
+  - Fabric API
+  - ImmediatelyFast
+  - Iris Shaders
+  - Item Scroller
+  - Jade 🔍
+  - LambdaBetterGrass
+  - Litematica
+  - Lithium
+  - Locator Heads
+  - MaLiLib
+  - MiniHUD
+  - Mod Menu
+  - No Chat Restrictions
+  - Now Playing
+  - Peek
+  - Puzzle
+  - Reese's Sodium Options
+  - Servux
+  - Sodium
+  - Sodium Extra
+  - Status Effect Bars
+  - Syncmatica
+  - TweakerMore
+  - Tweakeroo
+  - UniLib
+  - voxy
+  - WorldEdit
+  - WorldEdit CUI
+  - Xaero's Minimap
+  - Xaero's World Map
+  - YetAnotherConfigLib
+- Added 3 mods from previous version of pack  
+  Note: may have some compatibility issues until they are updated to this version of Minecraft
+  - Hat List
+  - Krypton
+  - Your Options Shall Be Respected (YOSBR)
+
+### Updated
+
+- Updated Carpet Mod to v26.2-beta-5
+
 ## v12.1.1 - 2026-06-29
 
 Minecraft 26.1.2

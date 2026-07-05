@@ -1,0 +1,137 @@
+{
+  "Fixes": {
+    "elytraFix": true
+  },
+  "Generic": {
+    "freeCameraPlayerInputs": true,
+    "gammaOverrideValue": 32.0
+  },
+  "GenericHotkeys": {
+    "elytraCamera": {
+      "keys": "BUTTON_5",
+      "settings": {
+        "activate_on": "PRESS",
+        "context": "INGAME",
+        "allow_empty": false,
+        "allow_extra_keys": true,
+        "order_sensitive": true,
+        "exclusive": false,
+        "cancel": true
+      }
+    },
+    "freeCameraPlayerMovement": {
+      "keys": "X,G"
+    },
+    "toolPick": {
+      "keys": "T"
+    },
+    "zoomActivate": {
+      "keys": "C"
+    }
+  },
+  "DisableToggles": {
+    "disableBossFog": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableDeadMobTargeting": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableFirstPersonEffectParticles": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableNetherFog": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disablePortalGuiClosing": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableRenderDistanceFog": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableShulkerBoxTooltip": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableWallUnsprint": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    },
+    "disableWorldViewBob": {
+      "enabled": true,
+      "hotkey": {
+        "keys": ""
+      }
+    }
+  },
+  "TweakToggles": {
+    "tweakElytraCamera": true,
+    "tweakForceSwapGear": true,
+    "tweakZoom": true
+  },
+  "TweakHotkeys": {
+    "tweakAngelBlock": {
+      "keys": "X,A"
+    },
+    "tweakFastLeftClick": {
+      "keys": "LEFT_SHIFT,X,F"
+    },
+    "tweakFastRightClick": {
+      "keys": "LEFT_SHIFT,X,G"
+    },
+    "tweakFreeCamera": {
+      "keys": "X,F"
+    },
+    "tweakGammaOverride": {
+      "keys": "X,B"
+    },
+    "tweakHandRestock": {
+      "keys": "X,H"
+    },
+    "tweakHoldAttack": {
+      "keys": "LEFT_ALT,X,F"
+    },
+    "tweakHoldUse": {
+      "keys": "LEFT_ALT,X,G"
+    },
+    "tweakPeriodicAttack": {
+      "keys": "LEFT_CONTROL,X,F"
+    },
+    "tweakPeriodicUse": {
+      "keys": "LEFT_CONTROL,X,G"
+    },
+    "tweakRenderInvisibleEntities": {
+      "keys": "X,I"
+    },
+    "tweakRepairMode": {
+      "keys": "X,R"
+    },
+    "tweakSwapAlmostBrokenTools": {
+      "keys": "X,T"
+    },
+    "tweakToolSwitch": {
+      "keys": "LEFT_SHIFT,X,T"
+    }
+  }
+}
