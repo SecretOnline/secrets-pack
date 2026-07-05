@@ -175,11 +175,6 @@ hash = "41437a15f56b00994815f2bd2371ac84232cd7a1cc29688fe81480b44a935447"
 metafile = true
 
 [[files]]
-file = "mods/iris.pw.toml"
-hash = "8b4bb7969f100288a1bf2d0886dff2b62da878042a757b7caccf209e27fe36b9"
-metafile = true
-
-[[files]]
 file = "mods/item-scroller.pw.toml"
 hash = "9f46381e0cc1d5d9c8bd613e0a5e31584dac70089c632c0e41d275c5bdfd7a5c"
 metafile = true
@@ -187,11 +182,6 @@ metafile = true
 [[files]]
 file = "mods/jade.pw.toml"
 hash = "07503941da49b4a52e47c0691bcc014f5ff2e35ad31e4d7bec274d4b2050069f"
-metafile = true
-
-[[files]]
-file = "mods/krypton.pw.toml"
-hash = "d5060b22fa47d5d56e0f4617904731e9d397d1ba104320b7ec8e59f7ca0700a7"
 metafile = true
 
 [[files]]

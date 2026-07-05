@@ -22,7 +22,7 @@ Minecraft 26.2
 
 ### Added
 
-- Added and updated 42 mods
+- Added and updated 41 mods
   - \[EMF] Entity Model Features
   - \[ETF] Entity Texture Features
   - Accessible Step
@@ -36,7 +36,6 @@ Minecraft 26.2
   - Entity Culling
   - Fabric API
   - ImmediatelyFast
-  - Iris Shaders
   - Item Scroller
   - Jade 🔍
   - LambdaBetterGrass
@@ -65,15 +64,21 @@ Minecraft 26.2
   - Xaero's Minimap
   - Xaero's World Map
   - YetAnotherConfigLib
-- Added 3 mods from previous version of pack  
+- Added 2 mods from previous version of pack
   Note: may have some compatibility issues until they are updated to this version of Minecraft
   - Hat List
-  - Krypton
   - Your Options Shall Be Respected (YOSBR)
 
 ### Updated
 
 - Updated Carpet Mod to v26.2-beta-5
+
+### Removed
+
+- Krypton
+  - Waiting for a 26.2 version
+- Iris Shaders
+  - The current version is marked as incompatible with the current version of Sodium, and the version resolution was being annoying so I decided it's best to wait for them to be compatible.
 
 ## v12.1.1 - 2026-06-29
 

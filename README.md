@@ -31,19 +31,19 @@ This project uses a three number scheme that isn't quite [semver](https://semver
 
 | Number                                                             | Compatible versions | Maintenance Status         |
 | ------------------------------------------------------------------ | ------------------- | -------------------------- |
-| [1](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.1)   | Minecraft 1.20.1    | Active (receiving updates) |
-| [2](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.2)   | Minecraft 1.20.2    | Active (receiving updates) |
-| [3](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.4)   | Minecraft 1.20.4    | Active (receiving updates) |
-| [4](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.6)   | Minecraft 1.20.6    | Active (receiving updates) |
-| [5](https://modrinth.com/modpack/secrets-pack/versions?g=1.21)     | Minecraft 1.21      | Active (receiving updates) |
-| [6](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.3)   | Minecraft 1.21.3    | Active (receiving updates) |
-| [7](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.4)   | Minecraft 1.21.4    | Active (receiving updates) |
-| [8](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.5)   | Minecraft 1.21.5    | Active (receiving updates) |
-| [9](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.8)   | Minecraft 1.21.8    | Active (receiving updates) |
-| [10](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.10) | Minecraft 1.21.10   | Active (receiving updates) |
+| [1](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.1)   | Minecraft 1.20.1    |                            |
+| [2](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.2)   | Minecraft 1.20.2    |                            |
+| [3](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.4)   | Minecraft 1.20.4    |                            |
+| [4](https://modrinth.com/modpack/secrets-pack/versions?g=1.20.6)   | Minecraft 1.20.6    |                            |
+| [5](https://modrinth.com/modpack/secrets-pack/versions?g=1.21)     | Minecraft 1.21      |                            |
+| [6](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.3)   | Minecraft 1.21.3    |                            |
+| [7](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.4)   | Minecraft 1.21.4    |                            |
+| [8](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.5)   | Minecraft 1.21.5    |                            |
+| [9](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.8)   | Minecraft 1.21.8    |                            |
+| [10](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.10) | Minecraft 1.21.10   |                            |
 | [11](https://modrinth.com/modpack/secrets-pack/versions?g=1.21.11) | Minecraft 1.21.11   | Active (receiving updates) |
 | [12](https://modrinth.com/modpack/secrets-pack/versions?g=26.1.2)  | Minecraft 26.1.2    | Active (receiving updates) |
-| [13](https://modrinth.com/modpack/secrets-pack/versions?g=26.2) | Minecraft 26.2 | Active (receiving updates) |
+| [13](https://modrinth.com/modpack/secrets-pack/versions?g=26.2)    | Minecraft 26.2      | Active (receiving updates) |
 
 ## Credits
 
