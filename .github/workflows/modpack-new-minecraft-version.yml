@@ -99,7 +99,7 @@ jobs:
           sed -i 's/| Active (receiving updates) |/|                            |/g' README.md
 
           while IFS= read -r ver; do
-            sed -i "/^\| \[${ver}\]/s/|[[:space:]]*|$/| Active (receiving updates) |/" README.md
+            sed -i "/^| \[${ver}\]/s/|[[:space:]]*|$/| Active (receiving updates) |/" README.md
           done < <(jq -r '.["version-map"] | to_entries[] | select(.value["should-run-workflows"] == true) | .key' project.json)
 
       - name: Prepare PR body
