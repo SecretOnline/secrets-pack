@@ -86,18 +86,17 @@ Minecraft 26.1.2
 
 ### Updated
 
-- Updated 11 mods
+- Updated 9 mods
   - Concurrent Chunk Management Engine (Fabric)
   - Fabric API
   - ImmediatelyFast
   - Litematica
   - MaLiLib
-  - Reese's Sodium Options
   - Servux
   - Sodium
-  - Sodium Extra
   - Xaero's Minimap
   - Xaero's World Map
+
 ### Updated
 
 - Updated Carpet Mod to v26.1
