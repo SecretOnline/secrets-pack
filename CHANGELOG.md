@@ -308,6 +308,26 @@ Minecraft 26.1.2
   - Xaero's Minimap
   - Xaero's World Map
 
+## v11.2.2 - 2026-07-07
+
+Minecraft 1.21.11
+
+### Updated
+
+- Updated 9 mods
+  - Chat Patches
+  - Concurrent Chunk Management Engine (Fabric)
+  - ImmediatelyFast
+  - Litematica
+  - MaLiLib
+  - Reese's Sodium Options
+  - Servux
+  - Sodium
+  - Sodium Extra
+### Updated
+
+- Updated Carpet Mod to 1.4.194
+
 ## v11.2.1 - 2026-06-29
 
 Minecraft 1.21.11

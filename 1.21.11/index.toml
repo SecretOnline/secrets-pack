@@ -97,7 +97,7 @@ metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "0084d142626c0a39835cf2c6abbafb5fc3d5cf5136117c7e658a8af0c3dc4568"
+hash = "a718dca2ac6d9ea19bde70b6bbe687102ef4747e6de1e342b83ec8aa63cde7b4"
 metafile = true
 
 [[files]]
@@ -112,7 +112,7 @@ metafile = true
 
 [[files]]
 file = "mods/chatpatches.pw.toml"
-hash = "d5eeab4d755feb40abf81d8465b972b3bccdb83938fc433fc066fc525082d1b4"
+hash = "9b658e1de22632e0ff66ee3608454234bf440b35829435d7662cd328373c4bfd"
 metafile = true
 
 [[files]]
@@ -161,8 +161,8 @@ hash = "2ccce9c28059ea90a5457771de06a69b0a2d1f06d48f8add48a38f1a2307da3c"
 metafile = true
 
 [[files]]
-file = "mods/fabric-carpet-1.21.11-1.4.193+v251211.jar"
-hash = "bb2b9aa2a8899b8dda001ecdbc18672debb8b1d66ad51ad57433b6da29404e27"
+file = "mods/fabric-carpet-1.21.11-1.4.194+v251223.jar"
+hash = "1b4d66f0332bda5deee08755e493c2d6ac64d64d5285e1134aa03604975c2521"
 
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
@@ -186,7 +186,7 @@ metafile = true
 
 [[files]]
 file = "mods/immediatelyfast.pw.toml"
-hash = "9e7bacd24307639764f3b74ae35a562b6becf2701637b816de0eaae15ab714c0"
+hash = "9cb9fbb7431ed58a8bb7bf25d1b9fcc8706fc57400db7acffef06e25971552fa"
 metafile = true
 
 [[files]]
@@ -216,7 +216,7 @@ metafile = true
 
 [[files]]
 file = "mods/litematica.pw.toml"
-hash = "e06c511605c76ac6ec2401bd31a47f93c4410ac75c65262c0988363d6b56c5dc"
+hash = "c9740c02e1261be9e02ae118c37d6a644766db53d6ff4024a5027d0755d2552e"
 metafile = true
 
 [[files]]
@@ -231,7 +231,7 @@ metafile = true
 
 [[files]]
 file = "mods/malilib.pw.toml"
-hash = "7f598fc879a99bd82787c8e268d85a935b78c6e6e93ce1c77bb9d498196cc93c"
+hash = "e9f1937ba20ab4192d0277ded9a1cbd12f21bbd52a21c887204928e772071860"
 metafile = true
 
 [[files]]
@@ -266,17 +266,17 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "ac5d6ec850236c1493f468c7c0e2c692a0b56d34a48116b7641ef6a14c9f1e6a"
+hash = "4d296ccb546ccbed5f1850f3058b2fde6552132912420509d6802016b76f01e3"
 metafile = true
 
 [[files]]
 file = "mods/servux.pw.toml"
-hash = "7924461f13c2acaa2870bb404aa5caca25cad8122e280d0d48a06fd9944e195a"
+hash = "62144ba5ef95792de9a3331bd7aeda24057eb21514fab45f1d5bcd167bf5152d"
 metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "796b43b52ceeb69c0fdd1d4fecd034120ce0d22164dc05c4041423cb8140f5e6"
+hash = "5008b709220bcfc7b41402bd7d8fe580edcc4168299f04746d2c596a809ec046"
 metafile = true
 
 [[files]]
