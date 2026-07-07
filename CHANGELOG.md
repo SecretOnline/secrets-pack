@@ -16,6 +16,20 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.1 - 2026-07-07
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 6 mods
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - Litematica
+  - MaLiLib
+  - Servux
+  - Sodium
+
 ## v13.0.0 - 2026-07-05
 
 Minecraft 26.2
