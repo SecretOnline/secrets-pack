@@ -72,9 +72,63 @@ jobs:
 
       - name: Update pack
         id: update-pack
-        uses: "./.github/actions/update-modpack-mods"
+        uses: SecretOnline/minecraft-actions/packwiz-update-pack@v2
         with:
           working-directory: ${{ matrix.pack-directory.directory }}
+
+      - name: Render pack update summary
+        id: render-pack-update
+        if: steps.update-pack.outputs.has-update == 'true'
+        env:
+          UPDATED_MODS: ${{ steps.update-pack.outputs.updated-mods }}
+          LOADER_UPDATE: ${{ steps.update-pack.outputs.loader-update }}
+        run: |
+          node <<'EOF_RENDER_PACK_UPDATE'
+          const fs = require("fs");
+
+          const updatedMods = JSON.parse(process.env.UPDATED_MODS || "[]")
+            .map((mod) => mod.name)
+            .sort((a, z) => a.localeCompare(z, undefined, { sensitivity: "base" }));
+
+          const loaderUpdateRaw = process.env.LOADER_UPDATE || "";
+          const updatedLoader = loaderUpdateRaw ? JSON.parse(loaderUpdateRaw) : undefined;
+
+          const changelogContent = ["### Updated", ""];
+          const prContent = [];
+
+          if (updatedLoader) {
+            changelogContent.push(`- Updated ${updatedLoader.name} to ${updatedLoader.version}`);
+            prContent.push("### Loader", "", `Updated ${updatedLoader.name} to ${updatedLoader.version}`, "");
+          }
+          if (updatedMods.length > 0) {
+            changelogContent.push(`- Updated ${updatedMods.length} mods`);
+            prContent.push("### Mods", "", `Updated ${updatedMods.length} mods`, "");
+
+            for (const mod of updatedMods) {
+              const modMarkdown = mod.replaceAll("[", "\\[");
+
+              changelogContent.push(`  - ${modMarkdown}`);
+              prContent.push(`- ${modMarkdown}`);
+            }
+
+            prContent.push("");
+          }
+
+          changelogContent.push("");
+
+          const delimiter = "EOF_RENDER_PACK_UPDATE_OUTPUT";
+          const output = [
+            `changelog-body<<${delimiter}`,
+            changelogContent.join("\n"),
+            delimiter,
+            `pr-body<<${delimiter}`,
+            prContent.join("\n"),
+            delimiter,
+            "",
+          ].join("\n");
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, output);
+          EOF_RENDER_PACK_UPDATE
 
       - name: Update Carpet mod
         id: update-carpet
@@ -89,51 +143,32 @@ jobs:
         run: |
           packwiz refresh
 
-      - name: Download jars for Voxy-Sodium compatibility check
-        id: download-compat-jars
-        if: steps.update-pack.outputs.is-update == 'true'
-        run: |
-          PACK_DIR="${{ matrix.pack-directory.directory }}"
-          VOXY_TOML="$PACK_DIR/mods/voxy.pw.toml"
-          SODIUM_TOML="$PACK_DIR/mods/sodium.pw.toml"
-
-          # Skip if Voxy isn't in this pack or Sodium wasn't modified by the update
-          if [ ! -f "$VOXY_TOML" ] || [ ! -f "$SODIUM_TOML" ] || git diff HEAD --quiet -- "$SODIUM_TOML"; then
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          mkdir -p /tmp/compat-jars
-          VOXY_URL=$(grep '^url = ' "$VOXY_TOML" | sed 's/url = "\(.*\)"/\1/')
-          SODIUM_URL=$(grep '^url = ' "$SODIUM_TOML" | sed 's/url = "\(.*\)"/\1/')
-
-          wget -q -O /tmp/compat-jars/voxy.jar "$VOXY_URL"
-          wget -q -O /tmp/compat-jars/sodium.jar "$SODIUM_URL"
-
-          echo "skip=false" >> "$GITHUB_OUTPUT"
-
-      - name: Check Voxy-Sodium compatibility
-        id: check-sodium-compat
-        if: steps.download-compat-jars.outputs.skip == 'false'
-        uses: ./.github/actions/check-fabric-compat
+      - name: Check Fabric mod conflicts
+        id: check-conflicts
+        if: steps.update-pack.outputs.has-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        uses: SecretOnline/minecraft-actions/check-fabric-conflicts@v2
         with:
-          dependent-jar: /tmp/compat-jars/voxy.jar
-          dependency-jar: /tmp/compat-jars/sodium.jar
-          dependency-mod-id: sodium
+          working-directory: ${{ matrix.pack-directory.directory }}
+          minecraft-version: ${{ steps.get-minecraft-version.outputs.value }}
+          loader: fabric
 
-      - name: Revert Sodium if incompatible with Voxy
-        id: revert-sodium
-        if: steps.download-compat-jars.outputs.skip == 'false' && steps.check-sodium-compat.outputs.compatible == 'false'
+      - name: Install conflict-resolving versions
+        id: install-conflict-fixes
+        if: steps.check-conflicts.outputs.has-conflicts == 'true'
+        uses: SecretOnline/minecraft-actions/packwiz-install-versions@v2
+        with:
+          working-directory: ${{ matrix.pack-directory.directory }}
+          versions: ${{ steps.check-conflicts.outputs.conflicts }}
+
+      - name: Note conflict fixes
+        id: conflict-note
+        if: steps.check-conflicts.outputs.has-conflicts == 'true'
         run: |
-          PACK_DIR="${{ matrix.pack-directory.directory }}"
-          git checkout HEAD -- "$PACK_DIR/mods/sodium.pw.toml"
-          cd "$PACK_DIR" && packwiz refresh
-
-          NOTE="> Note: Sodium was held back as the latest version is not compatible with Voxy."
-          echo "note=$NOTE" >> "$GITHUB_OUTPUT"
+          COUNT=$(echo '${{ steps.check-conflicts.outputs.conflicts }}' | jq 'length')
+          echo "note=> Note: $COUNT mod dependency conflict(s) were automatically resolved by downgrading." >> "$GITHUB_OUTPUT"
 
       - name: Update Complementary Reimagined config
-        if: steps.update-pack.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.has-update == 'true'
         run: |
           PACK_DIR="${{ matrix.pack-directory.directory }}"
           SHADER_TOML="$PACK_DIR/shaderpacks/complementary-reimagined.pw.toml"
@@ -157,15 +192,17 @@ jobs:
 
       - name: Add to changelog
         id: add-to-changelog
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.has-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
         uses: "./.github/actions/update-project-changelog"
         with:
           working-directory: .
           directory: ${{ matrix.pack-directory.directory }}
-          changelog-body: ${{ steps.update-pack.outputs.changelog-body }}${{ steps.update-carpet.outputs.changelog-body }}
+          changelog-body: |
+            ${{ steps.render-pack-update.outputs.changelog-body }}
+            ${{ steps.update-carpet.outputs.changelog-body }}
 
       - name: Prepare PR body
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.has-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
         run: |
           touch pr-body.md
           cat << "EOF_AiVMO7YIg1" >> pr-body.md
@@ -175,17 +212,17 @@ jobs:
 
           Updated version number to v`${{ steps.add-to-changelog.outputs.version-number }}`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).
 
-          ${{ steps.update-pack.outputs.pr-body }}
+          ${{ steps.render-pack-update.outputs.pr-body }}
 
           ${{ steps.update-carpet.outputs.pr-body }}
 
-          ${{ steps.revert-sodium.outputs.note }}
+          ${{ steps.conflict-note.outputs.note }}
 
           EOF_AiVMO7YIg1
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.has-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
         with:
           token: ${{ secrets.CREATE_PR_PAT }}
           add-paths: |
