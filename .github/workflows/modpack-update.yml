@@ -45,6 +45,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: stable
+
+      - name: Setup Packwiz
+        uses: SecretOnline/minecraft-actions/setup-packwiz@v2
+
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -54,18 +62,6 @@ jobs:
       - name: Install
         run: |
           npm ci
-
-      - name: Restore packwiz cache
-        uses: actions/cache/restore@v6
-        with:
-          key: packwiz-${{ matrix.pack-directory.directory }}-${{ hashFiles(format('{0}/pack.toml', matrix.pack-directory.directory)) }}
-          restore-keys: |
-            packwiz-${{ matrix.pack-directory.directory }}-
-          path: |
-            ~/.cache/packwiz/cache
-
-      - name: Setup Packwiz
-        uses: "./.github/actions/setup-packwiz"
 
       - name: Get minecraft version
         uses: SebRollen/toml-action@v1.2.0
@@ -202,11 +198,3 @@ jobs:
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           title: "Update mods for version ${{ matrix.pack-directory.directory }}"
           body-path: pr-body.md
-
-      - name: Save packwiz cache
-        uses: actions/cache/save@v6
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
-        with:
-          key: packwiz-${{ matrix.pack-directory.directory }}-${{ hashFiles(format('{0}/pack.toml', matrix.pack-directory.directory)) }}
-          path: |
-            ~/.cache/packwiz/cache

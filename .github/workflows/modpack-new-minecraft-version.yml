@@ -16,6 +16,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: stable
+
+      - name: Setup Packwiz
+        uses: SecretOnline/minecraft-actions/setup-packwiz@v2
+
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -43,18 +51,6 @@ jobs:
 
           echo "old-game-version=$old_game_version" >> "$GITHUB_OUTPUT"
           echo "new-pack-version=$new_pack_version" >> "$GITHUB_OUTPUT"
-
-      - name: Restore packwiz cache
-        uses: actions/cache/restore@v6
-        with:
-          key: packwiz-${{ steps.copy-new-version.outputs.old-game-version }}-${{ hashFiles(format('{0}/pack.toml', steps.copy-new-version.outputs.old-game-version)) }}
-          restore-keys: |
-            packwiz-${{ steps.copy-new-version.outputs.old-game-version }}-
-          path: |
-            ~/.cache/packwiz/cache
-
-      - name: Setup Packwiz
-        uses: "./.github/actions/setup-packwiz"
 
       - name: Update pack
         id: update-pack
@@ -134,11 +130,3 @@ jobs:
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           title: "Update to Minecraft ${{ inputs.minecraft-version }}"
           body-path: pr-body.md
-
-      - name: Save packwiz cache
-        uses: actions/cache/save@v6
-        if: steps.update-pack.outputs.is-update == 'true'
-        with:
-          key: packwiz-${{ inputs.minecraft-version }}-${{ hashFiles(format('{0}/pack.toml', inputs.minecraft-version)) }}
-          path: |
-            ~/.cache/packwiz/cache
