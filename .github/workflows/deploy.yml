@@ -23,6 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: stable
+
+      - name: Setup Packwiz
+        uses: SecretOnline/minecraft-actions/setup-packwiz@v2
+
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -39,12 +47,23 @@ jobs:
         with:
           version: ${{ inputs.version }}
 
-      - name: Build pack
-        id: build-pack
-        uses: ./.github/actions/build-pack
-        with:
-          directory: ${{ steps.deploy-info.outputs.directory }}
-          version-override: ${{ inputs.version }}
+      - name: Ensure Packwiz index is updated
+        working-directory: ${{ steps.deploy-info.outputs.directory }}
+        shell: bash
+        run: |
+          packwiz refresh
+          git diff --exit-code index.toml
+
+      - name: Override modpack version with release version
+        working-directory: ${{ steps.deploy-info.outputs.directory }}
+        shell: bash
+        run: |
+          sed -i -e '/version =/ s/= .*/= "v'"${{ inputs.version }}"'"/' pack.toml
+
+      - name: Build modpack
+        shell: bash
+        run: |
+          packwiz --pack-file ${{ matrix.build-matrix.directory }}/pack.toml mr export -o "secrets-pack.${{ inputs.version }}.mrpack"
 
       - name: Parse changelog
         id: changelog
@@ -53,10 +72,6 @@ jobs:
           command: query
           version: v${{ inputs.version }}
           changelog: CHANGELOG.md
-
-      - name: Prepare modpack files
-        run: |
-          cp secrets-pack.mrpack secrets-pack.${{ inputs.version }}.mrpack
 
       - name: Print release details
         run: |
