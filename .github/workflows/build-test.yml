@@ -197,11 +197,13 @@ jobs:
           singleplayer-world: ${{matrix.test-matrix.server == 'false' && 'world' || ''}}
 
       - name: Wait for client to fully join
+        if: matrix.test-matrix.client != 'false'
         run: |
           sleep 10
 
       - name: Screenshot Minecraft client
         id: screenshot
+        if: matrix.test-matrix.client != 'false'
         uses: SecretOnline/minecraft-actions/screenshot-mc-client@v2
         with:
           display: ${{ steps.run-client.outputs.display }}
