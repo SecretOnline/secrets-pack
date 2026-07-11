@@ -215,7 +215,7 @@ jobs:
         uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
-          name: test-logs-${{ matrix.test-matrix.directory }}
+          name: test-logs-${{ matrix.test-matrix.directory }}-${{ matrix.test-matrix.server }}-${{ matrix.test-matrix.client }}
           path: |
             client/client.log
             client/logs/*
