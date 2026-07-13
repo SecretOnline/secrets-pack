@@ -102,7 +102,7 @@ metafile = true
 
 [[files]]
 file = "mods/carpet-tis-addition.pw.toml"
-hash = "2ffaeaa0eb8374f72875d0c766c976dbc6ca81838c59b42ceec90147e2c8f3b6"
+hash = "77de9082cec022fdc2dea3a16640ebba9db5584d2a45ea984034f540a33f3f13"
 metafile = true
 
 [[files]]
@@ -216,7 +216,7 @@ metafile = true
 
 [[files]]
 file = "mods/litematica.pw.toml"
-hash = "c9740c02e1261be9e02ae118c37d6a644766db53d6ff4024a5027d0755d2552e"
+hash = "d8451a8ee63419d593ce4bdc0781876fa6c266b8e09eab042a0f55cde331bd31"
 metafile = true
 
 [[files]]
@@ -241,7 +241,7 @@ metafile = true
 
 [[files]]
 file = "mods/modmenu.pw.toml"
-hash = "c3069d6c3ef1d13c9ba064824777c4d74dd504cad358cb0b6f06f6266fc143c8"
+hash = "04161fe0dcb23469df8b66dba353592f0e5c4ea4f64b2f7a1636033ccdb9e351"
 metafile = true
 
 [[files]]
@@ -266,7 +266,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "4d296ccb546ccbed5f1850f3058b2fde6552132912420509d6802016b76f01e3"
+hash = "2785ba5d979ac4f95421a3df7b54ecf2a10e616eb566769388e643a5e91f396b"
 metafile = true
 
 [[files]]
@@ -276,7 +276,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "5008b709220bcfc7b41402bd7d8fe580edcc4168299f04746d2c596a809ec046"
+hash = "3c5cbbf4755a6a7c0f4f61a243dc6198674f9e2e72faf7d30cc45a3bca3f28a8"
 metafile = true
 
 [[files]]
@@ -301,7 +301,7 @@ metafile = true
 
 [[files]]
 file = "mods/syncmatica.pw.toml"
-hash = "2a30c4cf3b1132b219bbf45ce8c4626de461a74f5dd56ada03ae14528a6cbe11"
+hash = "c5e8231e564f48457f167525df480d2beda1d6d98a0167e21e3a779f719ececc"
 metafile = true
 
 [[files]]
@@ -336,12 +336,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "c23e757bf7e54ca4cdb8921b957ccf5536f2a4f99a83ddd4171373943f96b489"
+hash = "91812de40c5225cb0c8331bad2cb2826e72e664f65b60705a98e24c5d335eb0c"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "0e8bccb35ab4e5f17055ab9ef7d45ff21c44e35fc1871950e56a2cc609b0a8c7"
+hash = "d23ee6590e47dcafedf8ec36a3258ba3f88337261448fe2dfe9b83791d33b4e3"
 metafile = true
 
 [[files]]

@@ -343,6 +343,23 @@ Minecraft 26.1.2
   - Xaero's Minimap
   - Xaero's World Map
 
+## v11.2.3 - 2026-07-13
+
+Minecraft 1.21.11
+
+### Updated
+
+- Updated 9 mods
+  - Carpet TIS Addition
+  - Litematica
+  - Mod Menu
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+  - Syncmatica
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v11.2.2 - 2026-07-07
 
 Minecraft 1.21.11
