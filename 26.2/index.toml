@@ -87,12 +87,12 @@ metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "951f09d189fbcf17b4cde0524e9cd1e37da9a3c666fa47606ca61b55ec1c287e"
+hash = "159b583e8e5fa6934327438d3eb072777617bb1862c59f816ae9806e6d53e14b"
 metafile = true
 
 [[files]]
 file = "mods/carpet-tis-addition.pw.toml"
-hash = "cb593d873f1733c1b1760de243aa0b2238320b4e7349ff62068bed39f7c3e285"
+hash = "f10e9eaa369a132fe062800b47741d0106e87ef7c8b6a433ef89547d0f35b0de"
 metafile = true
 
 [[files]]
@@ -142,7 +142,7 @@ metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
-hash = "fa280daf316543afff2f69db87c655fdac0eab4a0455ff055714d43313247785"
+hash = "7b9c5859f27094716924ae732771ef824ce77147f48570c64417422c747923b5"
 metafile = true
 
 [[files]]
@@ -171,7 +171,7 @@ metafile = true
 
 [[files]]
 file = "mods/immediatelyfast.pw.toml"
-hash = "41437a15f56b00994815f2bd2371ac84232cd7a1cc29688fe81480b44a935447"
+hash = "4558d459a64d360ef8954016a272f690b45e74fe8f078388a5a6329e5fa973f6"
 metafile = true
 
 [[files]]
@@ -191,12 +191,12 @@ metafile = true
 
 [[files]]
 file = "mods/litematica.pw.toml"
-hash = "a03bc03c304dbf24952d51fb768c85fd227dfc45a8b38dc26d5c8053e54ae168"
+hash = "009d9135e8d02bc34226c7451b792421026fd94d40d2da7b10adfe56b50873b5"
 metafile = true
 
 [[files]]
 file = "mods/lithium.pw.toml"
-hash = "d655305d7933a11ed9c0c8edb57868c053b9c995c121c00b47061cf0e098c92a"
+hash = "b7e98520b66f5a11f8a4ad84e518de34d97d1ca84152f3a427d9e7820299fbdd"
 metafile = true
 
 [[files]]
@@ -211,12 +211,12 @@ metafile = true
 
 [[files]]
 file = "mods/minihud.pw.toml"
-hash = "1be383140e57b167b7e3eb589495752eb8dcb3bdc4c82f7d7934ba7bc869514b"
+hash = "c0f7962965342e52e79ccef61a3b2bc70c51250bbb38bc26929d8b09ba6d926c"
 metafile = true
 
 [[files]]
 file = "mods/modmenu.pw.toml"
-hash = "7acfb9e9d7b052728f518574f1e79d20a2ec3296e147fbd3794b033fef381947"
+hash = "9ceb72b7c586df8828ee5e9eaf096c913f8debe92805cd5ce6c4ea8922e5fe1d"
 metafile = true
 
 [[files]]
@@ -241,7 +241,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "3e203bfd412cb6c7c9eccbb621edc24427174afbbe739bff98cf1b51f0636333"
+hash = "a4c435e9a1f73fc2bc34b144e582c2e019d0a3eec99925ddd2aaae727370ea76"
 metafile = true
 
 [[files]]
@@ -251,12 +251,12 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "f59459557165e5ed9022cd5e9182bd3b12ae495e9c300bf9025d03a76eca9fe1"
+hash = "23bd2f19c11a1b0b2870dafd6d5321af3549b22e84149bfd6ff3ff49af388788"
 metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "56122ab395de07f5f6feefcef4e7688ac01a91ae152f81697472a124209616a7"
+hash = "a899b14d4bbab643586ac2734da162e9cae579d461f81776804c598a03297ebe"
 metafile = true
 
 [[files]]
@@ -271,7 +271,7 @@ metafile = true
 
 [[files]]
 file = "mods/syncmatica.pw.toml"
-hash = "356ee21404f9807c6f18d598535ae17de2465d793341b408e60c50c3e8917a58"
+hash = "a8cfd56f9a2a99a9b93e05e41decad8c4b245bba7ed0b27a3032e5d6d1a09e23"
 metafile = true
 
 [[files]]
@@ -291,7 +291,7 @@ metafile = true
 
 [[files]]
 file = "mods/voxy.pw.toml"
-hash = "6b909d50b935050ad6bada41b727f5c6e7e461edff34e161b1badefe857c044f"
+hash = "77bfb5b2b62a3a152688b3096b43c8e6a51346634cc50320ccd5c135b5159774"
 metafile = true
 
 [[files]]
@@ -306,12 +306,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "1cb0dc7d3e05cb05830ddd52b17ff3f52ba1b4a96455b635e1b319c2d397beea"
+hash = "0657d32dde561e8e4e111414831a5c4e979593b1c581bec6202fefef12cfe657"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "c000ae74180c5e32a2fba125e3ebb8d8381049064956988849222163071e1d4a"
+hash = "cd66e19fc7101a0e42dc76ed488ad24957af39778c74c2c9366c6bf55475e10c"
 metafile = true
 
 [[files]]

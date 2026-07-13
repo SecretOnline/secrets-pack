@@ -16,6 +16,29 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.2 - 2026-07-13
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 15 mods
+  - Carpet TIS Addition
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - ImmediatelyFast
+  - Litematica
+  - Lithium
+  - MiniHUD
+  - Mod Menu
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+  - Syncmatica
+  - voxy
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v13.0.1 - 2026-07-07
 
 Minecraft 26.2
