@@ -63,7 +63,7 @@ jobs:
       - name: Build modpack
         shell: bash
         run: |
-          packwiz --pack-file ${{ matrix.build-matrix.directory }}/pack.toml mr export -o "secrets-pack.${{ inputs.version }}.mrpack"
+          packwiz --pack-file ${{ steps.deploy-info.outputs.directory }}/pack.toml mr export -o "secrets-pack.${{ inputs.version }}.mrpack"
 
       - name: Parse changelog
         id: changelog
