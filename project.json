@@ -55,7 +55,7 @@
     "11": {
       "directory": "1.21.11",
       "game-versions": "1.21.11",
-      "should-run-workflows": true
+      "should-run-workflows": false
     },
     "12": {
       "directory": "26.1.2",
