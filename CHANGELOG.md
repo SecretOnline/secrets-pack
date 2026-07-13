@@ -100,15 +100,11 @@ Minecraft 26.1.2
 
 ### Updated
 
-- Updated 11 mods
+- Updated 7 mods
   - Carpet TIS Addition
   - Fabric API
-  - Iris Shaders
   - Litematica
   - Mod Menu
-  - Reese's Sodium Options
-  - Sodium
-  - Sodium Extra
   - Syncmatica
   - Xaero's Minimap
   - Xaero's World Map
