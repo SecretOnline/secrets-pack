@@ -20,6 +20,10 @@ The versioning scheme is listed in the README.
 
 Minecraft 26.2
 
+### Added
+
+- Iris
+
 ### Updated
 
 - Updated 15 mods
@@ -382,6 +386,7 @@ Minecraft 1.21.11
   - Servux
   - Sodium
   - Sodium Extra
+
 ### Updated
 
 - Updated Carpet Mod to 1.4.194
