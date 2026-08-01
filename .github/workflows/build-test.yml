@@ -123,7 +123,7 @@ jobs:
 
       - name: Setup Java ${{ steps.get-minecraft-version.outputs.java-version }}
         id: setup-java
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v5.6.0
         with:
           java-version: ${{ steps.get-minecraft-version.outputs.java-version }}
           distribution: zulu
