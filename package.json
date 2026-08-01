@@ -12,8 +12,8 @@
   "devDependencies": {
     "@actions/core": "^3.0.1",
     "@types/node": "^24.13.2",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.6",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }
