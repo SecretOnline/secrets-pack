@@ -8,22 +8,31 @@ on:
     branches:
       - "main"
 
+permissions: {}
+
 jobs:
   get-build-matrix:
     name: Get build matrix
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       has-builds: ${{ steps.build-matrix.outputs.has-builds }}
       build-matrix: ${{ steps.build-matrix.outputs.build-matrix }}
       has-tests: ${{ steps.build-matrix.outputs.has-tests }}
       test-modpack-matrix: ${{ steps.build-matrix.outputs.test-modpack-matrix }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".node-version"
           cache: "npm"
@@ -34,7 +43,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: step-security/changed-files@v47
+        uses: step-security/changed-files@2e07db73e5ccdb319b9a6c7766bd46d39d304bad # v47.0.5
 
       - name: Get build matrix
         id: build-matrix
@@ -48,20 +57,28 @@ jobs:
     needs:
       - get-build-matrix
     if: needs.get-build-matrix.outputs.has-builds == 'true'
+    permissions:
+      contents: read
     strategy:
       matrix:
         build-matrix: ${{ fromJson(needs.get-build-matrix.outputs.build-matrix) }}
     steps:
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup Go
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version: stable
 
       - name: Setup Packwiz
-        uses: SecretOnline/minecraft-actions/setup-packwiz@v2
+        uses: SecretOnline/minecraft-actions/setup-packwiz@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
 
       - name: Ensure Packwiz index is updated
         working-directory: ${{ matrix.build-matrix.directory }}
@@ -76,7 +93,7 @@ jobs:
           packwiz --pack-file ${{ matrix.build-matrix.directory }}/pack.toml mr export -o "secrets-pack.mrpack"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: secrets-pack.${{ matrix.build-matrix.directory }}
           path: secrets-pack.mrpack
@@ -99,11 +116,15 @@ jobs:
         test-matrix: ${{ fromJson(needs.get-build-matrix.outputs.test-modpack-matrix) }}
       fail-fast: false
     steps:
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - name: Install apt packages
         run: sudo apt-get update && sudo apt-get install -y xvfb libgl1-mesa-dri mesa-utils imagemagick
 
       - name: Download artifact
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: secrets-pack.${{ matrix.test-matrix.directory }}
 
@@ -123,14 +144,14 @@ jobs:
 
       - name: Setup Java ${{ steps.get-minecraft-version.outputs.java-version }}
         id: setup-java
-        uses: actions/setup-java@v5.6.0
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           java-version: ${{ steps.get-minecraft-version.outputs.java-version }}
           distribution: zulu
 
       - name: Setup server
         if: matrix.test-matrix.server != 'false'
-        uses: SecretOnline/minecraft-actions/setup-mc-server@v2
+        uses: SecretOnline/minecraft-actions/setup-mc-server@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           server-directory: server
           minecraft-version: ${{ steps.get-minecraft-version.outputs.minecraft-version }}
@@ -139,7 +160,7 @@ jobs:
 
       - name: Setup client
         if: matrix.test-matrix.client != 'false'
-        uses: SecretOnline/minecraft-actions/setup-mc-client@v2
+        uses: SecretOnline/minecraft-actions/setup-mc-client@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           client-directory: client
           minecraft-version: ${{ steps.get-minecraft-version.outputs.minecraft-version }}
@@ -147,7 +168,7 @@ jobs:
 
       - name: Install modpack to server
         if: matrix.test-matrix.server != 'false' && matrix.test-matrix.server != 'vanilla'
-        uses: SecretOnline/minecraft-actions/unpack-mrpack@v2
+        uses: SecretOnline/minecraft-actions/unpack-mrpack@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           mrpack-file: secrets-pack.mrpack
           minecraft-directory: server
@@ -155,7 +176,7 @@ jobs:
 
       - name: Install modpack to client
         if: matrix.test-matrix.client != 'false' && matrix.test-matrix.client != 'vanilla'
-        uses: SecretOnline/minecraft-actions/unpack-mrpack@v2
+        uses: SecretOnline/minecraft-actions/unpack-mrpack@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           mrpack-file: secrets-pack.mrpack
           minecraft-directory: client
@@ -179,7 +200,7 @@ jobs:
       - name: Run server
         id: run-server
         if: matrix.test-matrix.server != 'false'
-        uses: SecretOnline/minecraft-actions/run-mc-server@v2
+        uses: SecretOnline/minecraft-actions/run-mc-server@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           server-directory: server
           log-file: server/server.log
@@ -187,13 +208,13 @@ jobs:
       - name: Run client
         if: matrix.test-matrix.client != 'false'
         id: run-client
-        uses: SecretOnline/minecraft-actions/run-mc-client@v2
+        uses: SecretOnline/minecraft-actions/run-mc-client@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           client-directory: client
           log-file: client/client.log
           width: 854
           height: 480
-          server-address: ${{matrix.test-matrix.server == 'false' && '' || 'localhost:25565'}}
+          server-address: ${{matrix.test-matrix.server != 'false' && 'localhost:25565' || ''}}
           singleplayer-world: ${{matrix.test-matrix.server == 'false' && 'world' || ''}}
 
       - name: Wait for client to fully join
@@ -204,7 +225,7 @@ jobs:
       - name: Screenshot Minecraft client
         id: screenshot
         if: matrix.test-matrix.client != 'false'
-        uses: SecretOnline/minecraft-actions/screenshot-mc-client@v2
+        uses: SecretOnline/minecraft-actions/screenshot-mc-client@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
         with:
           display: ${{ steps.run-client.outputs.display }}
           xauthority: ${{ steps.run-client.outputs.xauthority }}
@@ -212,7 +233,7 @@ jobs:
           add-job-summary: "true"
 
       - name: Upload test artifacts
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: ${{ !cancelled() }}
         with:
           name: test-logs-${{ matrix.test-matrix.directory }}-${{ matrix.test-matrix.server }}-${{ matrix.test-matrix.client }}
@@ -224,7 +245,7 @@ jobs:
           retention-days: 7
 
       - name: Add PR Comment
-        uses: mshick/add-pr-comment@v3
+        uses: mshick/add-pr-comment@ec328af66588ab8f77cdeb2c264f14aba45bbf59 # v3.12.0
         if: github.event_name == 'pull_request' && matrix.test-matrix.client != 'false'
         with:
           message-id: "modpack-test-client-secrets-pack-${{ matrix.test-matrix.directory }}"

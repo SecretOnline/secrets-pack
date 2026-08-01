@@ -30,12 +30,12 @@ runs:
       id: check
       shell: bash
       run: |
-        DEP_ID="${{ inputs.dependency-mod-id }}"
+        DEP_ID="${INPUTS_DEPENDENCY_MOD_ID}"
         # Normalise the range to a single line: arrays become "=x || =y || =z"
-        REQUIRED_RANGE=$(unzip -p "${{ inputs.dependent-jar }}" fabric.mod.json | jq -r --arg id "$DEP_ID" '
+        REQUIRED_RANGE=$(unzip -p "${INPUTS_DEPENDENT_JAR}" fabric.mod.json | jq -r --arg id "$DEP_ID" '
           .depends[$id] // empty | if type == "array" then join(" || ") else . end
         ')
-        ACTUAL_VERSION=$(unzip -p "${{ inputs.dependency-jar }}" fabric.mod.json | jq -r '.version')
+        ACTUAL_VERSION=$(unzip -p "${INPUTS_DEPENDENCY_JAR}" fabric.mod.json | jq -r '.version')
 
         echo "required-range=$REQUIRED_RANGE" >> "$GITHUB_OUTPUT"
         echo "actual-version=$ACTUAL_VERSION" >> "$GITHUB_OUTPUT"
@@ -60,3 +60,7 @@ runs:
         else
           echo "compatible=false" >> "$GITHUB_OUTPUT"
         fi
+      env:
+        INPUTS_DEPENDENCY_MOD_ID: ${{ inputs.dependency-mod-id }}
+        INPUTS_DEPENDENT_JAR: ${{ inputs.dependent-jar }}
+        INPUTS_DEPENDENCY_JAR: ${{ inputs.dependency-jar }}

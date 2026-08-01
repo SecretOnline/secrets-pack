@@ -7,20 +7,29 @@ on:
     # = 1:13 pm Monday NZST
     - cron: "13 1 * * 1"
 
+permissions: {}
+
 jobs:
   get-build-matrix:
     name: Get build matrix
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       has-updates: ${{ steps.build-matrix.outputs.has-updates }}
       update-modpack-mods-matrix: ${{ steps.build-matrix.outputs.update-modpack-mods-matrix }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".node-version"
           cache: "npm"
@@ -38,23 +47,31 @@ jobs:
     needs:
       - get-build-matrix
     if: needs.get-build-matrix.outputs.has-updates == 'true'
+    permissions:
+      contents: read
     strategy:
       matrix:
         pack-directory: ${{ fromJson(needs.get-build-matrix.outputs.update-modpack-mods-matrix) }}
     steps:
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup Go
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version: stable
 
       - name: Setup Packwiz
-        uses: SecretOnline/minecraft-actions/setup-packwiz@v2
+        uses: SecretOnline/minecraft-actions/setup-packwiz@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
 
       - name: Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".node-version"
           cache: "npm"
@@ -64,7 +81,7 @@ jobs:
           npm ci
 
       - name: Get minecraft version
-        uses: SebRollen/toml-action@v1.2.0
+        uses: SebRollen/toml-action@b1b3628f55fc3a28208d4203ada8b737e9687876 # v1.2.0
         id: get-minecraft-version
         with:
           file: ${{ matrix.pack-directory.directory }}/pack.toml
@@ -166,6 +183,11 @@ jobs:
 
       - name: Prepare PR body
         if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        env:
+          VERSION_NUMBER: ${{ steps.add-to-changelog.outputs.version-number }}
+          PR_BODY: ${{ steps.update-pack.outputs.pr-body }}
+          CARPET_PR_BODY: ${{ steps.update-carpet.outputs.pr-body }}
+          REVERT_SODIUM_NOTE: ${{ steps.revert-sodium.outputs.note }}
         run: |
           touch pr-body.md
           cat << "EOF_AiVMO7YIg1" >> pr-body.md
@@ -173,18 +195,18 @@ jobs:
 
           ## Updates
 
-          Updated version number to v`${{ steps.add-to-changelog.outputs.version-number }}`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).
+          Updated version number to v`${VERSION_NUMBER}`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).
 
-          ${{ steps.update-pack.outputs.pr-body }}
+          ${PR_BODY}
 
-          ${{ steps.update-carpet.outputs.pr-body }}
+          ${CARPET_PR_BODY}
 
-          ${{ steps.revert-sodium.outputs.note }}
+          ${REVERT_SODIUM_NOTE}
 
           EOF_AiVMO7YIg1
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
         with:
           token: ${{ secrets.CREATE_PR_PAT }}

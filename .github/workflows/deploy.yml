@@ -13,6 +13,8 @@ on:
         required: true
         type: string
 
+permissions: {}
+
 jobs:
   create-release:
     name: Create release
@@ -20,22 +22,29 @@ jobs:
     permissions:
       contents: "write"
     steps:
+      - uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup Go
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version: stable
+          cache: false
 
       - name: Setup Packwiz
-        uses: SecretOnline/minecraft-actions/setup-packwiz@v2
+        uses: SecretOnline/minecraft-actions/setup-packwiz@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
 
       - name: Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".node-version"
-          cache: "npm"
+          package-manager-cache: false
 
       - name: Install
         run: |
@@ -57,35 +66,47 @@ jobs:
       - name: Override modpack version with release version
         working-directory: ${{ steps.deploy-info.outputs.directory }}
         shell: bash
+        env:
+          VERSION: ${{ inputs.version }}
         run: |
-          sed -i -e '/version =/ s/= .*/= "v'"${{ inputs.version }}"'"/' pack.toml
+          sed -i -e '/version =/ s/= .*/= "v'"${VERSION}"'"/' pack.toml
 
       - name: Build modpack
         shell: bash
+        env:
+          DIRECTORY: ${{ steps.deploy-info.outputs.directory }}
+          VERSION: ${{ inputs.version }}
         run: |
-          packwiz --pack-file ${{ steps.deploy-info.outputs.directory }}/pack.toml mr export -o "secrets-pack.${{ inputs.version }}.mrpack"
+          packwiz --pack-file ${DIRECTORY}/pack.toml mr export -o "secrets-pack.${VERSION}.mrpack"
 
       - name: Parse changelog
         id: changelog
-        uses: release-flow/keep-a-changelog-action@v3
+        uses: release-flow/keep-a-changelog-action@74931dec7ecdbfc8e38ac9ae7e8dd84c08db2f32 # v3.0.0
         with:
           command: query
           version: v${{ inputs.version }}
           changelog: CHANGELOG.md
 
       - name: Print release details
+        env:
+          RELEASE_NAME: ${{ steps.deploy-info.outputs.release-name }}
+          VERSION: ${{ inputs.version }}
+          GAME_VERSIONS: ${{ steps.deploy-info.outputs.game-versions }}
+          STEPS_CHANGELOG_OUTPUTS_RELEASE_NOTES: ${{ steps.changelog.outputs.release-notes }}
+          LOADERS: ${{ steps.deploy-info.outputs.loaders }}
+          MODRINTH_ID: ${{ steps.deploy-info.outputs.modrinth-id }}
         run: |
-          echo "name: ${{ steps.deploy-info.outputs.release-name }}"
-          echo "version: v${{ inputs.version }}"
-          echo "game-versions: ${{ steps.deploy-info.outputs.game-versions }}"
-          echo "changelog: ${{ steps.changelog.outputs.release-notes }}"
-          echo "loaders: ${{ steps.deploy-info.outputs.loaders }}"
-          echo "modrinth-id: ${{ steps.deploy-info.outputs.modrinth-id }}"
+          echo "name: ${RELEASE_NAME}"
+          echo "version: v${VERSION}"
+          echo "game-versions: ${GAME_VERSIONS}"
+          echo "changelog: ${STEPS_CHANGELOG_OUTPUTS_RELEASE_NOTES}"
+          echo "loaders: ${LOADERS}"
+          echo "modrinth-id: ${MODRINTH_ID}"
 
       - name: Create Modrinth Release
         if: inputs.is-release && steps.deploy-info.outputs.modrinth-id != ''
         id: modrinth-release
-        uses: Kir-Antipov/mc-publish@v3.3
+        uses: Kir-Antipov/mc-publish@52307b03863581dec6b652b83e597aec02ebb075 # v3.3.1
         with:
           name: ${{ steps.deploy-info.outputs.release-name }}
           version: v${{ inputs.version }}
@@ -98,7 +119,7 @@ jobs:
 
       - name: Update Modrinth description
         if: inputs.is-release && steps.deploy-info.outputs.modrinth-id != ''
-        uses: funnyboy-roks/modrinth-auto-desc@v1.7
+        uses: funnyboy-roks/modrinth-auto-desc@704fa126e2a116083b6a928395dd070263ac07c6 # v1.7
         with:
           auth-token: ${{ secrets.MODRINTH_TOKEN }}
           slug: ${{ steps.deploy-info.outputs.modrinth-id }}
@@ -106,7 +127,7 @@ jobs:
 
       - name: Create GitHub release
         if: inputs.is-release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
         with:
           tag_name: v${{ inputs.version }}
           name: ${{ steps.deploy-info.outputs.release-name }}
@@ -116,7 +137,7 @@ jobs:
 
       - name: Post release to Discord
         if: inputs.is-release
-        uses: tsickert/discord-webhook@v7.0.0
+        uses: tsickert/discord-webhook@b217a69502f52803de774ded2b1ab7c282e99645 # v7.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           username: ${{ steps.deploy-info.outputs.pack-name }} Releases
