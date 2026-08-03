@@ -189,21 +189,17 @@ jobs:
           CARPET_PR_BODY: ${{ steps.update-carpet.outputs.pr-body }}
           REVERT_SODIUM_NOTE: ${{ steps.revert-sodium.outputs.note }}
         run: |
-          touch pr-body.md
-          cat << "EOF_AiVMO7YIg1" >> pr-body.md
-          This PR contains automated updates from auto-update workflow.
+          {
+            echo "This PR contains automated updates from auto-update workflow."
+            echo
+            echo "## Updates"
+            echo
+            printf 'Updated version number to v`%s`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).\n' "$VERSION_NUMBER"
 
-          ## Updates
-
-          Updated version number to v`${VERSION_NUMBER}`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).
-
-          ${PR_BODY}
-
-          ${CARPET_PR_BODY}
-
-          ${REVERT_SODIUM_NOTE}
-
-          EOF_AiVMO7YIg1
+            [ -n "$PR_BODY" ] && printf '\n%s\n' "$PR_BODY"
+            [ -n "$CARPET_PR_BODY" ] && printf '\n%s\n' "$CARPET_PR_BODY"
+            [ -n "$REVERT_SODIUM_NOTE" ] && printf '\n%s\n' "$REVERT_SODIUM_NOTE"
+          } >> pr-body.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
