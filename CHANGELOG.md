@@ -121,6 +121,28 @@ Minecraft 26.2
 - Iris Shaders
   - The current version is marked as incompatible with the current version of Sodium, and the version resolution was being annoying so I decided it's best to wait for them to be compatible.
 
+## v12.1.4 - 2026-08-03
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated 14 mods
+  - Carpet TIS Addition
+  - Chat Heads
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - Fabric Language Kotlin
+  - Iris Shaders
+  - Lithium
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+  - voxy
+  - Xaero's Minimap
+  - Xaero's World Map
+  - YetAnotherConfigLib
+
 ## v12.1.3 - 2026-07-13
 
 Minecraft 26.1.2
