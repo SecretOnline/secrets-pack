@@ -16,6 +16,28 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.3 - 2026-08-03
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 14 mods
+  - Carpet TIS Addition
+  - Chat Heads
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - Fabric Language Kotlin
+  - Jade 🔍
+  - Lithium
+  - Locator Heads
+  - Sodium
+  - voxy
+  - WorldEdit CUI
+  - Xaero's Minimap
+  - Xaero's World Map
+  - YetAnotherConfigLib
+
 ## v13.0.2 - 2026-07-13
 
 Minecraft 26.2
