@@ -16,6 +16,19 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.4 - 2026-08-10
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 5 mods
+  - Carpet TIS Addition
+  - Chat Heads
+  - Sodium
+  - TweakerMore
+  - WorldEdit
+
 ## v13.0.3 - 2026-08-03
 
 Minecraft 26.2
