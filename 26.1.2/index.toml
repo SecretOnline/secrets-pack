@@ -92,12 +92,12 @@ metafile = true
 
 [[files]]
 file = "mods/carpet-tis-addition.pw.toml"
-hash = "19f50cfea7cd1b2c68dcbba84e30b62092efc7246417cf307cd73d577a5fba05"
+hash = "02fd3220504beae2ea90c121804e4c2ded3e61c99451314ec41bd468245ea907"
 metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "6e746361934be98d7b3856f85d4984a611611dbacbecbcefc14fe12b97c81339"
+hash = "e9654c5d253e4fdc00ac2f0ffa32a38ed9c93e9d052e8095deaf054e1efb8bd1"
 metafile = true
 
 [[files]]
@@ -176,7 +176,7 @@ metafile = true
 
 [[files]]
 file = "mods/iris.pw.toml"
-hash = "41c95eea2813a8fe923ef8033f084cb264c610f549c97bb58db64734c9703c0c"
+hash = "19e74f770611dabc1bd0713f3a7622abd65b4aaca6b37282135e8fb462630f2d"
 metafile = true
 
 [[files]]
@@ -286,7 +286,7 @@ metafile = true
 
 [[files]]
 file = "mods/tweakermore.pw.toml"
-hash = "eae7f1cfd6d201e7f45fe8de5d192d570e01060495cbd4e26b2336ee49aa5fbf"
+hash = "c228216034607a1bd39155ec200b3625be8dca729689d48bc5706f36ce1507c1"
 metafile = true
 
 [[files]]
