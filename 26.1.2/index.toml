@@ -87,7 +87,7 @@ metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "032ed9d0cfe4b7b964a56d149a5d2487f6a77d5a5a2e47857bc25400a0619903"
+hash = "8c547f1e4ca090a7ca4e4a690d6296ef245f41f10851860319ea1b1066b82e73"
 metafile = true
 
 [[files]]
@@ -186,7 +186,7 @@ metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "f294d82e6cb1f9dabd7de9f1d3d4674585370423f2a3bb87dc5f9371e16db512"
+hash = "a414658ea9ed3ff6f7c3a9122e9471e857ae0540640b654e35a1345039c7392a"
 metafile = true
 
 [[files]]
@@ -286,7 +286,7 @@ metafile = true
 
 [[files]]
 file = "mods/tweakermore.pw.toml"
-hash = "c228216034607a1bd39155ec200b3625be8dca729689d48bc5706f36ce1507c1"
+hash = "45876ce8692284dc9ac856cdcb8cd1bb88b4e2699cc03b444d03ccd8dc96d3c5"
 metafile = true
 
 [[files]]
