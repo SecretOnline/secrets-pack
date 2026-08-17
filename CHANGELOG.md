@@ -16,6 +16,20 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.5 - 2026-08-17
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 6 mods
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - ImmediatelyFast
+  - Jade 🔍
+  - Sodium
+  - TweakerMore
+
 ## v13.0.4 - 2026-08-10
 
 Minecraft 26.2
