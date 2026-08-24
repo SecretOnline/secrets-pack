@@ -16,6 +16,24 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.6 - 2026-08-24
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 10 mods
+  - Fabric API
+  - Litematica
+  - MaLiLib
+  - MiniHUD
+  - No Chat Restrictions
+  - Servux
+  - Sodium
+  - Syncmatica
+  - Tweakeroo
+  - Xaero's World Map
+
 ## v13.0.5 - 2026-08-17
 
 Minecraft 26.2
