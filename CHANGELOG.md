@@ -170,6 +170,25 @@ Minecraft 26.2
 - Iris Shaders
   - The current version is marked as incompatible with the current version of Sodium, and the version resolution was being annoying so I decided it's best to wait for them to be compatible.
 
+## v12.1.7 - 2026-08-31
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated Fabric to 0.19.5
+- Updated 10 mods
+  - Litematica
+  - MaLiLib
+  - MiniHUD
+  - No Chat Restrictions
+  - Servux
+  - Sodium
+  - Syncmatica
+  - TweakerMore
+  - Tweakeroo
+  - Xaero's World Map
+
 ## v12.1.6 - 2026-08-17
 
 Minecraft 26.1.2
