@@ -196,9 +196,9 @@ jobs:
             echo
             printf 'Updated version number to v`%s`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).\n' "$VERSION_NUMBER"
 
-            [ -n "$PR_BODY" ] && printf '\n%s\n' "$PR_BODY"
-            [ -n "$CARPET_PR_BODY" ] && printf '\n%s\n' "$CARPET_PR_BODY"
-            [ -n "$REVERT_SODIUM_NOTE" ] && printf '\n%s\n' "$REVERT_SODIUM_NOTE"
+            [ -n "$PR_BODY" ] && printf '\n%s\n' "$PR_BODY" || true
+            [ -n "$CARPET_PR_BODY" ] && printf '\n%s\n' "$CARPET_PR_BODY" || true
+            [ -n "$REVERT_SODIUM_NOTE" ] && printf '\n%s\n' "$REVERT_SODIUM_NOTE" || true
           } >> pr-body.md
 
       - name: Create Pull Request
