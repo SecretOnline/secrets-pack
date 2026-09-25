@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "displayDebugData": false,
+  "enabled": true,
+  "alwaysUseVanillaParticles": false,
+  "useVanillaTextures": false,
+  "leafSize": 5,
+  "leafLifespan": 200,
+  "leafSpawnRate": 10,
+  "coniferLeafSpawnRate": 20,
+  "snowflakeSpawnRate": 30,
+  "dropFromPlayerPlacedBlocks": true,
+  "leavesOnBlockHit": true,
+  "minimumFreeSpaceBelow": 1,
+  "windEnabled": true,
+  "windlessDimensions": ["minecraft:the_end", "minecraft:the_nether"],
+  "leafSettings": {
+    "minecraft:flowering_azalea_leaves": {
+      "particleImplementation": "VANILLA",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:jungle_leaves": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:bamboo": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:mangrove_leaves": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:cherry_leaves": {
+      "particleImplementation": "VANILLA",
+      "spawnRateFactor": 10.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:birch_leaves": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:azalea_leaves": {
+      "particleImplementation": "VANILLA",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:acacia_leaves": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:oak_leaves": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:dark_oak_leaves": {
+      "particleImplementation": "REGULAR",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": false,
+      "spawnBreakingLeaves": false
+    },
+    "minecraft:spruce_leaves": {
+      "particleImplementation": "CONIFER",
+      "spawnRateFactor": 1.0,
+      "isConiferBlock": true,
+      "spawnBreakingLeaves": false
+    }
+  },
+  "leafSpawners": ["minecraft:bamboo[leaves=large]"],
+  "fallSpawnRateFactor": 1.8,
+  "winterSpawnRateFactor": 0.1,
+  "startingSpawnRadius": 0,
+  "decaySpawnRateFactor": 2.6,
+  "maxDecayLeaves": 9,
+  "registerParticles": true
+}
