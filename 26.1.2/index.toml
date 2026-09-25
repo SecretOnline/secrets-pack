@@ -96,6 +96,11 @@ hash = "02fd3220504beae2ea90c121804e4c2ded3e61c99451314ec41bd468245ea907"
 metafile = true
 
 [[files]]
+file = "mods/carpet.pw.toml"
+hash = "fed6e68eacfd81206e9058b6f5532f3f3feb7bf682ae435b4828c68101784a03"
+metafile = true
+
+[[files]]
 file = "mods/chat-heads.pw.toml"
 hash = "e9654c5d253e4fdc00ac2f0ffa32a38ed9c93e9d052e8095deaf054e1efb8bd1"
 metafile = true
@@ -144,10 +149,6 @@ metafile = true
 file = "mods/fabric-api.pw.toml"
 hash = "46c13077e518b312d993a6853c3cd046b724cfc48664481ec0b651ed308aa292"
 metafile = true
-
-[[files]]
-file = "mods/fabric-carpet-26.1+v260402.jar"
-hash = "59bd225d12423a7d7a635ca0c94fa786f97ccebb116922b16d76072da4ee67e7"
 
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
@@ -251,7 +252,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "1c782c464f8119d2367fd785c3524bf571f9c3e14634022e888e24f0046a2163"
+hash = "ee4d00efea0d233cd81e3b2515c83eeba8929b9bfc3b3da735b4c2bc4f9113e0"
 metafile = true
 
 [[files]]
@@ -261,7 +262,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "734a061544bad93b004eb110f67de8e99651f2a0d97533101ce44dbe66b2b619"
+hash = "310a7f091c4d68d57b16cb1f2d3a9d7791c7bc711527f47271e2429d6b290dbb"
 metafile = true
 
 [[files]]
