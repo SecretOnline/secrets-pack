@@ -93,19 +93,6 @@ jobs:
         with:
           working-directory: ${{ matrix.pack-directory.directory }}
 
-      - name: Update Carpet mod
-        id: update-carpet
-        uses: "./.github/actions/update-carpet-mod"
-        with:
-          working-directory: ${{ matrix.pack-directory.directory }}
-          minecraft-version: ${{ steps.get-minecraft-version.outputs.value }}
-
-      - name: Packwiz refresh after Carpet update
-        if: steps.update-carpet.outputs.is-update == 'true'
-        working-directory: ${{ matrix.pack-directory.directory }}
-        run: |
-          packwiz refresh
-
       - name: Download jars for Voxy-Sodium compatibility check
         id: download-compat-jars
         if: steps.update-pack.outputs.is-update == 'true'
@@ -174,19 +161,18 @@ jobs:
 
       - name: Add to changelog
         id: add-to-changelog
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.is-update == 'true'
         uses: "./.github/actions/update-project-changelog"
         with:
           working-directory: .
           directory: ${{ matrix.pack-directory.directory }}
-          changelog-body: ${{ steps.update-pack.outputs.changelog-body }}${{ steps.update-carpet.outputs.changelog-body }}
+          changelog-body: ${{ steps.update-pack.outputs.changelog-body }}
 
       - name: Prepare PR body
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.is-update == 'true'
         env:
           VERSION_NUMBER: ${{ steps.add-to-changelog.outputs.version-number }}
           PR_BODY: ${{ steps.update-pack.outputs.pr-body }}
-          CARPET_PR_BODY: ${{ steps.update-carpet.outputs.pr-body }}
           REVERT_SODIUM_NOTE: ${{ steps.revert-sodium.outputs.note }}
         run: |
           {
@@ -197,13 +183,12 @@ jobs:
             printf 'Updated version number to v`%s`. Copy this number for the [deploy workflow](${{ github.server_url }}/${{ github.repository }}/actions/workflows/deploy.yml).\n' "$VERSION_NUMBER"
 
             [ -n "$PR_BODY" ] && printf '\n%s\n' "$PR_BODY" || true
-            [ -n "$CARPET_PR_BODY" ] && printf '\n%s\n' "$CARPET_PR_BODY" || true
             [ -n "$REVERT_SODIUM_NOTE" ] && printf '\n%s\n' "$REVERT_SODIUM_NOTE" || true
           } >> pr-body.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        if: steps.update-pack.outputs.is-update == 'true' || steps.update-carpet.outputs.is-update == 'true'
+        if: steps.update-pack.outputs.is-update == 'true'
         with:
           token: ${{ secrets.CREATE_PR_PAT }}
           add-paths: |

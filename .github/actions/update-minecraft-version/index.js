@@ -3,12 +3,6 @@ import { spawn } from "node:child_process";
 import { readFile, readdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { createInterface } from "node:readline/promises";
-import {
-  CARPET_JAR_FILENAME_REGEX,
-  downloadCarpetJar,
-  fetchCarpetReleases,
-  findCarpetAssetForVersion,
-} from "../lib/carpet.js";
 
 const minecraftVersionInput = getInput("minecraft-version", { required: true });
 /** @type {string} */
@@ -150,56 +144,6 @@ const {
   updateProcess.on("error", (err) => reject(err));
 });
 
-// Update Carpet mod jar file
-/** @type {{ filename: string; version: string } | null} */
-let carpetModUpdate = null;
-
-try {
-  console.log("Starting Carpet mod update process...");
-  const modsDir = join(cwd, "mods");
-
-  // Fetch releases from GitHub API
-  const releases = await fetchCarpetReleases();
-
-  // Find matching asset for this Minecraft version
-  // This will throw an error if no matching version is found
-  const carpetAsset = findCarpetAssetForVersion(
-    releases,
-    minecraftVersionInput,
-  );
-  if (!carpetAsset) {
-    throw new Error("Failed to find Carpet asset (unexpected null return)");
-  }
-
-  // Delete old jar file if it exists
-  const existingFilenames = await readdir(modsDir);
-  const previousCarpetJars = existingFilenames.filter((f) =>
-    CARPET_JAR_FILENAME_REGEX.test(f),
-  );
-  for (const jarFile of previousCarpetJars) {
-    await rm(join(modsDir, jarFile));
-    console.log(`Deleted existing Carpet jar: ${jarFile}`);
-  }
-
-  // Download new jar file
-  const outputPath = join(modsDir, carpetAsset.filename);
-  await downloadCarpetJar(carpetAsset.url, outputPath);
-
-  // Track the update for changelog
-  carpetModUpdate = {
-    filename: carpetAsset.filename,
-    version: carpetAsset.version,
-  };
-
-  console.log(
-    `Successfully updated Carpet mod to version ${carpetAsset.version}`,
-  );
-} catch (error) {
-  const errorMessage = error instanceof Error ? error.message : String(error);
-  console.error(`Error updating Carpet mod: ${errorMessage}`);
-  throw error;
-}
-
 /** @type {string[]} */
 const changelogContent = [];
 /** @type {string[]} */
@@ -270,7 +214,7 @@ if (
   changelogContent.push("");
 }
 
-if (updatedLoader || carpetModUpdate) {
+if (updatedLoader) {
   changelogContent.push("### Updated", "");
 }
 
@@ -280,11 +224,7 @@ if (updatedLoader) {
   );
 }
 
-if (carpetModUpdate) {
-  changelogContent.push(`- Updated Carpet Mod to ${carpetModUpdate.version}`);
-}
-
-if (updatedLoader || carpetModUpdate) {
+if (updatedLoader) {
   changelogContent.push("");
 }
 
@@ -293,15 +233,6 @@ if (updatedLoader) {
     "### Loader",
     "",
     `Updated ${updatedLoader.name} to ${updatedLoader.version}`,
-    "",
-  );
-}
-
-if (carpetModUpdate) {
-  prContent.unshift(
-    "### Carpet Mod",
-    "",
-    `Updated Carpet Mod to ${carpetModUpdate.version}`,
     "",
   );
 }
