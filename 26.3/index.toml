@@ -226,11 +226,6 @@ hash = "cd05db76d670773ace1184abdd46126e7b7c75c2b70da82e1764cff9544c4269"
 metafile = true
 
 [[files]]
-file = "mods/no-chat-restrictions.pw.toml"
-hash = "cd6aeabd3b34437e61d3d1974eb2caa96eeec8a943dd5b65a525365e407a86fa"
-metafile = true
-
-[[files]]
 file = "mods/now-playing.pw.toml"
 hash = "16f8dbe62e9450bfa10617318dee949e42230186e2bb1bfca3c26cc09e191a50"
 metafile = true
@@ -238,11 +233,6 @@ metafile = true
 [[files]]
 file = "mods/peek.pw.toml"
 hash = "fc55a57f2a3e5b3f044baf080829c9f5b26ed5eb98097532e845da6019a2f379"
-metafile = true
-
-[[files]]
-file = "mods/puzzle.pw.toml"
-hash = "92b8b681374fa78077bbe9612ef5d44569f31985d78ebe8b664f6a985bf9cfee"
 metafile = true
 
 [[files]]
@@ -262,7 +252,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "95b014c29351598261257614a55955215bba353a93593b2050cb07da295d3302"
+hash = "54d699d9ba85bb08b9fd3696a11c7449ea1175a118805855143e1c88fa54aa6b"
 metafile = true
 
 [[files]]
@@ -281,11 +271,6 @@ hash = "1063819c4a7de56b72384a52615bc2dc7818c44b5791072b5b315ca372308fca"
 metafile = true
 
 [[files]]
-file = "mods/tweakermore.pw.toml"
-hash = "d0b987a1acb5f111c75bc5455d7a5babcef109090c0975b398f045a1e4620ee9"
-metafile = true
-
-[[files]]
 file = "mods/tweakeroo.pw.toml"
 hash = "e90e1623949f1c58f81ebc88e8f2f895c185cdff91540522a53f4d47948f488f"
 metafile = true
@@ -293,16 +278,6 @@ metafile = true
 [[files]]
 file = "mods/unilib.pw.toml"
 hash = "4121dbc74d959b6eaa1a5c417bfac728ce05c99e3ad8bc2aee74efd74a3c8bbd"
-metafile = true
-
-[[files]]
-file = "mods/voxy.pw.toml"
-hash = "71d059b58ff61f935fb117777ddac39ee49d733500ff6ec9233121b7b3cbc9b0"
-metafile = true
-
-[[files]]
-file = "mods/worldedit-cui.pw.toml"
-hash = "8ea63f934e8414f78ae7d52874b5c4814e46c804a551f6f55844742cafe19cea"
 metafile = true
 
 [[files]]
