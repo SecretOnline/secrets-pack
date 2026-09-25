@@ -61,15 +61,19 @@ Minecraft 26.3
   - Xaero's Minimap
   - Xaero's World Map
   - YetAnotherConfigLib
-- Added 7 mods from previous version of pack  
+- Added 3 mods from previous version of pack
   Note: may have some compatibility issues until they are updated to this version of Minecraft
   - Hat List
+  - Your Options Shall Be Respected (YOSBR)
+
+### Removed
+
+- Waiting for updates to 26.3
   - No Chat Restrictions
   - Puzzle
   - TweakerMore
   - voxy
   - WorldEdit CUI
-  - Your Options Shall Be Respected (YOSBR)
 
 ## v13.0.6 - 2026-09-25
 
