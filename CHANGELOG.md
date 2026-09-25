@@ -170,6 +170,42 @@ Minecraft 26.2
 - Iris Shaders
   - The current version is marked as incompatible with the current version of Sodium, and the version resolution was being annoying so I decided it's best to wait for them to be compatible.
 
+## v12.1.7 - 2026-09-25
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated Fabric to 0.19.5
+- Updated 27 mods
+  - \[EMF] Entity Model Features
+  - \[ETF] Entity Texture Features
+  - CICADA
+  - Complementary Shaders - Reimagined
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric API
+  - Fabric Language Kotlin
+  - Iris Shaders
+  - Item Scroller
+  - Jade 🔍
+  - Litematica
+  - MaLiLib
+  - MiniHUD
+  - Mod Menu
+  - No Chat Restrictions
+  - Reese's Sodium Options
+  - Servux
+  - Sodium
+  - Sodium Extra
+  - spark
+  - Syncmatica
+  - TweakerMore
+  - Tweakeroo
+  - Xaero's Minimap
+  - Xaero's World Map
+  - YetAnotherConfigLib
+
 ## v12.1.6 - 2026-08-17
 
 Minecraft 26.1.2
