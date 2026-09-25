@@ -6,6 +6,7 @@ import { join } from "node:path";
 const MODPACK_TESTS = [
   { client: "false", server: "modded" },
   { client: "modded", server: "vanilla" },
+  { client: "vanilla", server: "modded" },
 ];
 
 const changedFiles = getInput("changed-files", {
