@@ -16,6 +16,43 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v13.0.6 - 2026-09-25
+
+Minecraft 26.2
+
+### Updated
+
+- Updated Fabric to 0.19.5
+- Updated 28 mods
+  - \[EMF] Entity Model Features
+  - \[ETF] Entity Texture Features
+  - CICADA
+  - Complementary Shaders - Reimagined
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric API
+  - Fabric Language Kotlin
+  - ImmediatelyFast
+  - Iris Shaders
+  - Item Scroller
+  - Litematica
+  - MaLiLib
+  - MiniHUD
+  - Mod Menu
+  - No Chat Restrictions
+  - Reese's Sodium Options
+  - Servux
+  - Sodium
+  - Sodium Extra
+  - spark
+  - Syncmatica
+  - TweakerMore
+  - Tweakeroo
+  - voxy
+  - Xaero's Minimap
+  - Xaero's World Map
+  - YetAnotherConfigLib
+
 ## v13.0.5 - 2026-08-17
 
 Minecraft 26.2
