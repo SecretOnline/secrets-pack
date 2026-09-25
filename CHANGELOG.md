@@ -66,6 +66,11 @@ Minecraft 26.3
   - Hat List
   - Your Options Shall Be Respected (YOSBR)
 
+### Changed
+
+- Updated Xaero's map configs
+  - The main one is disabling the status effects that prevent vanilla clients from joining.
+
 ### Removed
 
 - Waiting for updates to 26.3

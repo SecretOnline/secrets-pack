@@ -61,16 +61,24 @@ file = "config/yosbr/config/tweakeroo.json"
 hash = "3f8f9ce220856c0c027da235d6b399fcacc2b1eb2c4dea2cb95b0a21aaa85185"
 
 [[files]]
-file = "config/yosbr/config/xaerominimap.txt"
-hash = "52c1ca27250173b2f6aa90ebe7dd8f6aca011623851e666faf8c50f62d7909db"
+file = "config/yosbr/config/xaero/minimap/client.cfg"
+hash = "d9d126c87b6ecea7f9a26e18828f133317cb7720c37ff9069ae976c2b9f67dd5"
+
+[[files]]
+file = "config/yosbr/config/xaero/minimap/common.cfg"
+hash = "42c6be77bb7eaabb526ac88c2218ef38ee7b8adc03f8e676ae19b8d6a51d4fb3"
+
+[[files]]
+file = "config/yosbr/config/xaero/minimap/profiles/default.cfg"
+hash = "6f4a80bbddb059a3b7c8ac2658fe841dd2f004afa24ecd79af0ead7b39131010"
+
+[[files]]
+file = "config/yosbr/config/xaero/world-map/client.cfg"
+hash = "d9d126c87b6ecea7f9a26e18828f133317cb7720c37ff9069ae976c2b9f67dd5"
 
 [[files]]
 file = "config/yosbr/config/xaerominimap_entities.json"
 hash = "178f62c3c5a71d4e57c26924b6536a2d614fc2613897323d462f5484f8ec1f61"
-
-[[files]]
-file = "config/yosbr/config/xaeroworldmap.txt"
-hash = "5f60325504ed1c87697036574a581882b92a18f89e4f7285d0242cb8d9cd1b76"
 
 [[files]]
 file = "config/yosbr/options.txt"
