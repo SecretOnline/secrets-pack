@@ -57,7 +57,11 @@ jobs:
           cp -r "$old_game_directory" "${MINECRAFT_VERSION}"
 
           new_pack_version=$((old_pack_version + 1))
-          cat project.json | jq '.["version-map"] += { "'$new_pack_version'": { "directory": "${MINECRAFT_VERSION}", "game-versions": "${MINECRAFT_VERSION}", "should-run-workflows": '$old_should_run_workflows' } }' > new-project.json
+          cat project.json | jq \
+            --arg new_pack_version "$new_pack_version" \
+            --arg minecraft_version "$MINECRAFT_VERSION" \
+            --argjson should_run_workflows "$old_should_run_workflows" \
+            '.["version-map"] += { ($new_pack_version): { "directory": $minecraft_version, "game-versions": $minecraft_version, "should-run-workflows": $should_run_workflows } }' > new-project.json
           rm project.json
           mv new-project.json project.json
 
