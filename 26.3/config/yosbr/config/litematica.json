@@ -1,0 +1,17 @@
+{
+  "Generic": {
+    "toolItem": "minecraft:wooden_sword"
+  },
+  "Hotkeys": {
+    "easyPlaceToggle": {
+      "keys": "M,J"
+    },
+    "executeOperation": {
+      "keys": "M,X"
+    }
+  },
+  "Visuals": {
+    "renderBlocksAsTranslucent": true,
+    "ghostBlockAlpha": 0.25
+  }
+}

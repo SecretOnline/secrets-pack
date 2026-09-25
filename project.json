@@ -66,6 +66,11 @@
       "directory": "26.2",
       "game-versions": "26.2",
       "should-run-workflows": true
+    },
+    "14": {
+      "directory": "26.3",
+      "game-versions": "26.3",
+      "should-run-workflows": true
     }
   }
 }
