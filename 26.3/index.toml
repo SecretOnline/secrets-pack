@@ -77,6 +77,10 @@ file = "config/yosbr/config/xaero/world-map/client.cfg"
 hash = "d9d126c87b6ecea7f9a26e18828f133317cb7720c37ff9069ae976c2b9f67dd5"
 
 [[files]]
+file = "config/yosbr/config/xaero/world-map/common.cfg"
+hash = "a5bdc590a36c6ce392f0fab39c43c5833725372fd3b656528fc433956744ced2"
+
+[[files]]
 file = "config/yosbr/config/xaerominimap_entities.json"
 hash = "178f62c3c5a71d4e57c26924b6536a2d614fc2613897323d462f5484f8ec1f61"
 

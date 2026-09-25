@@ -62,6 +62,7 @@ jobs:
     strategy:
       matrix:
         build-matrix: ${{ fromJson(needs.get-build-matrix.outputs.build-matrix) }}
+      fail-fast: false
     steps:
       - uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
         with:
