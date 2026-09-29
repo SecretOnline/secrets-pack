@@ -80,6 +80,17 @@ Minecraft 26.3
   - voxy
   - WorldEdit CUI
 
+## v13.0.7 - 2026-09-29
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 3 mods
+  - Accessible Step
+  - Chat Heads
+  - WorldEdit CUI
+
 ## v13.0.6 - 2026-09-25
 
 Minecraft 26.2
