@@ -90,7 +90,7 @@ hash = "58591d488b585d570bc245ef808435fe9d132c3b51f9484e77f9d02dd3fdb2d1"
 
 [[files]]
 file = "mods/accessible-step.pw.toml"
-hash = "ca5664ed244a088c07d7874a4adea4f7e73aa36203bb90fb7184225e83c53183"
+hash = "436ed412c93096168a9363260c71c77a08a5d285b17f73ebe32fd0e880167e08"
 metafile = true
 
 [[files]]
@@ -110,7 +110,7 @@ metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "e9654c5d253e4fdc00ac2f0ffa32a38ed9c93e9d052e8095deaf054e1efb8bd1"
+hash = "2c7716d3ad04c2dc38771184e2ef23523bd6ed4c88c922b13ad43e01914ee60c"
 metafile = true
 
 [[files]]
@@ -260,7 +260,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "ee4d00efea0d233cd81e3b2515c83eeba8929b9bfc3b3da735b4c2bc4f9113e0"
+hash = "1c782c464f8119d2367fd785c3524bf571f9c3e14634022e888e24f0046a2163"
 metafile = true
 
 [[files]]
@@ -270,7 +270,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "310a7f091c4d68d57b16cb1f2d3a9d7791c7bc711527f47271e2429d6b290dbb"
+hash = "734a061544bad93b004eb110f67de8e99651f2a0d97533101ce44dbe66b2b619"
 metafile = true
 
 [[files]]

@@ -271,6 +271,19 @@ Minecraft 26.2
 - Iris Shaders
   - The current version is marked as incompatible with the current version of Sodium, and the version resolution was being annoying so I decided it's best to wait for them to be compatible.
 
+## v12.1.8 - 2026-09-29
+
+Minecraft 26.1.2
+
+### Updated
+
+- Updated 5 mods
+  - Accessible Step
+  - Chat Heads
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+
 ## v12.1.7 - 2026-09-25
 
 Minecraft 26.1.2
