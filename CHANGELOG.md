@@ -20,6 +20,11 @@ The versioning scheme is listed in the README.
 
 Minecraft 26.3
 
+### Added
+
+- Tweakermore
+- WorldEdit CUI
+
 ### Updated
 
 - Updated 11 mods

@@ -283,6 +283,11 @@ hash = "1063819c4a7de56b72384a52615bc2dc7818c44b5791072b5b315ca372308fca"
 metafile = true
 
 [[files]]
+file = "mods/tweakermore.pw.toml"
+hash = "4ad623f9d69130cfada2495b87771ae824638c4a1745c9b54c933e3543c7183e"
+metafile = true
+
+[[files]]
 file = "mods/tweakeroo.pw.toml"
 hash = "c981452e48f756282f7f21dc5794aedbd8c6649fcad471126711a6e8982d50b8"
 metafile = true
@@ -290,6 +295,11 @@ metafile = true
 [[files]]
 file = "mods/unilib.pw.toml"
 hash = "4121dbc74d959b6eaa1a5c417bfac728ce05c99e3ad8bc2aee74efd74a3c8bbd"
+metafile = true
+
+[[files]]
+file = "mods/worldedit-cui.pw.toml"
+hash = "52b3473ef9d94f5f6ee09670f302e42bfa64d06766006e36c98d167cab3f8b80"
 metafile = true
 
 [[files]]
