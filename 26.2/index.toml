@@ -94,7 +94,7 @@ hash = "58591d488b585d570bc245ef808435fe9d132c3b51f9484e77f9d02dd3fdb2d1"
 
 [[files]]
 file = "mods/accessible-step.pw.toml"
-hash = "e95699124834a00dc3c4c0ab1974b0d1bb8a3ef6ca659ff8daa7358253051ba4"
+hash = "5f85a257726667a390e959d27bca22b930b164cfacd9a6fd10fb4a6409d17c2b"
 metafile = true
 
 [[files]]
@@ -114,7 +114,7 @@ metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "e9654c5d253e4fdc00ac2f0ffa32a38ed9c93e9d052e8095deaf054e1efb8bd1"
+hash = "2c7716d3ad04c2dc38771184e2ef23523bd6ed4c88c922b13ad43e01914ee60c"
 metafile = true
 
 [[files]]
@@ -314,7 +314,7 @@ metafile = true
 
 [[files]]
 file = "mods/worldedit-cui.pw.toml"
-hash = "8ea63f934e8414f78ae7d52874b5c4814e46c804a551f6f55844742cafe19cea"
+hash = "6153a3d6ac801c9971089553e435a283f43d498cad8d42ed554aabd63ed5018b"
 metafile = true
 
 [[files]]
