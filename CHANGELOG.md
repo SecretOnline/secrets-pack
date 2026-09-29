@@ -16,6 +16,25 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.0.1 - 2026-09-29
+
+Minecraft 26.3
+
+### Updated
+
+- Updated 11 mods
+  - Accessible Step
+  - Chat Heads
+  - Item Scroller
+  - Jade 🔍
+  - Litematica
+  - Lithium
+  - MaLiLib
+  - MiniHUD
+  - Servux
+  - Sodium
+  - Tweakeroo
+
 ## v14.0.0 - 2026-09-25
 
 Minecraft 26.3
