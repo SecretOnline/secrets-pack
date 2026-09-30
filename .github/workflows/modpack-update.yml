@@ -19,7 +19,7 @@ jobs:
       has-updates: ${{ steps.build-matrix.outputs.has-updates }}
       update-modpack-mods-matrix: ${{ steps.build-matrix.outputs.update-modpack-mods-matrix }}
     steps:
-      - uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
 
@@ -53,7 +53,7 @@ jobs:
       matrix:
         pack-directory: ${{ fromJson(needs.get-build-matrix.outputs.update-modpack-mods-matrix) }}
     steps:
-      - uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+      - uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
         with:
           egress-policy: audit
 
@@ -68,7 +68,7 @@ jobs:
           go-version: stable
 
       - name: Setup Packwiz
-        uses: SecretOnline/minecraft-actions/setup-packwiz@864a0633b94cd154060d164282f5afc2d77802a9 # v2.1.1
+        uses: SecretOnline/minecraft-actions/setup-packwiz@0fd737eebcd823495d466d6b6ce07cafdcb1fba4 # v2.2.0
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
