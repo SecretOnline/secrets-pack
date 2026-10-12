@@ -16,6 +16,25 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.0.2 - 2026-10-12
+
+Minecraft 26.3
+
+### Updated
+
+- Updated 11 mods
+  - \[EMF] Entity Model Features
+  - \[ETF] Entity Texture Features
+  - Chat Heads
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric API
+  - Fabric Language Kotlin
+  - Iris Shaders
+  - Jade 🔍
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v14.0.1 - 2026-09-29
 
 Minecraft 26.3
