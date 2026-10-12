@@ -95,7 +95,7 @@ metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "2f528064285af8c6da4aaa18913c40acaf8992110754196bf8cc77ef75a32c23"
+hash = "fcfc3c904437c686d403e0c07123029aa901ea2c644fc114666a20af2c82203d"
 metafile = true
 
 [[files]]
@@ -110,7 +110,7 @@ metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "2c7716d3ad04c2dc38771184e2ef23523bd6ed4c88c922b13ad43e01914ee60c"
+hash = "cbcc1fee52838e0f9610594542fa6686a3593fae908365b2e01c217a83921169"
 metafile = true
 
 [[files]]
@@ -140,17 +140,17 @@ metafile = true
 
 [[files]]
 file = "mods/entity-model-features.pw.toml"
-hash = "48564ce1da5ec5b99f91f17a61e9c4268780fceaf932558f6dc18b8dd626ed1e"
+hash = "884273f6ad5bfe2e46878f932c01aa5fbd151fab6d798f34c407493eb11b727a"
 metafile = true
 
 [[files]]
 file = "mods/entityculling.pw.toml"
-hash = "07407ff3c162907f7df7d1b95bbdefd883a27ce986085526d46ae3163f2cacfa"
+hash = "fd735302264f2d668974725932d2f41abb3e2a1827eaf717068e806e40e5eabd"
 metafile = true
 
 [[files]]
 file = "mods/entitytexturefeatures.pw.toml"
-hash = "b05e931319716d77b1baa428ceb56ba8ef25c00d36ae60deb2b9732c6eb64d4e"
+hash = "9d9471f190d66db13534667926f7cb9124b13db6f68ca29b00307b65807e864d"
 metafile = true
 
 [[files]]
@@ -160,7 +160,7 @@ metafile = true
 
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
-hash = "7a7f5673b6e33eebaed00c0c453fc41d11c7474eb320c3ce8736d415fcfe2682"
+hash = "1811d49906aa7a1e7f1230535c6fec91be45129d028f7900cf35571a497e42b3"
 metafile = true
 
 [[files]]
@@ -240,7 +240,7 @@ metafile = true
 
 [[files]]
 file = "mods/no-chat-restrictions.pw.toml"
-hash = "8d29f27592777b5ea8c1b12239fe12b635b938d6b0d0d12367f174769eb855aa"
+hash = "3c3282dc41c4cd1105d84789ae2a9347935e06cb2d2d8d93887fc56d11d1d64d"
 metafile = true
 
 [[files]]
@@ -260,7 +260,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "ee4d00efea0d233cd81e3b2515c83eeba8929b9bfc3b3da735b4c2bc4f9113e0"
+hash = "1c782c464f8119d2367fd785c3524bf571f9c3e14634022e888e24f0046a2163"
 metafile = true
 
 [[files]]
@@ -270,7 +270,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "310a7f091c4d68d57b16cb1f2d3a9d7791c7bc711527f47271e2429d6b290dbb"
+hash = "734a061544bad93b004eb110f67de8e99651f2a0d97533101ce44dbe66b2b619"
 metafile = true
 
 [[files]]
@@ -325,12 +325,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "7f18bebd0a56a60ce6e57adc32828193a41271095c1362aea2c7a4a30969afb5"
+hash = "b5a197fbefddb6093f4d409aee45913c3fbc95cac59e76c5d3a702b74ed022f6"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "5df9067a60471de05776a57d2b77a40436b635904271d9556ef73c81decd56f5"
+hash = "b6d9c07b5fafaa81384f05befc0bba711f16e7b211e728d57c33f2e5c567a512"
 metafile = true
 
 [[files]]
