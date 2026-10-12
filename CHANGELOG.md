@@ -104,6 +104,23 @@ Minecraft 26.3
   - voxy
   - WorldEdit CUI
 
+## v13.0.8 - 2026-10-12
+
+Minecraft 26.2
+
+### Updated
+
+- Updated 9 mods
+  - \[EMF] Entity Model Features
+  - \[ETF] Entity Texture Features
+  - Chat Heads
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric Language Kotlin
+  - No Chat Restrictions
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v13.0.7 - 2026-09-29
 
 Minecraft 26.2
