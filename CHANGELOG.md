@@ -16,6 +16,30 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.0.2 - 2026-10-19
+
+Minecraft 26.3
+
+### Updated
+
+- Updated Fabric to 0.20.0
+- Updated 15 mods
+  - \[EMF] Entity Model Features
+  - \[ETF] Entity Texture Features
+  - Chat Heads
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric API
+  - Fabric Language Kotlin
+  - Iris Shaders
+  - Jade 🔍
+  - Now Playing
+  - Reese's Sodium Options
+  - Sodium
+  - WorldEdit
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v14.0.1 - 2026-09-29
 
 Minecraft 26.3
