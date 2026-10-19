@@ -1,13 +1,13 @@
 name = "Now Playing"
-filename = "nowplaying-fabric-2.102.0+26.1.2.jar"
+filename = "nowplaying-fabric-2.102.1+26.1.2.jar"
 side = "client"
 
 [download]
-url = "https://cdn.modrinth.com/data/eNF4Bfla/versions/7RTW4G7z/nowplaying-fabric-2.102.0%2B26.1.2.jar"
+url = "https://cdn.modrinth.com/data/eNF4Bfla/versions/FcVaCH9n/nowplaying-fabric-2.102.1%2B26.1.2.jar"
 hash-format = "sha512"
-hash = "e08eeb7444bc31a8493dac2ace9e692f62f857971e52e273c7873ab45269e138d9b6ce73015c1b3a6208d3434202ad20cfbfa30190f249671996706767a2c9c6"
+hash = "16498462f3d1359ca26420f9d0a701bfd90168a81d7161598445f79abcaf1a0ff0a68dd1ba1b4f03d407ce045bbbcbad9951daed6688388960d509772e1fd474"
 
 [update]
 [update.modrinth]
 mod-id = "eNF4Bfla"
-version = "7RTW4G7z"
+version = "FcVaCH9n"
