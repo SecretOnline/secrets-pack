@@ -20,6 +20,12 @@ The versioning scheme is listed in the README.
 
 Minecraft 26.3
 
+### Added
+
+- From previous versions of this pack
+  - No Chat Restrictions
+  - Voxy
+
 ### Updated
 
 - Updated Fabric to 0.20.0

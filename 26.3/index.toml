@@ -238,6 +238,11 @@ hash = "cd05db76d670773ace1184abdd46126e7b7c75c2b70da82e1764cff9544c4269"
 metafile = true
 
 [[files]]
+file = "mods/no-chat-restrictions.pw.toml"
+hash = "c31931e31508be2547b889254b8c4d1e4642b15fa39dc4894aad8ff6da3493ed"
+metafile = true
+
+[[files]]
 file = "mods/now-playing.pw.toml"
 hash = "86306264a288b6bf6b8edcee7057555f27fd85093d63d1380556de7c31350c68"
 metafile = true
@@ -295,6 +300,11 @@ metafile = true
 [[files]]
 file = "mods/unilib.pw.toml"
 hash = "4121dbc74d959b6eaa1a5c417bfac728ce05c99e3ad8bc2aee74efd74a3c8bbd"
+metafile = true
+
+[[files]]
+file = "mods/voxy.pw.toml"
+hash = "19ae82550e2d7e5a444bb3c5c49777ecf6dfd6334e286ad499ca17235587d2ed"
 metafile = true
 
 [[files]]
