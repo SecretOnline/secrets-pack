@@ -322,9 +322,6 @@ Minecraft 26.1.2
   - Fabric Language Kotlin
   - No Chat Restrictions
   - Now Playing
-  - Reese's Sodium Options
-  - Sodium
-  - Sodium Extra
   - Xaero's Minimap
   - Xaero's World Map
 
