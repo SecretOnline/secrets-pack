@@ -16,6 +16,19 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.0.3 - 2026-10-26
+
+Minecraft 26.3
+
+### Updated
+
+- Updated Fabric to 0.20.1
+- Updated 4 mods
+  - Fabric API
+  - Sodium Extra
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v14.0.2 - 2026-10-19
 
 Minecraft 26.3
