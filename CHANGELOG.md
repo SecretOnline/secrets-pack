@@ -16,6 +16,22 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.0.3 - 2026-11-02
+
+Minecraft 26.3
+
+### Updated
+
+- Updated Fabric to 0.20.1
+- Updated 7 mods
+  - Carpet TIS Addition
+  - Concurrent Chunk Management Engine (Fabric)
+  - Fabric API
+  - Lithium
+  - Sodium Extra
+  - Xaero's Minimap
+  - Xaero's World Map
+
 ## v14.0.2 - 2026-10-19
 
 Minecraft 26.3
