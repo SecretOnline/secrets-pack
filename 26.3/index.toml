@@ -99,12 +99,12 @@ metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "a94236b63468d24c06f176dc6321d41d19d4c29ee6e6e973932cdc43fef145f7"
+hash = "d42635f415c03bff51cb7e569a58d33f5f2204388c6a685b95598e7137666a15"
 metafile = true
 
 [[files]]
 file = "mods/carpet-tis-addition.pw.toml"
-hash = "305b258350b2cf78622fb2f0f10c26222bb39626b5cc0b0ce565eea38e8df4c4"
+hash = "3c7a888899d6a9215981c48efb7ef97bbac97246c17215a856b9494564fccb76"
 metafile = true
 
 [[files]]
@@ -154,12 +154,12 @@ metafile = true
 
 [[files]]
 file = "mods/entitytexturefeatures.pw.toml"
-hash = "bdabe52b4c88b2f57ab21c130c3d00a1ebae771085d31b44674d13c35135feff"
+hash = "c029d9c7873a6f072332e97d54422efa438bc8ae81d53bd1c078a6dd1644f0ce"
 metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
-hash = "a4c31d16582621909eba9f06a34f03114d212c7e684c8dbc9991fb12a42e043b"
+hash = "79de372a05dde6ee4f23ced936835dbd9d43b64ba61ae1990cb0e59dce460e6a"
 metafile = true
 
 [[files]]
@@ -254,7 +254,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "dbff49110dc8d3d2071b1d1a93a694601b595af2aa9ee48f3f08fbe90c734b69"
+hash = "03b2a3b39d961bf7e3380c846e5ed032dd70613ec9d9a6eb5c21be0253eb8363"
 metafile = true
 
 [[files]]
@@ -264,12 +264,12 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "56bb32f1d8f7148d559b15806185b69023a7b04d228ed6143a54601ee5e57279"
+hash = "d2cdc4d21d54fc4cc3ba14c38ee1d6d8f4721dabdba25ce0005245bee12d5676"
 metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "0bf314c578473659bd89915114cac8e60994988f405218726a48d35b06e9316c"
+hash = "77fe8db098dcf0ef97326e1659dbfc50f3729b92aaf67f5deb2b7229448dc8ca"
 metafile = true
 
 [[files]]
