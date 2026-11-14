@@ -16,7 +16,7 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
-## v14.0.4 - 2026-11-14
+## v14.1.0 - 2026-11-14
 
 Minecraft 26.3
 
