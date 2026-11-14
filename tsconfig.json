@@ -8,5 +8,5 @@
     "strict": true,
     "types": ["node"]
   },
-  "include": [".github/actions/*/*.js"]
+  "include": [".github/actions/*/*.js", "scripts/*.js"]
 }
