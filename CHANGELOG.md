@@ -16,6 +16,24 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.0.4 - 2026-11-14
+
+Minecraft 26.3
+
+### Updated
+
+- Updated 10 mods
+  - \[ETF] Entity Texture Features
+  - Carpet TIS Addition
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Fabric API
+  - Mod Menu
+  - Peek
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+
 ## v14.0.3 - 2026-11-02
 
 Minecraft 26.3
