@@ -16,6 +16,17 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.1.1 - 2026-11-16
+
+Minecraft 26.3
+
+### Updated
+
+- Updated 3 mods
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+
 ## v14.1.0 - 2026-11-14
 
 Minecraft 26.3
