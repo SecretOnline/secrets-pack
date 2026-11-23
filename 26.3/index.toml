@@ -26,7 +26,7 @@ hash = "ad3030166061b89aecf693b205e61f329ea21b213dff80dacc9459f4db1b45ce"
 
 [[files]]
 file = "config/yosbr/config/iris.properties"
-hash = "f8ec3a4e420cba8b4453596811b81b470a7e307939403757a6de971623a47e09"
+hash = "a176e09e1d6566357873c4c46263ba19f3b0af769197a2dd31e616263adce295"
 
 [[files]]
 file = "config/yosbr/config/itemscroller.json"
@@ -89,7 +89,7 @@ file = "config/yosbr/options.txt"
 hash = "64f1664ef3f7edf7d6011f519a11e1329f8552ef0d64eb8200c63ce196ae3bc9"
 
 [[files]]
-file = "config/yosbr/shaderpacks/ComplementaryReimagined_r5.9.3.zip.txt"
+file = "config/yosbr/shaderpacks/ComplementaryReimagined_r5.10.zip.txt"
 hash = "58591d488b585d570bc245ef808435fe9d132c3b51f9484e77f9d02dd3fdb2d1"
 
 [[files]]
@@ -99,7 +99,7 @@ metafile = true
 
 [[files]]
 file = "mods/c2me-fabric.pw.toml"
-hash = "e07c6a592ba844c3bd26e8ee73a21771dfa49396292ecca6eb77d48a17c0fb7d"
+hash = "1e3df3c319ea1f964ffb4c69dd5691633c514dae9b2d8e1b5d56be206c923558"
 metafile = true
 
 [[files]]
@@ -114,7 +114,7 @@ metafile = true
 
 [[files]]
 file = "mods/chat-heads.pw.toml"
-hash = "7959f11cce0c14ffae150d4a3126b04b70b0af815d25453110d2a8408011e9cb"
+hash = "c63d433459a0757fccc916fc523050ab42cb2fe85990eefc9d8ed797376abdcb"
 metafile = true
 
 [[files]]
@@ -149,7 +149,7 @@ metafile = true
 
 [[files]]
 file = "mods/entityculling.pw.toml"
-hash = "3d70571a3f55ab9d923addc371e87440286436b15141abf1ae780fa90dcbcf7d"
+hash = "de2e449e1257069f5b9570c66c52e30767b498c5722971a9f75a057794114d03"
 metafile = true
 
 [[files]]
@@ -214,7 +214,7 @@ metafile = true
 
 [[files]]
 file = "mods/lithium.pw.toml"
-hash = "b44f3ab71e52f1aaae97cf8644f2316042de8b7777d6b6794567c8c7d220bd2b"
+hash = "bae28aaf888e212a4310264a51e585aa252051fcc2467c309670c7786b923ee5"
 metafile = true
 
 [[files]]
@@ -239,7 +239,7 @@ metafile = true
 
 [[files]]
 file = "mods/no-chat-restrictions.pw.toml"
-hash = "c31931e31508be2547b889254b8c4d1e4642b15fa39dc4894aad8ff6da3493ed"
+hash = "1d5c3b29cc902fd62b91a866c536b4d8111d0a1877641df42f6c2b08eb1dd5da"
 metafile = true
 
 [[files]]
@@ -254,7 +254,7 @@ metafile = true
 
 [[files]]
 file = "mods/reeses-sodium-options.pw.toml"
-hash = "7ddded1570a6ed9ec5b9f0fa1dbce5e29896c4f00f9fa56efe09b7716bb6bf3d"
+hash = "038f11a9baea7842bf71b5d05395872b916a91644602e8b6ca3419ca883b20c8"
 metafile = true
 
 [[files]]
@@ -264,7 +264,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium-extra.pw.toml"
-hash = "0c4b6d09c057e17756244ecf46604684d97f5e0a2c53deb85f99d333b537a3a6"
+hash = "259d2b2f633bf07cd6eb7a99b18a2869ff6c313329631f2802512e40411e2874"
 metafile = true
 
 [[files]]
@@ -344,5 +344,5 @@ metafile = true
 
 [[files]]
 file = "shaderpacks/complementary-reimagined.pw.toml"
-hash = "75d1d2488a0c332a9a58af7e57f980a1b006c02b3a1c580fbd50443088e4eab0"
+hash = "5c17de8161b06a10dbd8e59645e7d7edfc583054009b5a787086d5f4fb1a77f1"
 metafile = true
