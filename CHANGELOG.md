@@ -16,6 +16,23 @@ The versioning scheme is listed in the README.
 
 ## Unreleased - DATE
 
+## v14.1.1 - 2026-11-23
+
+Minecraft 26.3
+
+### Updated
+
+- Updated 9 mods
+  - Chat Heads
+  - Complementary Shaders - Reimagined
+  - Concurrent Chunk Management Engine (Fabric)
+  - Entity Culling
+  - Lithium
+  - No Chat Restrictions
+  - Reese's Sodium Options
+  - Sodium
+  - Sodium Extra
+
 ## v14.1.0 - 2026-11-14
 
 Minecraft 26.3
